@@ -13,7 +13,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="">
+      <div className="Home-page">
         <h1>This is home page</h1>
       </div>
 
