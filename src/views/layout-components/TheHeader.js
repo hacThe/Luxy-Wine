@@ -14,10 +14,7 @@ const TheHeader = () => {
     dispatch(userActions.logout())
   }
   return (
-    <div style={{
-      backgroundColor: "#FFFFFF"
-    }}>
-       <Container className='hd1'>
+    <div className='header-wrapper'>
               <Container className='header'>
       <Row className='nav-1'>
         <Col xs={3} className='nav-1a'>
@@ -91,7 +88,6 @@ const TheHeader = () => {
           
         </Col>
       </Row>
-      </Container>  
       </Container>
     </div>
      
