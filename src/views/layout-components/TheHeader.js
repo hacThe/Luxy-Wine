@@ -1,9 +1,10 @@
 import React from 'react'
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 import { userActions } from "../../actions/user.actions";
 import { Nav, Navbar, Container, Form, FormControl, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser, faSignOut, faCartPlus, faPhoneVolume, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faCircleUser, faSignOut, faCartPlus, faPhoneVolume, faSearch, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons'
 import './TheHeader.scss';
 
 
@@ -13,84 +14,88 @@ const TheHeader = () => {
   function HandleLogOutOnClick() {
     dispatch(userActions.logout())
   }
+
   return (
-    <div className='header-wrapper'>
-              <Container className='header'>
-      <Row className='nav-1'>
-        <Col xs={3} className='nav-1a'>
-          <p>
-            <FontAwesomeIcon icon={faPhoneVolume} /> 0334.696.473
-          </p>
-        </Col>
-        <Col xs={9} className='nav-1b'>
-          <Nav as="ul">
-            <Nav.Item as="li">
-              <Nav.Link href="/home">Tra cứu đơn hàng</Nav.Link>
-            </Nav.Item>
-            <Nav.Item as="li">
-              <Nav.Link eventKey="link-1">
-                <FontAwesomeIcon icon={faCircleUser} />
-                Nguyen Tan Thanh
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item as="li">
-              <Nav.Link onClick={() => { HandleLogOutOnClick() }}>
-                <FontAwesomeIcon icon={faSignOut} />
-                Đăng xuất
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item as="li">
-              <Nav.Link eventKey="link-2">
-                <FontAwesomeIcon icon={faCartPlus} />
-                Giỏ hàng
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Col>
-      </Row>
+    <div className='header-wrapper' tabIndex={100}>
+      <Container className='header'>
+        <Row className='nav-1'>
+          <Col xs={3} className='nav-1a'>
+            <p>
+              <FontAwesomeIcon icon={faPhoneVolume} /> 0334.696.473
+            </p>
+          </Col>
+          <Col xs={9} className='nav-1b'>
+            <Nav as="ul">
+              <Nav.Item as="li">
+                <NavLink to={`/404`}>
+                <FontAwesomeIcon icon={faFileInvoiceDollar} />
+                  Tra cứu đơn hàng
+                </NavLink>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <NavLink to={`/404`}>
+                  <FontAwesomeIcon icon={faCircleUser} />
+                  Nguyen Tan Thanh
+                </NavLink>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <Nav.Link onClick={() => { HandleLogOutOnClick() }}>
+                  <FontAwesomeIcon icon={faSignOut} />
+                  Đăng xuất
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <NavLink to={`/trang-chu`}>
+                  <FontAwesomeIcon icon={faCartPlus} />
+                  Giỏ hàng
+                </NavLink>
+              </Nav.Item>
+            </Nav>
+          </Col>
+        </Row>
 
-      <Row className='nav-2'>
-        <Col xs={3} className='nav-2-webName'>
-          <h1>
-            Luxy Wine
-          </h1>
-        </Col>
-        <Col xs={9} className='nav-2-pages'>
-          <Navbar bg="light" expand="lg">
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-                className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
-                navbarScroll
-              >
-                <Nav.Link href="#action1">Trang chủ</Nav.Link>
-                <Nav.Link href="#action2">Rượu</Nav.Link>
-                <Nav.Link href="#action3">Combo khuyến mãi</Nav.Link>
-                <Nav.Link href="#action4">Phụ kiện</Nav.Link>
-                <Nav.Link href="#action5">Tin tức</Nav.Link>
-                <Nav.Link href="#action6">Liên hệ</Nav.Link>
+        <Row className='nav-2'>
+          <Col xs={3} className='nav-2-webName'>
+            <h1>
+              Luxy Wine
+            </h1>
+          </Col>
+          <Col xs={9} className='nav-2-pages'>
+            <Navbar bg="light" expand="lg">
+              <Navbar.Toggle aria-controls="navbarScroll" />
+              <Navbar.Collapse id="navbarScroll">
+                <Nav
+                  className="me-auto my-2 my-lg-0"
+                  style={{ maxHeight: '100px' }}
+                  navbarScroll
+                >
+                  <NavLink to={`/trang-chu`} role='button' className='nav-link' >Trang chủ</NavLink>
+                  <NavLink to={`/404`} role='button' className='nav-link' >Rượu</NavLink>
+                  <NavLink to={`/404`} role='button' className='nav-link' >Combo khuyến mãi</NavLink>
+                  <NavLink to={`/404`} role='button' className='nav-link' >Phụ kiện</NavLink>
+                  <NavLink to={`/404`} role='button' className='nav-link' >Tin tức</NavLink>
+                  <NavLink to={`/404`} role='button' className='nav-link' >Liên hệ</NavLink>
 
-              </Nav>
-              <Form className="form-search d-flex">
-                <FormControl
-                  type="search"
-                  placeholder="Tìm kiếm..."
-                  aria-label="Search"
-                />
-                <Button className='btn-search'>
-                  <FontAwesomeIcon icon={faSearch} />
-                </Button>
-              </Form>
-              
-            </Navbar.Collapse>
-          </Navbar>
-          
-        </Col>
-      </Row>
+                </Nav>
+                <Form className="form-search d-flex">
+                  <FormControl
+                    type="search"
+                    placeholder="Tìm kiếm..."
+                    aria-label="Search"
+                  />
+                  <Button className='btn-search'>
+                    <FontAwesomeIcon icon={faSearch} />
+                  </Button>
+                </Form>
+
+              </Navbar.Collapse>
+            </Navbar>
+
+          </Col>
+        </Row>
       </Container>
     </div>
-     
+
   )
 }
 

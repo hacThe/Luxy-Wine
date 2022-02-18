@@ -1,8 +1,155 @@
 .Home-page{
-    h1{
-        color: black;
+    .slider{
+        .carousel{
+            height: 640px;
+            width: 100%;
+            img{
+                height: 640px;
+            }
+            .carousel-caption{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                height: 100%;
+                text-align: left;
+                h1{
+                    font-weight: bold;
+                    font-size: 72px;
+                    line-height: 88px;
+                    color: #FFFFFF;
+                }
+                p{
+                    font-size: 30px;
+                    line-height: 40px;
+                    color: #FFFFFF;
+                }
+                button{
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 29px;
+                    color: #000000;
+                    height: 50px;
+                    width: 200px;
+                    border-radius: 0%;
+                }
+            }
+        }
     }
-    height: 700px;
-    background-color: gray;
-    padding-top: 120px;
+    .slogan{
+        text-align: center;
+        
+        h3{
+            font-family: Modern Antiqua;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 47px;
+            line-height: 56px;
+        }
+        .para-1{
+            padding: 22px 12%;
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 27px;
+            line-height: 37px;
+
+            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .para-2{
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 27px;
+            line-height: 37px;
+        }
+    }
+
+    .product{
+        padding: 22px;
+        text-align: center;
+        height: 400px;/////////
+    }
+
+    .about-us{
+        .baner-img{
+            width: 100%;
+            height: 390px;
+            background-image: url('https://res.cloudinary.com/tanthanh0805/image/upload/v1645178807/LuxyWine/Banner_fxehr3.png');
+        }
+        h3{
+            font-family: Modern Antiqua;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 47px;
+            line-height: 56px;
+            padding-top: 30px;
+            padding-bottom: 10px;
+            margin: 0;
+        }
+        p{
+            padding: 20px 12%;
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 27px;
+            line-height: 37px;
+
+            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 10;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        text-align: center;
+    }
+
+    .customer-review{
+
+        text-align: center;
+        padding: 20px 20px 40px;
+        h3{
+            font-weight: bold;
+            font-size: 36px;
+            line-height: 44px;
+        }
+        .body-review{
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            .card{
+                text-align: start;
+                background-color: #494949;
+                color: #FFFFFF;
+                .card-body{
+                    padding: 30px 16px;
+                    .card-img{
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            height: 150px;
+                            width: 150px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .gg-map{
+        padding-top: 20px;
+        .map-img{
+            width: 100%;
+            height: 390px;
+            background-image: url('https://res.cloudinary.com/tanthanh0805/image/upload/v1645183607/LuxyWine/map_x6oy63.png');
+        }
+    }
+    padding-top: 100px;
 }
