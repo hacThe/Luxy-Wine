@@ -71,13 +71,18 @@
                         .nav-link{
                             color: #000000;
                             padding: 8px 11px;
+                            text-align: center;
+                            //border: solid 1px #FFFFFF;
                             &:hover{
-                                background-color: #cecece;
+                                //background-color: #e7e7e7;
+                                //border: solid 1px #939393;
+                                color: #6c6c6c;
                             }
                         }
                         .active{
-                            background-color: #cecece;
-                            box-shadow: 2px 2px 2px #565a5b;
+                            //background-color: #e7e7e7;
+                            //border: solid 1px #939393;
+                            color: #6c6c6c;
                         }
                         .form-search{
                             input{
@@ -113,7 +118,6 @@
                 }
                 display: flex;
                 align-items: center;
-                height: 80px;
             }
             background-color: #FFFFFF;
         }

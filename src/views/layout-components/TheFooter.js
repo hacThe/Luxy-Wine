@@ -12,7 +12,7 @@ const TheFooter = () => {
   return (
     <Container>
       <Row className='footer'>
-        <Col xs={6} className='address'>
+        <Col xs={12} sm={6} className='address'>
           <h1>Luxy Wine</h1>
           <p style={
             {
@@ -22,7 +22,7 @@ const TheFooter = () => {
           <p>Địa chỉ: 29 Đường số 8, P. Bình Hưng Hòa A, Q. Bình Tân, TP.HCM</p>
           <p>Số điện thoại: 0386 39 7579 - 090236 4049</p>
         </Col>
-        <Col xs={3}>
+        <Col xs={12} sm={3}>
           <p style={
             {
               fontWeight: 'bold'
@@ -35,7 +35,7 @@ const TheFooter = () => {
           <Link to='/'><p>Chính sách đổi trả</p></Link>
           <Link to='/'><p>Về Luxy Wine</p></Link>
         </Col>
-        <Col xs={3}>
+        <Col xs={12} sm={3}>
           <h5>Hotline: 0334.696.473</h5>
           <p style={
             {

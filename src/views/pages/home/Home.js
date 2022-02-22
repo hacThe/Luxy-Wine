@@ -89,8 +89,8 @@ const Login = () => {
           <Row xs={1} className="g-4 body-review">
             {Array.from({ length: 3 }).map((_, idx) => (
               <Card className="col-9">
-                <Row className="card-body">
-                  <Col xs={3} >
+                <Row className="body">
+                  <Col xs={12} md={3}>
                     <div className="card-img">
                       <Card.Img variant="left" src="https://res.cloudinary.com/tanthanh0805/image/upload/v1640322386/moriiStore/N%C3%A0ng_th%C6%A1__13_jk1or9.jpg" />
                     </div>
@@ -100,7 +100,7 @@ const Login = () => {
                       ))}
                     </div>
                   </Col>
-                  <Col xs={9}>
+                  <Col xs={12} md={9}>
                     <Card.Body>
                       <Card.Title>Card title</Card.Title>
                       <Card.Text>

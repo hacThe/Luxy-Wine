@@ -19,12 +19,12 @@ const TheHeader = () => {
     <div className='header-wrapper' tabIndex={100}>
       <Container className='header'>
         <Row className='nav-1'>
-          <Col xs={3} className='nav-1a'>
+          <Col xs={12} sm={3} className='nav-1a'>
             <p>
               <FontAwesomeIcon icon={faPhoneVolume} /> 0334.696.473
             </p>
           </Col>
-          <Col xs={9} className='nav-1b'>
+          <Col xs={12}  sm={9} className='nav-1b'>
             <Nav as="ul">
               <Nav.Item as="li">
                 <NavLink to={`/404`}>
