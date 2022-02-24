@@ -20,7 +20,7 @@ const commonRoute = [
 
 const protectedRoute = [
   {path: '/trang-chu', name: 'Trang chủ', element: <Homepage/>},
-  {path: '/ahihi', name: 'Sản phẩm', element: <Products/>},
+  {path: '/san-pham', name: 'Sản phẩm', element: <Products/>},
 ]
 
 const routes = {

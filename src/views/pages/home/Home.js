@@ -4,13 +4,14 @@ import { userActions } from "../../../actions/user.actions";
 import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { NormalProduct, SellProduct, NewProduct, SpecialProduct } from './../../product-component/ProductComponent'
 import './Home.scss';
-const Login = () => {
+const Home = () => {
 
   return (
     <>
       <div className="Home-page">
-        <Container  className="slider">
+        <Container className="slider">
           <Carousel fade>
             <Carousel.Item>
               <img
@@ -67,8 +68,36 @@ const Login = () => {
         </Container>
 
         <Container className="product">
-          <h3>Sản phẩm nổi bật của Luxy Wine</h3>
+          <h3 style={{ marginBottom: "32px" }}>Sản phẩm nổi bật của Luxy Wine</h3>
+          <div className="px-5">
+            <Row className="special-product py-5">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <>
+                  <Col>
+                    <SellProduct />
+                  </Col>
+                  <Col>
+                    <NormalProduct />
+                  </Col>
+                  <Col>
+                    <NewProduct />
+                  </Col>
+                  <Col>
+                    <SpecialProduct />
+                  </Col>
+                </>
 
+              ))}
+            </Row>
+
+            <Row className="special-product py-5">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <Col>
+                  <NormalProduct />
+                </Col>
+              ))}
+            </Row>
+          </div>
         </Container>
 
         <Container className="about-us">
@@ -94,9 +123,9 @@ const Login = () => {
                     <div className="card-img">
                       <Card.Img variant="left" src="https://res.cloudinary.com/tanthanh0805/image/upload/v1640322386/moriiStore/N%C3%A0ng_th%C6%A1__13_jk1or9.jpg" />
                     </div>
-                    <div className="assess d-flex justify-content-center" style={{color: "yellow"}}>
-                      {Array.from({length:5}).map((_, idx)=>(
-                          <FontAwesomeIcon icon={faStar} style={{padding: "2px"}}/>
+                    <div className="assess d-flex justify-content-center" style={{ color: "yellow" }}>
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <FontAwesomeIcon icon={faStar} style={{ padding: "2px" }} />
                       ))}
                     </div>
                   </Col>
@@ -123,4 +152,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Home;
