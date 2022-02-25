@@ -2,17 +2,31 @@ import React from 'react';
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faBookmark } from '@fortawesome/free-solid-svg-icons'
-import "./ProductComponent.scss"
-
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import "./ProductComponent.scss";
 
 const product = {
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
-    img: "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-    desciption: "Italy, DOCG, White, Dry, 0.75L",
-    sellPrice: 750000,
-    discountPrice: 700000,
+    avtURL: "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
+    imgURLs: ["https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png", "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png"],
+    quantity: 7,
+    importPrice: 600000, // Giá nhập
+    sellPrice: 750000, // Giá bán gốc
+    discountPrice: 700000, // Giá bán đã sale
+    temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
+    color: ['White', 'Blue'],
+    food: ["Bò khô"],
+    origin: "Italy", // Xuất xứ
+    producer: "DOCG", //Nhà sản xuất
+    concentrationPercent: 40, //  nồng độ cồn ( tính theo %)
+    capacity: 750, // Dung tích (ml)
+    vintage: 2017, // Năm sản xuất
+    aboutProduct: "about product", // Một đoạn ngắn mô tả thông tin sản phẩm
+    suger: 10, // Hàm lượng đường
+    experation: "Date",//Date
+    productType: "wine" // wine/combo/accessory
 }
+
 function ProductName(props) {
     return (
         <>
@@ -23,7 +37,7 @@ function ProductName(props) {
 function Description(props) {
     return (
         <>
-            <Card.Text className='desciption'>{props.desciption}</Card.Text>
+            <Card.Text className='desciption'>{props.origin}, {props.producer}, {props.color.toString()}, {props.capacity}ml </Card.Text>
         </>
     )
 }
@@ -100,21 +114,22 @@ function SpecialTag() {
         </>
     )
 }
+//----------------------------------------------------------------------------------------------------------------//
 
 const NormalProduct = () => {
     return (
         <>
             <div className="product-card normal-product">
                 <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product['img']} />
+                    <Card.Img variant="top" src={product.avtURL} />
                     <Card.Body>
-                        <ProductName name={product['name']} />
-                        <Description desciption={product['desciption']} />
+                        <ProductName name={product.name} />
+                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
                         <Card.Text style={{
                             height: "20px",
                             margin: "0px"
                         }}></Card.Text>
-                        <NewPrice newPrice={product['sellPrice']} />
+                        <NewPrice newPrice={product.sellPrice} />
                     </Card.Body>
                     <HoverContent />
                 </Card>
@@ -123,17 +138,17 @@ const NormalProduct = () => {
     )
 }
 
-const SellProduct = () => {
+const DiscountProduct = () => {
     return (
         <>
-            <div className="product-card sell-product">
+            <div className="product-card discount-product">
                 <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product['img']} />
+                    <Card.Img variant="top" src={product.avtURL} />
                     <Card.Body>
-                        <ProductName name={product['name']} />
-                        <Description desciption={product['desciption']} />
-                        <OldPrice oldPrice={product['sellPrice']} newPrice={product['discountPrice']} />
-                        <NewPrice newPrice={product['discountPrice']} />
+                        <ProductName name={product.name} />
+                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
+                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} />
+                        <NewPrice newPrice={product.sellPrice} />
                     </Card.Body>
                     <HoverContent />
                 </Card>
@@ -146,13 +161,13 @@ const NewProduct = () => {
     return (
         <>
             <div className="product-card new-product">
-                <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product['img']} />
+            <Card style={{ width: '14rem', height: "28rem" }}>
+                    <Card.Img variant="top" src={product.avtURL} />
                     <Card.Body>
-                        <ProductName name={product['name']} />
-                        <Description desciption={product['desciption']} />
-                        <OldPrice oldPrice={product['sellPrice']} newPrice={product['discountPrice']} />
-                        <NewPrice newPrice={product['discountPrice']} />
+                        <ProductName name={product.name} />
+                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
+                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} />
+                        <NewPrice newPrice={product.sellPrice} />
                     </Card.Body>
                     <NewTag />
                     <HoverContent />
@@ -162,17 +177,17 @@ const NewProduct = () => {
     )
 }
 
-const SpecialProduct = () =>{
-    return(
+const SpecialProduct = () => {
+    return (
         <>
             <div className="product-card new-product">
-                <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product['img']} />
+            <Card style={{ width: '14rem', height: "28rem" }}>
+                    <Card.Img variant="top" src={product.avtURL} />
                     <Card.Body>
-                        <ProductName name={product['name']} />
-                        <Description desciption={product['desciption']} />
-                        <OldPrice oldPrice={product['sellPrice']} newPrice={product['discountPrice']} />
-                        <NewPrice newPrice={product['discountPrice']} />
+                        <ProductName name={product.name} />
+                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
+                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} />
+                        <NewPrice newPrice={product.sellPrice} />
                     </Card.Body>
                     <SpecialTag />
                     <HoverContent />
@@ -183,4 +198,4 @@ const SpecialProduct = () =>{
 }
 
 
-export { NormalProduct, SellProduct, NewProduct, SpecialProduct };
+export { NormalProduct, DiscountProduct, NewProduct, SpecialProduct };

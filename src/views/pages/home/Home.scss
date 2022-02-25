@@ -132,13 +132,14 @@
         .body-review{
             display: flex;
             justify-content: center;
-            padding-top: 20px;
+            padding-top: 30px;
             .card{
                 text-align: start;
                 background-color: #494949;
                 color: #FFFFFF;
+                margin: 10px 0px !important;
                 .body{
-                    padding: 30px 16px;
+                    padding: 16px;
                     .card-img{
                         height: 80%;
                         display: flex;
