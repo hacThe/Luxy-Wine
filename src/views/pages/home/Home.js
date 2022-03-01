@@ -1,10 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../actions/user.actions";
-import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap"
+import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { NormalProduct, DiscountProduct, NewProduct, SpecialProduct } from './../../product-component/ProductComponent'
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { ProductComponent } from './../../product-component/ProductComponent';
+import HorizontalScroll from 'react-horizontal-scrolling';
 import './Home.scss';
 
 const Home = () => {
@@ -87,38 +88,18 @@ const Home = () => {
   }
 
   function Product() {
+    
     return (
       <Container className="product">
         <h3 style={{ marginBottom: "32px" }}>Sản phẩm nổi bật của Luxy Wine</h3>
-        <div className="px-5">
-          <Row className="special-product py-5">
-            {Array.from({ length: 6 }).map((_, idx) => (
-              <Col key={idx}>
-                <NormalProduct />
-              </Col>
+        <div className="px-5 py-3" id="container">
+          <HorizontalScroll>
+            {Array.from({ length: 12 }).map((_, idx) => (
+              <div key={idx} className="px-2">
+                <ProductComponent />
+              </div>
             ))}
-          </Row>
-           <Row className="special-product py-5">
-            {Array.from({ length: 6 }).map((_, idx) => (
-                <Col key={idx}>
-                  <DiscountProduct />
-                </Col>
-            ))}
-          </Row>
-          <Row className="special-product py-5">
-            {Array.from({ length: 6 }).map((_, idx) => (
-              <Col key={idx}>
-                <SpecialProduct />
-              </Col>
-            ))}
-          </Row>
-          <Row className="special-product py-5">
-            {Array.from({ length: 6 }).map((_, idx) => (
-              <Col key={idx}>
-                <NewProduct />
-              </Col>
-            ))}
-          </Row>
+          </HorizontalScroll>
         </div>
       </Container>
     )

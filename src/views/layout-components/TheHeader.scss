@@ -6,6 +6,7 @@
     left: 0;
     right: 0;
     top: 0;       
+    box-shadow: 2px 2px 5px #7F7F7F;
     z-index: 110;
         .header{
             .nav-1{
@@ -72,43 +73,34 @@
                             color: #000000;
                             padding: 8px 11px;
                             text-align: center;
-                            //border: solid 1px #FFFFFF;
                             &:hover{
-                                //background-color: #e7e7e7;
-                                //border: solid 1px #939393;
                                 color: #6c6c6c;
                             }
                         }
                         .active{
-                            //background-color: #e7e7e7;
-                            //border: solid 1px #939393;
                             color: #6c6c6c;
                         }
                         .form-search{
                             input{
-                                border-right: 0;
-                                border-left: solid 1px #000000;
-                                border-top: solid 1px #000000;
-                                border-bottom: solid 1px #000000;
-                                border-top-right-radius: 0;
-                                border-bottom-right-radius: 0;
-                                border-top-left-radius: 22px;
-                                border-bottom-left-radius: 22px;
+                                border: none;
+                                background-color: transparent;
+                            }
+                            .form-control:focus{
+                                border: none;
+                                box-shadow: none;
                             }
                             .btn-search{
                                 background-color: transparent;
                                 color: #252A2B;
-                                border-left: 0;
-                                border-right: solid 1px #000000;
-                                border-top: solid 1px #000000;
-                                border-bottom: solid 1px #000000;
-                                border-top-right-radius: 22px;
-                                border-bottom-right-radius: 22px;
-                                border-top-left-radius: 0;
-                                border-bottom-left-radius: 0;
-        
+                                border: none;
                             }
+                            border: 1px solid #000000;
+                            border-radius: 25px;
+                        } 
+                        .form-search:focus-within{
+                            box-shadow: 0 0 0 0.15rem rgba(44, 44, 44, 0.25);
                         }
+                        
                     }
                     font-family: Montserrat;
                     font-style: normal;

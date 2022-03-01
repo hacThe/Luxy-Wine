@@ -12,7 +12,7 @@ const product = {
     quantity: 7,
     importPrice: 600000, // Giá nhập
     sellPrice: 750000, // Giá bán gốc
-    discountPrice: 700000, // Giá bán đã sale
+    discountPrice: 70000, // Giá bán đã sale
     temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
     color: ['White', 'Blue'],
     food: ["Bò khô"],
@@ -24,7 +24,9 @@ const product = {
     aboutProduct: "about product", // Một đoạn ngắn mô tả thông tin sản phẩm
     suger: 10, // Hàm lượng đường
     experation: "Date",//Date
-    productType: "wine" // wine/combo/accessory
+    productType: "wine", // wine/combo/accessory
+    isSpecial: true,
+    isNew: true,
 }
 
 function ProductName(props) {
@@ -82,7 +84,7 @@ function HoverContent() {
             <Card.Body className='hover-content row'>
                 <Link to={`/san-pham`} style={{ height: "93%", width: "100%", margin: "0px", padding: "0px", backgroundColor: "#00000020" }}>
                 </Link>
-                <Row style={{ height: "7%", backgroundColor: "black", margin: "0px", padding: "0px" }}>
+                <Row style={{ height: "7%", backgroundColor: "#353535", margin: "0px", padding: "0px" }}>
                     <Col style={{ padding: "0px", borderRight: "solid 1px white" }}>
                         <Button><FontAwesomeIcon icon={faCartPlus} /></Button>
                     </Col>
@@ -116,40 +118,25 @@ function SpecialTag() {
 }
 //----------------------------------------------------------------------------------------------------------------//
 
-const NormalProduct = () => {
-    return (
-        <>
-            <div className="product-card normal-product">
-                <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product.avtURL} />
-                    <Card.Body>
-                        <ProductName name={product.name} />
-                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
-                        <Card.Text style={{
-                            height: "20px",
-                            margin: "0px"
-                        }}></Card.Text>
-                        <NewPrice newPrice={product.sellPrice} />
-                    </Card.Body>
-                    <HoverContent />
-                </Card>
-            </div>
-        </>
-    )
-}
-
-const DiscountProduct = () => {
+const ProductComponent = () => {
     return (
         <>
             <div className="product-card discount-product">
-                <Card style={{ width: '14rem', height: "28rem" }}>
+                <Card style={{ height: "28rem" }}>
                     <Card.Img variant="top" src={product.avtURL} />
                     <Card.Body>
                         <ProductName name={product.name} />
                         <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
-                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} />
-                        <NewPrice newPrice={product.sellPrice} />
+                        {product.discountPrice !== 0? 
+                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} /> 
+                        :<Card.Text style={{
+                            height: "20px",
+                            margin: "0px"
+                        }}></Card.Text>}
+                        <NewPrice newPrice = {product.discountPrice !==0? product.discountPrice: product.sellPrice} />
                     </Card.Body>
+                    {product.isNew? <NewTag />: <></>}
+                    {product.isSpecial? <SpecialTag />: <></>}
                     <HoverContent />
                 </Card>
             </div>
@@ -157,45 +144,4 @@ const DiscountProduct = () => {
     )
 }
 
-const NewProduct = () => {
-    return (
-        <>
-            <div className="product-card new-product">
-            <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product.avtURL} />
-                    <Card.Body>
-                        <ProductName name={product.name} />
-                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
-                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} />
-                        <NewPrice newPrice={product.sellPrice} />
-                    </Card.Body>
-                    <NewTag />
-                    <HoverContent />
-                </Card>
-            </div>
-        </>
-    )
-}
-
-const SpecialProduct = () => {
-    return (
-        <>
-            <div className="product-card new-product">
-            <Card style={{ width: '14rem', height: "28rem" }}>
-                    <Card.Img variant="top" src={product.avtURL} />
-                    <Card.Body>
-                        <ProductName name={product.name} />
-                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
-                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} />
-                        <NewPrice newPrice={product.sellPrice} />
-                    </Card.Body>
-                    <SpecialTag />
-                    <HoverContent />
-                </Card>
-            </div>
-        </>
-    )
-}
-
-
-export { NormalProduct, DiscountProduct, NewProduct, SpecialProduct };
+export {ProductComponent };
