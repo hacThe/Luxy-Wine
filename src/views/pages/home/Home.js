@@ -2,8 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../actions/user.actions";
 import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { IoStar } from 'react-icons/io5';
 import { ProductComponent } from './../../product-component/ProductComponent';
 import HorizontalScroll from 'react-horizontal-scrolling';
 import './Home.scss';
@@ -12,20 +11,20 @@ const Home = () => {
 
   return (
     <>
-      <div className="Home-page">
+      <Container className="Home-page">
         <Slider />
         <Slogan />
         <Product />
         <AboutUs />
         <CustomerReview />
         <Map />
-      </div>
+      </Container>
     </>
   );
 
   function Slider() {
     return (
-      <Container className="slider">
+      <Row className="slider" >
         <Carousel fade>
           <Carousel.Item>
             <img
@@ -50,7 +49,7 @@ const Home = () => {
 
             <Carousel.Caption>
               <div className="carousel-content">
-                <h3>Second slide label</h3>
+                <h1>Second slide label</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
             </Carousel.Caption>
@@ -64,26 +63,26 @@ const Home = () => {
 
             <Carousel.Caption>
               <div className="carousel-content">
-                <h3>Third slide label</h3>
+                <h1>Third slide label</h1>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
               </div>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-      </Container>
+      </Row>
     )
   }
 
   function Slogan() {
     return (
-      <Container className="slogan">
+      <div className="slogan">
         <h3>Wine</h3>
         <p className="para-1">
           “Wine is one of the most civilized things in the world and one of the most natural things of the world that has been brought
           to the greatest perfection, and it offers a greater range for enjoyment and appreciation than, possibly, any other purely sensory thing.”
         </p>
-        <p className="para-2">― Ernest Hemingway</p>
-      </Container>
+        <p className="para-2">― Ernest Hemingway ―</p>
+      </div>
     )
   }
 
@@ -108,7 +107,7 @@ const Home = () => {
 
   function AboutUs() {
     return (
-      <Container className="about-us">
+      <div className="about-us">
         <div className="baner-img"></div>
         <h3>Luxy Wine</h3>
         <p className="para-1">
@@ -118,18 +117,18 @@ const Home = () => {
           release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
           versions of Lorem Ipsum.
         </p>
-      </Container>
+      </div>
     )
 
   }
 
   function CustomerReview() {
     return (
-      <Container className="customer-review">
+      <div className="customer-review">
         <h3>Đánh giá của khách hàng</h3>
         <Row xs={1} className="g-4 body-review">
           {Array.from({ length: 3 }).map((_, idx) => (
-            <Card key={idx} className="col-9">
+            <Card key={idx} className="">
               <Row className="body">
                 <Col xs={12} md={3}>
                   <div className="card-img">
@@ -137,14 +136,14 @@ const Home = () => {
                   </div>
                   <div className="assess d-flex justify-content-center" style={{ color: "yellow" }}>
                     {Array.from({ length: 5 }).map((_, idx) => (
-                      <FontAwesomeIcon key={idx} icon={faStar} style={{ padding: "2px" }} />
+                      <IoStar key={idx} style={{ padding: "2px" }} />
                     ))}
                   </div>
                 </Col>
                 <Col xs={12} md={9}>
                   <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
+                    <Card.Title className="card-title">Card title</Card.Title>
+                    <Card.Text className="card-text">
                       This is a longer card with supporting text below as a natural
                       lead-in to additional content. This content is a little bit longer.
                     </Card.Text>
@@ -154,15 +153,15 @@ const Home = () => {
             </Card>
           ))}
         </Row>
-      </Container>
+      </div>
     )
   }
 
   function Map() {
     return (
-      <Container className="gg-map">
+      <div className="gg-map">
         <div className="map-img"></div>
-      </Container>
+      </div>
     )
   }
 };

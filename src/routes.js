@@ -14,18 +14,19 @@ const publicRoute = [
 
 
 const commonRoute = [
-  
-]
-
-
-const protectedRoute = [
   {path: '/trang-chu', name: 'Trang chủ', element: <Homepage/>},
   {path: '/san-pham', name: 'Sản phẩm', element: <Products/>},
 ]
 
+
+const protectedRoute = [
+  
+]
+
 const routes = {
   publicRoute,
-  protectedRoute
+  protectedRoute, 
+  commonRoute
 }
 
 export default routes;

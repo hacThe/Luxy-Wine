@@ -1,7 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
 .product-card{
-    width: 14rem;
+    width: 23rem;
+    height: 48rem;
     position: relative;
     :hover{
         :last-child{
@@ -66,8 +67,10 @@
     
     .hover-content{
         position: absolute;
-        height: 100%;
-        width: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         opacity: 0;
         padding: 0px !important;
         margin: 0px !important;
@@ -84,6 +87,10 @@
                 line-height: 16px;
                 border: none;
                 border-radius: 0%;
+                svg{
+                    height: 2rem;
+                    width: 2rem;
+                }
             }
         }
         a{

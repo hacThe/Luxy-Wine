@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { BsCartPlusFill } from 'react-icons/bs'
+
 import "./ProductComponent.scss";
 
 const product = {
@@ -86,7 +86,7 @@ function HoverContent() {
                 </Link>
                 <Row style={{ height: "7%", backgroundColor: "#353535", margin: "0px", padding: "0px" }}>
                     <Col style={{ padding: "0px", borderRight: "solid 1px white" }}>
-                        <Button><FontAwesomeIcon icon={faCartPlus} /></Button>
+                        <Button><BsCartPlusFill /></Button>
                     </Col>
                     <Col style={{ padding: "0px" }}>
                         <Button to={`/san-pham`}>Mua Ngay</Button>
@@ -122,7 +122,7 @@ const ProductComponent = () => {
     return (
         <>
             <div className="product-card discount-product">
-                <Card style={{ height: "28rem" }}>
+                <Card style={{ height: "48rem" }}>
                     <Card.Img variant="top" src={product.avtURL} />
                     <Card.Body>
                         <ProductName name={product.name} />

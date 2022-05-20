@@ -1,33 +1,40 @@
-@import "~bootstrap/scss/bootstrap";
+.Home-page {
+    width: 100%;
+    max-width: 1920px;
 
-.Home-page{
-    .slider{
-        .carousel{
-            height: 640px;
+    .slider {
+        .carousel {
+            height: 80rem;
             width: 100%;
-            img{
-                height: 640px;
-                filter: brightness(0.5);
+
+            img {
+                height: 80rem;
+                filter: brightness(0.4);
             }
-            .carousel-caption{
+
+            .carousel-caption {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
                 height: 100%;
                 text-align: left;
-                h1{
-                    font-weight: bold;
+
+                h1 {
+                    font-weight: 700;
                     font-size: 72px;
                     line-height: 88px;
                     color: #FFFFFF;
                 }
-                p{
+
+                p {
+                    font-weight: 400;
                     font-size: 30px;
                     line-height: 40px;
                     color: #FFFFFF;
                 }
-                button{
-                    font-weight: bold;
+
+                button {
+                    font-weight: 700;
                     font-size: 24px;
                     line-height: 29px;
                     color: #000000;
@@ -38,22 +45,23 @@
             }
         }
     }
-    .slogan{
+
+    .slogan {
         text-align: center;
-        padding: 20px;
-        h3{
-            font-family: Modern Antiqua;
+        padding: 5rem;
+
+        h3 {
+            font-family: 'Modern Antiqua';
             font-style: normal;
             font-weight: 500;
-            font-size: 47px;
-            line-height: 56px;
-            padding-top: 20px;
-            margin: 0px;
+            font-size: 4.7rem;
+            line-height: 5.6rem;
+            margin: 0rem;
         }
-        .para-1{
+
+        .para-1 {
             padding: 0px 12%;
             margin: 22px 0px;
-            font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
             font-size: 27px;
@@ -66,8 +74,8 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .para-2{
-            font-family: Montserrat;
+
+        .para-2 {
             font-style: normal;
             font-weight: bold;
             font-size: 27px;
@@ -75,34 +83,42 @@
         }
     }
 
-    .product{
-        padding: 30px 12px;
+    .product {
+        width: 100%;
+        padding: 5rem 3rem;
         text-align: center;
         height: auto;
+
+        h3 {
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 44px;
+        }
     }
 
-    .about-us{
-        .baner-img{
+    .about-us {
+        .baner-img {
             width: 100%;
-            height: 390px;
+            height: 39rem;
             background-image: url('https://res.cloudinary.com/tanthanh0805/image/upload/v1645178807/LuxyWine/Banner_fxehr3.png');
             background-repeat: no-repeat;
             background-size: cover;
         }
-        h3{
-            font-family: Modern Antiqua;
+
+        h3 {
+            font-family: 'Modern Antiqua';
             font-style: normal;
             font-weight: 500;
-            font-size: 47px;
-            line-height: 56px;
-            padding-top: 30px;
-            padding-bottom: 10px;
+            font-size: 5rem;
+            line-height: 5.7rem;
+            padding-top: 4rem;
+            padding-bottom: 1rem;
             margin: 0;
         }
-        p{
+
+        p {
             padding: 0px 12%;
             margin: 20px 0px;
-            font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
             font-size: 27px;
@@ -115,57 +131,86 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         text-align: center;
     }
 
-    .customer-review{
+    .customer-review {
 
         text-align: center;
-        padding: 20px 20px 40px;
-        h3{
-            font-weight: bold;
+        padding: 8rem 2rem 4rem;
+
+        h3 {
+            font-weight: 700;
             font-size: 36px;
             line-height: 44px;
         }
-        .body-review{
+
+        .body-review {
             display: flex;
             justify-content: center;
-            padding-top: 30px;
-            .card{
+            padding: 3rem;
+
+            .card {
                 text-align: start;
                 background-color: #494949;
                 color: #FFFFFF;
                 margin: 10px 0px !important;
-                .body{
-                    padding: 16px;
-                    .card-img{
-                        height: 80%;
+                max-width: 100rem;
+
+                .body {
+                    padding: 1.6rem;
+
+                    .card-img {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        img{
-                            height: 150px;
-                            width: 150px;
+
+                        img {
+                            height: 15rem;
+                            width: 15rem;
                             border-radius: 50%;
                             object-fit: cover;
                         }
                     }
-                    .assess{
-                        height: 20%;
+
+                    .assess {
                         padding: 2px 0px;
                         align-items: center;
-                    }               
+
+                        svg {
+                            height: 2rem;
+                            width: 2rem;
+                        }
+                    }
+
+                    .card-title {
+                        font-weight: 700;
+                        font-size: 24px;
+                        line-height: 29px;
+                    }
+
+                    .card-text {
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 22px;
+                    }
                 }
             }
         }
     }
-    .gg-map{
+
+    .gg-map {
         padding-top: 20px;
-        .map-img{
+
+        .map-img {
             width: 100%;
-            height: 390px;
+            height: 39rem;
+            background-repeat: no-repeat;
+            background-size: cover;
             background-image: url('https://res.cloudinary.com/tanthanh0805/image/upload/v1645183607/LuxyWine/map_x6oy63.png');
         }
     }
+
     padding-top: 100px;
 }
