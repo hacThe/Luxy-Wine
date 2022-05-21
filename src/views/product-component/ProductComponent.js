@@ -5,30 +5,6 @@ import { BsCartPlusFill } from 'react-icons/bs'
 
 import "./ProductComponent.scss";
 
-const product = {
-    name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
-    avtURL: "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-    imgURLs: ["https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png", "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png"],
-    quantity: 7,
-    importPrice: 600000, // Giá nhập
-    sellPrice: 750000, // Giá bán gốc
-    discountPrice: 70000, // Giá bán đã sale
-    temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
-    color: ['White', 'Blue'],
-    food: ["Bò khô"],
-    origin: "Italy", // Xuất xứ
-    producer: "DOCG", //Nhà sản xuất
-    concentrationPercent: 40, //  nồng độ cồn ( tính theo %)
-    capacity: 750, // Dung tích (ml)
-    vintage: 2017, // Năm sản xuất
-    aboutProduct: "about product", // Một đoạn ngắn mô tả thông tin sản phẩm
-    suger: 10, // Hàm lượng đường
-    experation: "Date",//Date
-    productType: "wine", // wine/combo/accessory
-    isSpecial: true,
-    isNew: true,
-}
-
 function ProductName(props) {
     return (
         <>
@@ -118,25 +94,25 @@ function SpecialTag() {
 }
 //----------------------------------------------------------------------------------------------------------------//
 
-const ProductComponent = () => {
+const ProductComponent = (props) => {
     return (
         <>
             <div className="product-card discount-product">
-                <Card style={{ height: "48rem" }}>
-                    <Card.Img variant="top" src={product.avtURL} />
+                <Card style={{ height: "44rem" }}>
+                    <Card.Img variant="top" src={props.product.avtURL} />
                     <Card.Body>
-                        <ProductName name={product.name} />
-                        <Description origin={product.origin} producer={product.producer} color={product.color} capacity={product.capacity} />
-                        {product.discountPrice !== 0? 
-                        <OldPrice oldPrice={product.sellPrice} newPrice={product.discountPrice} /> 
+                        <ProductName name={props.product.name} />
+                        <Description origin={props.product.origin} producer={props.product.producer} color={props.product.color} capacity={props.product.capacity} />
+                        {props.product.discountPrice !== 0? 
+                        <OldPrice oldPrice={props.product.sellPrice} newPrice={props.product.discountPrice} /> 
                         :<Card.Text style={{
                             height: "20px",
                             margin: "0px"
                         }}></Card.Text>}
-                        <NewPrice newPrice = {product.discountPrice !==0? product.discountPrice: product.sellPrice} />
+                        <NewPrice newPrice = {props.product.discountPrice !==0? props.product.discountPrice: props.product.sellPrice} />
                     </Card.Body>
-                    {product.isNew? <NewTag />: <></>}
-                    {product.isSpecial? <SpecialTag />: <></>}
+                    {props.product.isNew? <NewTag />: <></>}
+                    {props.product.isSpecial? <SpecialTag />: <></>}
                     <HoverContent />
                 </Card>
             </div>

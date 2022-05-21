@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { userActions } from "../../actions/user.actions";
@@ -17,9 +17,31 @@ const TheHeader = () => {
   function HandleLogOutOnClick() {
     dispatch(userActions.logout())
   }
+  const [position, setPosition] = useState(window.pageYOffset)
+  const [visible, setVisible] = useState(true)
+  useEffect(() => {
+    const handleScroll = () => {
+      let moving = window.pageYOffset
+      if(moving < 100) return;
+
+      if(position > moving + 20){
+        setVisible(true);
+        setPosition(moving)
+      }
+      if(position < moving - 20){
+        setVisible(false);
+        setPosition(moving)
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return (() => {
+      window.removeEventListener("scroll", handleScroll);
+    })
+  })
+  const cls = visible ? "visible" : "hidden";
 
   return (
-    <div className='header-wrapper' tabIndex={100}>
+    <div className={'header-wrapper ' + cls} tabIndex={100}>
       <Container className='header'>
         <div className='nav-1'>
           <div className='nav-1a'>

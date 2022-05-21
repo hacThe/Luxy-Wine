@@ -2,8 +2,9 @@
 
 .product-card{
     width: 23rem;
-    height: 48rem;
+    height: 45rem;
     position: relative;
+    text-align: center;
     :hover{
         :last-child{
             transition: 0.5s;
@@ -135,6 +136,7 @@
             color: #FFFFFF;
             display: flex;
             align-items: center;
+            text-align: center;
         }
         .triangle{
             width: 0;

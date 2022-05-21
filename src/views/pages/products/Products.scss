@@ -1,0 +1,31 @@
+.products-wrapper {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-top: 11rem;
+
+    .product-banner {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        background-color: #E5E5E5;
+        width: 100%;
+
+        .banner-img {
+            width: 107rem;
+            height: 27rem;
+            background-image: url('https://res.cloudinary.com/tanthanh0805/image/upload/v1645178807/LuxyWine/Banner_fxehr3.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+    .product-list-group {
+        min-height: 80rem;
+        min-width: 150rem;
+        padding: 4rem;
+        .product-list-group_row{
+            .product__list-group {
+                padding: 0rem 2rem;
+            }
+        }
+    }
+}
