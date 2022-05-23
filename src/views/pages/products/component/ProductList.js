@@ -37,22 +37,24 @@ function ProductList(props) {
     }, [currentPage])
 
     return (
-        <div className='product-list-wrapper'>
-            <div className='product-list-header'>
-                <div className='product-sort'>
-                    <label>Sấp xếp theo: </label>
-                    <select>
-                        <option value={'name'}>Tên A-Z</option>
-                        <option value={'cheapest'}>Giá thấp nhất</option>
-                        <option value={'mostExpensive'}>Giá cao nhất</option>
-                        <option value={'sales'}>Bán chạy nhất</option>
-                        <option value={'newest'}>Mới nhất</option>
-                    </select>
-                    <button>Tất cả sản phẩm</button>
-                </div>
+        <Container className='product-list-wrapper'>
+            <div className='product-list-header-wrapper'>
+                <div className='product-list-header'>
+                    <div className='product-sort'>
+                        <label>Sấp xếp theo: </label>
+                        <select>
+                            <option value={'name'}>Tên A-Z</option>
+                            <option value={'cheapest'}>Giá thấp nhất</option>
+                            <option value={'mostExpensive'}>Giá cao nhất</option>
+                            <option value={'sales'}>Bán chạy nhất</option>
+                            <option value={'newest'}>Mới nhất</option>
+                        </select>
+                        <button>Tất cả sản phẩm</button>
+                    </div>
 
-                <div className='result-filter'>
-                    <p>Tìm được 65 sản phẩm</p>
+                    <div className='result-filter'>
+                        <p>Tìm được 65 sản phẩm</p>
+                    </div>
                 </div>
             </div>
 
@@ -67,7 +69,7 @@ function ProductList(props) {
                 </div>
             </div>
 
-        </div>
+        </Container>
     )
 }
 

@@ -14,16 +14,16 @@ const Products = () => {
         <div className='banner-img'></div>
       </div>
 
-      <Container className='product-list-group'>
+      <div className='product-list-group'>
         <Row className='product-list-group_row'>
-        <Col xs={3} className="product__filter-group">
+        <Col xs={12} xxl={3} className="product__filter-group">
           <FilterComponent />
         </Col>
-        <Col xs={9} className="product__list-group">
+        <Col xs={12} xxl={9} className="product__list-group">
           <ProductList />
         </Col>
         </Row>
-      </Container>
+      </div>
 
       <div className='suggest-product'>
         <SuggestProduct />
