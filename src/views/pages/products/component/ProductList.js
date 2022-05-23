@@ -48,6 +48,7 @@ function ProductList(props) {
                         <option value={'sales'}>Bán chạy nhất</option>
                         <option value={'newest'}>Mới nhất</option>
                     </select>
+                    <button>Tất cả sản phẩm</button>
                 </div>
 
                 <div className='result-filter'>

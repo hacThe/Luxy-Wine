@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { ProductList } from './component/ProductList'
 import { FilterComponent } from './component/FilterComponent'
+import { SuggestProduct } from '../../component/SuggestProduct'
 import './Products.scss'
 
 
@@ -23,6 +24,10 @@ const Products = () => {
         </Col>
         </Row>
       </Container>
+
+      <div className='suggest-product'>
+        <SuggestProduct />
+      </div>
     </Container>
   )
 }
