@@ -1,5 +1,6 @@
 .product-list-wrapper {
     min-width: 100rem;
+
     .product-list-header {
         display: flex;
         justify-content: space-between;
@@ -12,6 +13,7 @@
                 font-size: 16px;
                 line-height: 20px;
                 margin-right: 2rem;
+                color: #000000;
             }
 
             select {
@@ -22,10 +24,20 @@
                 line-height: 17px;
                 color: #7F7F7F;
             }
+
+            button {
+                font-weight: 500;
+                font-size: 1.5rem;
+                line-height: 20px;
+                margin-left: 2rem;
+                padding: 0.5rem;
+
+                border: 1px solid #7F7F7F;
+            }
         }
 
         .result-filter {
-            p{
+            p {
                 text-align: center;
                 font-weight: 400;
                 font-size: 15px;
@@ -40,10 +52,12 @@
         flex-wrap: wrap;
         justify-content: start;
         padding: 1.8rem;
-        .product-list-footer{
+
+        .product-list-footer {
             display: flex;
             justify-content: center;
             width: 100%;
+            padding-top: 1.5rem;
         }
     }
 }

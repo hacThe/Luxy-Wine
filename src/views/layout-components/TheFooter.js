@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const TheFooter = () => {
   return (
-    <Container>
+    <Container className='container-wrapper'>
       <Row className='footer'>
         <Col xs={12} sm={6} className='address'>
           <h1>Luxy Wine</h1>
