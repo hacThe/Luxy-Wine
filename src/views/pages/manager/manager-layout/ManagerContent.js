@@ -13,7 +13,7 @@ function ManagerContent(props) {
       <ConfirmActionModal/>
       <div className="manager-content-wrapper">
         <ManagerHeader />
-        <Container maxWidth="xl">
+        <Container className="content-of-manager" maxWidth="xl">
           <Outlet />
         </Container>
       </div>

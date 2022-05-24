@@ -19,18 +19,13 @@ html{
 }
 
 :root {
+  --primary-color: #222222;
   --fade-text-color: #747474;
   --background-color: #fff;
+  --danger-color: #dc3545;
   --foreground-color: #000;
   --hover-background-color: #DEDEDE;
-
-  --max-width: 1440px;
 }
-
-body {
-  margin: 0;
-  font-family: "Montserrat", sans-serif !important;
-} 
 
 a {
   text-decoration: none;
@@ -44,31 +39,133 @@ code {
 
 
 
-html{
-  font-size: 62.5% !important;
-  line-height: 1.6em;
-  font-family: "Montserrat", sans-serif;
-  box-sizing: border-box;
-  
-}
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  outline: none !important;
-}
-
-:root {
-  --primary-color: #222222;
-  --fade-text-color: #747474;
-  --background-color: #fff;
-  --danger-color: #dc3545;
-  --foreground-color: #000;
-  --hover-background-color: #DEDEDE;
-}
 
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
+}
+
+
+
+.aspect-ratio {
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* The height of the item will now be 56.25% of the width. */
+}
+
+/* Adjust the iframe so it's rendered in the outer-width and outer-height of it's parent */
+.aspect-ratio iframe,.aspect-ratio img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
+
+
+.display-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form{
+  display: block;
+  width: 100%;
+}
+
+label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+select,
+input {
+  display: block;
+  padding: 6px 12px;
+  height: 40px;
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 1px;
+  // min-width: 500px;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #D5D5D5;
+  &:focus {
+    border: 1px solid #838383;
+    outline: none;
+  }
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  outline: none;
+  padding: 12px;
+  font-size: 1.4rem;
+  border-radius: 1px;
+  resize: none;
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid #D5D5D5;
+  &:focus {
+    border: 1px solid #838383;
+    outline: none;
+  }
+}
+
+.lw-btn, button {
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: block;
+  width: fit-content;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 1px;
+  background-color: var(--primary-color);
+  color: white;
+  transition: all 0.5s;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+  }
+}
+
+input[type=radio] ,
+  input[type=checkbox] {
+  display: inline-block;
+  height: unset;
+  min-width: unset;
+  margin-right: 8px;
+  width: unset;
+
+}
+
+.clickable-effect{
+  &:hover{
+    cursor: pointer;
+    filter: brightness(.5);
+  }
+}
+
+.input-field{
+  margin-bottom: 1.6rem;
 }

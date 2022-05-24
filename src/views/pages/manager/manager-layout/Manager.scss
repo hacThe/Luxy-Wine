@@ -8,18 +8,32 @@
 }
 
 
+.content-of-manager{
+  padding: 24px;
 
-.manager-fa-ke-modal{
-  margin: 24px;
-  padding: 12px;
-  padding-bottom: 24px;
-  background-color: var(--background-color);
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  .manager-page-title{
+    font-size: 2.8rem,;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 42px;
+  }
 
 
-  .top-action-bar{
-    margin-bottom: 18px;
+  .food-toogle{
+    background-color: #fff;
+    border: 1px solid #666;
+    color: rgb(102, 102, 102);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    display: inline-block;
+    margin-right: 12px;
+    border-radius: 15px;
+    
+  }
+  .food-toogle.actived{
+    background-color: var(--primary-color);
+    color: #fff;
   }
 }
 

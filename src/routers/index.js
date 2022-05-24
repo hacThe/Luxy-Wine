@@ -68,7 +68,7 @@ const Routers = () => {
         <Route path="/" name="Trang chủ" element={<TheContent />}>
           <Route index name="Trang chủ" element={<Navigate to="trang-chu" />} />
 
-          {!authentication.isLoggedIn &&
+          {!authentication?.isLoggedIn &&
             routes.publicRoute.map((route, idx) => {
               return (
                 route.element && (
