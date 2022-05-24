@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap");
 
-
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.15) !important;
+}
 html{
   font-size: 62.5% !important;
   line-height: 1.6em;
@@ -37,4 +39,36 @@ a {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+
+
+html{
+  font-size: 62.5% !important;
+  line-height: 1.6em;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none !important;
+}
+
+:root {
+  --primary-color: #222222;
+  --fade-text-color: #747474;
+  --background-color: #fff;
+  --danger-color: #dc3545;
+  --foreground-color: #000;
+  --hover-background-color: #DEDEDE;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
 }

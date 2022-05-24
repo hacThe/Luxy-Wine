@@ -6,19 +6,15 @@ import {
 
 import TheHeader from './TheHeader'
 import TheFooter from './TheFooter'
+import ConfirmActionModal from '../component/ConfirmActionModal'
 
-// routes config
 
-// const loading = (
-//   <div>
-//     <p>Loading...</p>
-//   </div>
-// )
 
 const TheContent = () => {
 
   return (
     <>
+    <ConfirmActionModal/>
       <TheHeader></TheHeader>
       <Outlet></Outlet>
       <TheFooter></TheFooter>
