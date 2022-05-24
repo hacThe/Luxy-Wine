@@ -11,9 +11,7 @@ import './Products.scss'
 const Products = () => {
   return (
     <Container className="products-wrapper">
-      {/* <div className='product-banner'>
-        <div className='banner-img'></div>
-      </div> */}
+      
       <Banner url='https://res.cloudinary.com/tanthanh0805/image/upload/v1645178807/LuxyWine/Banner_fxehr3.png' />
 
       <div className='product-list-group'>

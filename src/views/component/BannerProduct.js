@@ -5,7 +5,7 @@ function Banner(props) {
     return (
         <div className='product-banner'>
             <div className='banner-img'>
-                <img url={props.url}></img>
+                <img src={props.url} />
             </div>
         </div>
     )

@@ -2,56 +2,59 @@ import React from 'react';
 
 
 const Homepage = React.lazy(() => import('./views/pages/home/Home'));
-const Products = React.lazy(()=> import('./views/pages/products/Products'))
-
-
-
-const Dashboard = React.lazy(()=>import('./views/pages/manager/page/dashboard/Dashboard'))
-
-
-
-const ProductList = React.lazy(()=> import('./views/pages/manager/page/product/list/ProductList'))
-const NewProduct = React.lazy(()=> import('./views/pages/manager/page/product/new/NewProduct'))
-const EditProduct = React.lazy(()=> import('./views/pages/manager/page/product/edit/EditProduct'))
-const ProductDetail = React.lazy(()=> import('./views/pages/manager/page/product/detail/ProductDetail'))
+const Products = React.lazy(() => import('./views/pages/products/Products'))
+const SpecialProducts = React.lazy(() => import('./views/pages/special-products/SpecialProducts'))
+const Accessories = React.lazy(() => import('./views/pages/accessories/Accessories'))
 
 
 
 
-const ReceiptList = React.lazy(()=> import('./views/pages/manager/page/receipt/list/ReceiptList'))
-const NewReceipt = React.lazy(()=> import('./views/pages/manager/page/receipt/new/NewReceipt'))
-const EditReceipt = React.lazy(()=> import('./views/pages/manager/page/receipt/edit/EditReceipt'))
-const ReceiptDetail = React.lazy(()=> import('./views/pages/manager/page/receipt/detail/ReceiptDetail'))
+const Dashboard = React.lazy(() => import('./views/pages/manager/page/dashboard/Dashboard'))
+
+
+
+const ProductList = React.lazy(() => import('./views/pages/manager/page/product/list/ProductList'))
+const NewProduct = React.lazy(() => import('./views/pages/manager/page/product/new/NewProduct'))
+const EditProduct = React.lazy(() => import('./views/pages/manager/page/product/edit/EditProduct'))
+const ProductDetail = React.lazy(() => import('./views/pages/manager/page/product/detail/ProductDetail'))
 
 
 
 
-const VoucherList = React.lazy(()=> import('./views/pages/manager/page/voucher/list/VoucherList'))
-const NewVoucher = React.lazy(()=> import('./views/pages/manager/page/voucher/new/NewVoucher'))
-const EditVoucher = React.lazy(()=> import('./views/pages/manager/page/voucher/edit/EditVoucher'))
-const VoucherDetail = React.lazy(()=> import('./views/pages/manager/page/voucher/detail/VoucherDetail'))
+const ReceiptList = React.lazy(() => import('./views/pages/manager/page/receipt/list/ReceiptList'))
+const NewReceipt = React.lazy(() => import('./views/pages/manager/page/receipt/new/NewReceipt'))
+const EditReceipt = React.lazy(() => import('./views/pages/manager/page/receipt/edit/EditReceipt'))
+const ReceiptDetail = React.lazy(() => import('./views/pages/manager/page/receipt/detail/ReceiptDetail'))
 
 
 
 
-const UserList = React.lazy(()=> import('./views/pages/manager/page/user/list/UserList.js'))
-const NewUser = React.lazy(()=> import('./views/pages/manager/page/user/new/NewUser.js'))
-const EditUser = React.lazy(()=> import('./views/pages/manager/page/user/edit/EditUser.js'))
-const UserDetail = React.lazy(()=> import('./views/pages/manager/page/user/detail/UserDetail.js'))
-
-
-
-const NewsList = React.lazy(()=> import('./views/pages/manager/page/news/list/NewsList'))
-const NewNews = React.lazy(()=> import('./views/pages/manager/page/news/new/NewNews'))
-const EditNews = React.lazy(()=> import('./views/pages/manager/page/news/edit/EditNews'))
-const NewsDetail = React.lazy(()=> import('./views/pages/manager/page/news/detail/NewsDetail'))
+const VoucherList = React.lazy(() => import('./views/pages/manager/page/voucher/list/VoucherList'))
+const NewVoucher = React.lazy(() => import('./views/pages/manager/page/voucher/new/NewVoucher'))
+const EditVoucher = React.lazy(() => import('./views/pages/manager/page/voucher/edit/EditVoucher'))
+const VoucherDetail = React.lazy(() => import('./views/pages/manager/page/voucher/detail/VoucherDetail'))
 
 
 
 
+const UserList = React.lazy(() => import('./views/pages/manager/page/user/list/UserList.js'))
+const NewUser = React.lazy(() => import('./views/pages/manager/page/user/new/NewUser.js'))
+const EditUser = React.lazy(() => import('./views/pages/manager/page/user/edit/EditUser.js'))
+const UserDetail = React.lazy(() => import('./views/pages/manager/page/user/detail/UserDetail.js'))
 
-const BannerList = React.lazy(()=> import('./views/pages/manager/page/banner/list/BannerList.js'))
-const EditBanner = React.lazy(()=> import('./views/pages/manager/page/banner/edit/EditBanner'))
+
+
+const NewsList = React.lazy(() => import('./views/pages/manager/page/news/list/NewsList'))
+const NewNews = React.lazy(() => import('./views/pages/manager/page/news/new/NewNews'))
+const EditNews = React.lazy(() => import('./views/pages/manager/page/news/edit/EditNews'))
+const NewsDetail = React.lazy(() => import('./views/pages/manager/page/news/detail/NewsDetail'))
+
+
+
+
+
+const BannerList = React.lazy(() => import('./views/pages/manager/page/banner/list/BannerList.js'))
+const EditBanner = React.lazy(() => import('./views/pages/manager/page/banner/edit/EditBanner'))
 
 
 
@@ -65,49 +68,52 @@ const publicRoute = [
 
 
 const commonRoute = [
-  {path: '/trang-chu', name: 'Trang chủ', element: <Homepage/>},
-  {path: '/san-pham', name: 'Sản phẩm', element: <Products/>},
+  { path: '/trang-chu', name: 'Trang chủ', element: <Homepage /> },
+  { path: '/san-pham', name: 'Sản phẩm', element: <Products /> },
+  { path: '/san-pham-dac-biet', name: 'Sản phẩm đặc biệt', element: <SpecialProducts /> },
+  { path: '/phu-kien', name: 'Phụ kiện', element: <Accessories /> },
+  { path: '/chi-tiet-san-pham/:id', name: 'Chi tiết sản phẩm', element: <SpecialProducts /> },
 ]
 
 
 const protectedRoute = [
-  
+
 ]
 
 const managerRoute = [
-  {path: '/quan-ly/dashboard', name: 'Dashboard', element: <Dashboard/>},
+  { path: '/quan-ly/dashboard', name: 'Dashboard', element: <Dashboard /> },
 
-  {path: '/quan-ly/san-pham', name: 'Dashboard', element: <ProductList/>},
-  {path: '/quan-ly/san-pham/new', name: 'Dashboard', element: <NewProduct/>},
-  {path: '/quan-ly/san-pham/edit/:id', name: 'Dashboard', element: <EditProduct/>},
-  {path: '/quan-ly/san-pham/:id', name: 'Dashboard', element: <ProductDetail/>},
-
-
-  
-  {path: '/quan-ly/tin-tuc', name: 'Dashboard', element: <NewsList/>},
-  {path: '/quan-ly/tin-tuc/new', name: 'Dashboard', element: <NewNews/>},
-  {path: '/quan-ly/tin-tuc/edit/:id', name: 'Dashboard', element: <EditNews/>},
-  {path: '/quan-ly/tin-tuc/:id', name: 'Dashboard', element: <NewsDetail/>},
-
-
-  
-  {path: '/quan-ly/khuyen-mai', name: 'Dashboard', element: <VoucherList/>},
-  {path: '/quan-ly/khuyen-mai/new', name: 'Dashboard', element: <NewVoucher/>},
-  {path: '/quan-ly/khuyen-mai/edit/:id', name: 'Dashboard', element: <EditVoucher/>},
-  {path: '/quan-ly/khuyen-mai/:id', name: 'Dashboard', element: <VoucherDetail/>},
+  { path: '/quan-ly/san-pham', name: 'Dashboard', element: <ProductList /> },
+  { path: '/quan-ly/san-pham/new', name: 'Dashboard', element: <NewProduct /> },
+  { path: '/quan-ly/san-pham/edit/:id', name: 'Dashboard', element: <EditProduct /> },
+  { path: '/quan-ly/san-pham/:id', name: 'Dashboard', element: <ProductDetail /> },
 
 
 
-  
-  {path: '/quan-ly/hoa-don', name: 'Dashboard', element: <ReceiptList/>},
-  {path: '/quan-ly/hoa-don/new', name: 'Dashboard', element: <NewReceipt/>},
-  {path: '/quan-ly/hoa-don/edit/:id', name: 'Dashboard', element: <EditReceipt/>},
-  {path: '/quan-ly/hoa-don/:id', name: 'Dashboard', element: <ReceiptDetail/>},
+  { path: '/quan-ly/tin-tuc', name: 'Dashboard', element: <NewsList /> },
+  { path: '/quan-ly/tin-tuc/new', name: 'Dashboard', element: <NewNews /> },
+  { path: '/quan-ly/tin-tuc/edit/:id', name: 'Dashboard', element: <EditNews /> },
+  { path: '/quan-ly/tin-tuc/:id', name: 'Dashboard', element: <NewsDetail /> },
 
 
-  
-  {path: '/quan-ly/banner', name: 'Dashboard', element: <BannerList/>},
-  {path: '/quan-ly/banner/edit/:id', name: 'Dashboard', element: <EditBanner/>},
+
+  { path: '/quan-ly/khuyen-mai', name: 'Dashboard', element: <VoucherList /> },
+  { path: '/quan-ly/khuyen-mai/new', name: 'Dashboard', element: <NewVoucher /> },
+  { path: '/quan-ly/khuyen-mai/edit/:id', name: 'Dashboard', element: <EditVoucher /> },
+  { path: '/quan-ly/khuyen-mai/:id', name: 'Dashboard', element: <VoucherDetail /> },
+
+
+
+
+  { path: '/quan-ly/hoa-don', name: 'Dashboard', element: <ReceiptList /> },
+  { path: '/quan-ly/hoa-don/new', name: 'Dashboard', element: <NewReceipt /> },
+  { path: '/quan-ly/hoa-don/edit/:id', name: 'Dashboard', element: <EditReceipt /> },
+  { path: '/quan-ly/hoa-don/:id', name: 'Dashboard', element: <ReceiptDetail /> },
+
+
+
+  { path: '/quan-ly/banner', name: 'Dashboard', element: <BannerList /> },
+  { path: '/quan-ly/banner/edit/:id', name: 'Dashboard', element: <EditBanner /> },
 
 
 ]
