@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../../actions/user.actions";
 import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap";
 import { IoStar } from 'react-icons/io5';
-import { ProductComponent } from './../../product-component/ProductComponent';
+import { ProductComponent } from '../../component/product-component/ProductComponent';
 import HorizontalScroll from 'react-horizontal-scrolling';
 import './Home.scss';
 
@@ -114,7 +114,7 @@ const Home = () => {
   function Product() {
     
     return (
-      <Container className="product">
+      <div className="product">
         <h3 style={{ marginBottom: "32px" }}>Sản phẩm nổi bật của Luxy Wine</h3>
         <div className="px-5 py-3" id="container">
           <HorizontalScroll>
@@ -125,7 +125,7 @@ const Home = () => {
             ))}
           </HorizontalScroll>
         </div>
-      </Container>
+      </div>
     )
 
   }

@@ -1,6 +1,6 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ProductComponent } from "../product-component/ProductComponent";
+import { ProductComponent } from "./product-component/ProductComponent";
 import React, { Component } from "react";
 import Slider from "react-slick";
 import './SliderProduct.scss'

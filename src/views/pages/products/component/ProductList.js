@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { ProductComponent } from '../../../product-component/ProductComponent'
+import { ProductComponent } from '../../../component/product-component/ProductComponent'
 import { PaginationCustom } from '../../../component/PaginationCustom'
 import './ProductList.scss'
 
@@ -38,7 +38,7 @@ function ProductList(props) {
 
     return (
         <Container className='product-list-wrapper'>
-            <div className='product-list-header-wrapper'>
+            <Container className='product-list-header-wrapper'>
                 <div className='product-list-header'>
                     <div className='product-sort'>
                         <label>Sấp xếp theo: </label>
@@ -56,9 +56,9 @@ function ProductList(props) {
                         <p>Tìm được 65 sản phẩm</p>
                     </div>
                 </div>
-            </div>
+            </Container>
 
-            <div className='product-list'>
+            <Container className='product-list'>
                 {Array.from({ length: 12 }).map((_, idx) => (
                     <div key={idx} className="py-3 px-3">
                         <ProductComponent product={products[0]} />
@@ -67,7 +67,7 @@ function ProductList(props) {
                 <div className='product-list-footer'>
                     <PaginationCustom numberOfElement={65} elementPerPage={3} setCurrentPage={setCurrentPage} />
                 </div>
-            </div>
+            </Container>
 
         </Container>
     )
