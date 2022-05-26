@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   appReducer, // appReducer
   authenticationReducer,
   foodReducer,
-  productReducer
+  productReducer,
 });
 
 export default rootReducer;

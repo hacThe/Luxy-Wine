@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 function ConfirmActionModal(props) {
   const dispatch = useDispatch();
   const confirmActionModal = useSelector(
-    (state) => state.app?.confirmActionModal
+    (state) => state.appReducer.confirmActionModal
   );
 
   const handleClose = () => {
@@ -24,7 +24,7 @@ function ConfirmActionModal(props) {
 
   const style = {
     position: "absolute",
-    top: "50%",
+    top: "40%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 500,
@@ -44,11 +44,11 @@ function ConfirmActionModal(props) {
     >
       <Box sx={style}>
         <div className="modal-container-fe">
-          <h1>Xác nhận thao tác</h1>
-          <p>{confirmActionModal.content}</p>
-          <div className="action-btn">
-            <span onClick={handleClose} className="se-btn hover-blur">HỦY</span>
-            <span onClick={handleAction} className="se-btn">ĐỒNG Ý</span>
+          <h1 style={{fontSize: "18px", fontWeight: "600"}}>Xác nhận thao tác</h1>
+          <p style={{fontSize: "14px", fontWeight: "400"}}>{confirmActionModal.content}</p>
+          <div style={{display: "flex", justifyContent: "end"}} className="action-btn">
+            <span style={{marginRight: "18px"}} onClick={handleClose} className="lw-btn text-btn">HỦY</span>
+            <span  onClick={handleAction} className="lw-btn">ĐỒNG Ý</span>
           </div>
         </div>
       </Box>

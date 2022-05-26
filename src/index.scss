@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap");
 
-.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.15) !important;
 }
-html{
+html {
   font-size: 62.5% !important;
   line-height: 1.6em;
   font-family: "Montserrat", sans-serif !important;
   box-sizing: border-box;
-  
 }
 
 * {
@@ -24,7 +23,7 @@ html{
   --background-color: #fff;
   --danger-color: #dc3545;
   --foreground-color: #000;
-  --hover-background-color: #DEDEDE;
+  --hover-background-color: #dedede;
 }
 
 a {
@@ -36,17 +35,10 @@ code {
     monospace;
 }
 
-
-
-
-
-
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
 }
-
-
 
 .aspect-ratio {
   border-radius: 1px;
@@ -58,7 +50,8 @@ body {
 }
 
 /* Adjust the iframe so it's rendered in the outer-width and outer-height of it's parent */
-.aspect-ratio iframe,.aspect-ratio img {
+.aspect-ratio iframe,
+.aspect-ratio img {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -66,7 +59,6 @@ body {
   top: 0;
   object-fit: cover;
 }
-
 
 .display-flex {
   display: flex;
@@ -84,7 +76,7 @@ body {
   align-items: center;
 }
 
-form{
+form {
   display: block;
   width: 100%;
 }
@@ -105,7 +97,7 @@ input {
   // min-width: 500px;
   width: 100%;
   max-width: 500px;
-  border: 1px solid #D5D5D5;
+  border: 1px solid #d5d5d5;
   &:focus {
     border: 1px solid #838383;
     outline: none;
@@ -121,51 +113,58 @@ textarea {
   border-radius: 1px;
   resize: none;
   font-family: "Montserrat", sans-serif;
-  border: 1px solid #D5D5D5;
+  border: 1px solid #d5d5d5;
   &:focus {
     border: 1px solid #838383;
     outline: none;
   }
 }
 
-.lw-btn, button {
+.lw-btn,
+button {
   outline: none;
   border: none;
   font-size: 1.4rem;
   font-weight: 600;
   display: block;
-  width: fit-content;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
+  line-height: 40px;
+  padding: 0 20px;
   border-radius: 1px;
   background-color: var(--primary-color);
   color: white;
-  transition: all 0.5s;
+  transition: all 0.2s;
   &:hover {
     cursor: pointer;
-    filter: brightness(0.8);
+    filter: brightness(1.5);
   }
 }
 
-input[type=radio] ,
-  input[type=checkbox] {
+
+.lw-btn.text-btn{
+  background-color: transparent;
+  color: var(--foreground-color);
+  &:hover{
+    background-color: var(--hover-background-color);
+    filter: none;
+  }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
   display: inline-block;
   height: unset;
   min-width: unset;
   margin-right: 8px;
   width: unset;
-
 }
 
-.clickable-effect{
-  &:hover{
+.clickable-effect {
+  &:hover {
     cursor: pointer;
-    filter: brightness(.5);
+    filter: brightness(0.5);
   }
 }
 
-.input-field{
+.input-field {
   margin-bottom: 1.6rem;
 }
