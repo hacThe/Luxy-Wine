@@ -5,9 +5,22 @@ export default {
   URL_REGISTER: URL_SYSTEM_V1 + "/auth/register",
 
   // USER
-  URL_USERS: URL_SYSTEM_V1 + "/users",
+  URL_USER: URL_SYSTEM_V1 + "/user",
 
 
   // PRODUCT
-  URL_PRODUCT: URL_SYSTEM_V1 + "/product"
+  URL_PRODUCT: URL_SYSTEM_V1 + "/product",
+
+  // PRODUCT
+  URL_RECEIPT: URL_SYSTEM_V1 + "/receipt",
+
+
+  // PRODUCT
+  URL_NEWS: URL_SYSTEM_V1 + "/news",
+
+
+  // PRODUCT
+  URL_VOUCHER: URL_SYSTEM_V1 + "/voucher",
+
+
 };

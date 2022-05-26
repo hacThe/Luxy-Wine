@@ -43,6 +43,6 @@ function deleteOne(id) {
 
 function deleteMany(productIds) {
   return handleResponse(
-    ajaxHelper.deleteMany(config.URL_USERS, productIds, options())
+    ajaxHelper.deleteMany(config.URL_PRODUCT, productIds, options())
   );
 }
