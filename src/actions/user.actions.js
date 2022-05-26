@@ -1,5 +1,6 @@
 import { userConstants } from '../constaint';
 import { usersServices } from '../services';
+import { cookiesUtil } from '../utilities';
 
 
 export const userActions = {
@@ -7,44 +8,27 @@ export const userActions = {
   logout,
   register,
   getAll,
-  delete: _delete
+  delete: _delete,
+  update,
+  deleteMany
 };
 
 /// này là hàm login
 function login(username, password) {
-  return dispatch => { // dispatch này lấy đâu ra mà gọi được?
-   
-    dispatch(request()); 
-    dispatch(success());
-
-
-    // usersServices.login(username, password).then(
-    //   user => {
-    //     if (user && !user['error']) {
-    //       cookiesUtil.set('_tk_transport_', user['data']['system_token'])
-    //       dispatch(success());
-    //     }
-    //   },
-    //   error => {
-    //     console.log('the function is error');
-    //     fetch('http://localhost:3006/mockup-data/user.json')
-    //     .then(res => res.json())
-    //     .then((users) => {
-    //       // lọc user from array 
-    //         const crrUser = users.filter(user => (user.username === username && user.password === password));
-    //         if (crrUser.length > 0) {
-    //           cookiesUtil.set('_tk_transport_', "demo")
-    //           dispatch(success());
-    //         }
-    //         else dispatch(failure(failure('Unrecognize username or password')));
-            
-    //       }).catch(err => console.error(err));
-        
-        
-    //     // dispatch(failure(error.toString()));
-    //     // dispatch(alertActions.error(error.toString()));
-    //   }
-    // );
+  return (dispatch) => {
+    dispatch(request());
+    usersServices.login(username, password).then(
+      (user) => {
+        alert("login successfully", user)
+        cookiesUtil.setAccessToken(user.token)
+        //   cookiesUtil.setCurrentUserInfo(user.user)
+        dispatch(success());
+      },
+      (error) => {
+        alert(error);
+        dispatch(failure(error.toString()))
+      }
+    );
   };
 
   function request() {
@@ -96,6 +80,30 @@ function register(user) {
   }
 }
 
+
+
+function getOne(id) {
+  return dispatch => {
+    dispatch(request());
+
+    usersServices.getOne(id)
+      .then(
+        data => dispatch(success(data['data'])),
+        error => dispatch(failure(error.toString()))
+      );
+  };
+
+  function request() {
+    return { type: userConstants.GET_ONE_REQUEST };
+  }
+  function success(product) {
+    return { type: userConstants.GET_ONE_SUCCESS, product };
+  }
+  function failure(error) {
+    return { type: userConstants.GET_ONE_FAILURE, error };
+  }
+}
+
 function getAll() {
   return dispatch => {
     dispatch(request());
@@ -108,13 +116,38 @@ function getAll() {
   };
 
   function request() {
-    return { type: userConstants.GETALL_REQUEST };
+    return { type: userConstants.GET_ALL_REQUEST };
   }
   function success(users) {
-    return { type: userConstants.GETALL_SUCCESS, users };
+    return { type: userConstants.GET_ALL_SUCCESS, users };
   }
   function failure(error) {
-    return { type: userConstants.GETALL_FAILURE, error };
+    return { type: userConstants.GET_ALL_FAILURE, error };
+  }
+}
+
+
+
+
+function update(values) {
+  return dispatch => {
+    dispatch(request());
+
+    usersServices.update(values)
+      .then(
+        data => dispatch(success(data['data'])),
+        error => dispatch(failure(error.toString()))
+      );
+  };
+
+  function request() {
+    return { type: userConstants.GET_ONE_REQUEST };
+  }
+  function success(product) {
+    return { type: userConstants.GET_ONE_SUCCESS, product };
+  }
+  function failure(error) {
+    return { type: userConstants.GET_ONE_FAILURE, error };
   }
 }
 
@@ -139,5 +172,29 @@ function _delete(id) {
   }
   function failure(id, error) {
     return { type: userConstants.DELETE_FAILURE, id, error };
+  }
+}
+
+
+function deleteMany(values) {
+  return dispatch => {
+    dispatch(request(values));
+
+    usersServices.deleteMany(values)
+      .then(
+        (data) => dispatch(success(data["data"])),
+        error => dispatch(failure( error.toString()))
+      );
+  };
+
+
+  function request(id) {
+    return { type: userConstants.DELETE_MANY_REQUEST, id };
+  }
+  function success(deleteCount) {
+    return { type: userConstants.DELETE_MANY_SUCCESS, deleteCount };
+  }
+  function failure(error) {
+    return { type: userConstants.DELETE_MANY_FAILURE, error };
   }
 }

@@ -25,7 +25,7 @@ function get(key) {
 }
 
 function getCurrentUser() {
-    return get('THIS IS USER IDENTIFY KEY');
+    return get('_USR__');
 }
 
 function remove(key) {
@@ -38,10 +38,10 @@ function remove(key) {
 }
 
 function setAccessToken(value) {
-    cookies.set("THIS IS USER IDENTIFY KEY", value);
+    cookies.set("_JWT__", value);
 }
 
 function getAccessToken() {
-    return cookies.get("THIS IS USER IDENTIFY KEY");
+    return cookies.get("_JWT__");
 }
 
