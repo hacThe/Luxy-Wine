@@ -14,7 +14,7 @@
   };
   
   
-  export function food(state = initialState, { type, ...rest }) {
+  export function foodReducer(state = initialState, { type, ...rest }) {
     switch (type) {
       default:
         return state;

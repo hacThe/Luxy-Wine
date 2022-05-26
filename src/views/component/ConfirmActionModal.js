@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 function ConfirmActionModal(props) {
   const dispatch = useDispatch();
   const confirmActionModal = useSelector(
-    (state) => state.app.confirmActionModal
+    (state) => state.app?.confirmActionModal
   );
 
   const handleClose = () => {

@@ -80,7 +80,7 @@ const Routers = () => {
                 )
               );
             })}
-          {authentication.isLoggedIn &&
+          {authentication?.isLoggedIn &&
             routes.protectedRoute.map((route, idx) => {
               return (
                 route.element && (
@@ -110,7 +110,7 @@ const Routers = () => {
           path="*"
           element={
             <Navigate
-              to={authentication.isLoggedIn ? "/trang-chu" : "/dang-nhap"}
+              to={authentication?.isLoggedIn ? "/trang-chu" : "/dang-nhap"}
             />
           }
         />

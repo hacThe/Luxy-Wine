@@ -10,7 +10,7 @@ const initialState = {
 };
 
 
-export function app(state = initialState, { type, ...rest }) {
+export function appReducer(state = initialState, { type, ...rest }) {
   switch (type) {
     case "set":
       return { ...state, ...rest };

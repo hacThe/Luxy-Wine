@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 
-import { app } from "./app.reducer";
-import { authentication } from "./authentication.reducer";
-import { food } from "./food.reducer";
+import { appReducer } from "./app.reducer";
+import { authenticationReducer } from "./authentication.reducer";
+import { foodReducer } from "./food.reducer";
+import { productReducer} from "./product.reducer"
 
 const rootReducer = combineReducers({
-  app, // appReducer
-  authentication,
-  food
+  appReducer, // appReducer
+  authenticationReducer,
+  foodReducer,
+  productReducer
 });
 
 export default rootReducer;
