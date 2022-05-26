@@ -5,7 +5,7 @@ import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap";
 import { IoStar } from "react-icons/io5";
 import { ProductComponent } from "./../../product-component/ProductComponent";
 import HorizontalScroll from "react-horizontal-scrolling";
-import { appActions } from "../../../actions/app.actions";
+import { appActions } from "../../../actions";
 import "./Home.scss";
 
 const Home = () => {

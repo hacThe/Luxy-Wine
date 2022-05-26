@@ -1,8 +1,8 @@
-import { productConstants } from '../constaint';
-import { productServices } from '../services';
+import { voucherConstants } from '../constaint';
+import { voucherServices } from '../services';
 
 
-export const productActions = {
+export const voucherActions = {
   getAll,
   create,
   update,
@@ -16,7 +16,7 @@ function getAll(params) {
   return dispatch => {
     dispatch(request());
 
-    productServices.getAll(params)
+    voucherServices.getAll(params)
       .then(
         data => dispatch(success(data['data'])),
         error => dispatch(failure(error.toString()))
@@ -24,13 +24,13 @@ function getAll(params) {
   };
 
   function request() {
-    return { type: productConstants.GET_ALL_REQUEST };
+    return { type: voucherConstants.GET_ALL_REQUEST };
   }
-  function success(products) {
-    return { type: productConstants.GET_ALL_SUCCESS, products };
+  function success(vouchers) {
+    return { type: voucherConstants.GET_ALL_SUCCESS, vouchers };
   }
   function failure(error) {
-    return { type: productConstants.GET_ALL_FAILURE, error };
+    return { type: voucherConstants.GET_ALL_FAILURE, error };
   }
 }
 
@@ -40,7 +40,7 @@ function getOne(id) {
   return dispatch => {
     dispatch(request());
 
-    productServices.getOne(id)
+    voucherServices.getOne(id)
       .then(
         data => dispatch(success(data['data'])),
         error => dispatch(failure(error.toString()))
@@ -48,13 +48,13 @@ function getOne(id) {
   };
 
   function request() {
-    return { type: productConstants.GET_ONE_REQUEST };
+    return { type: voucherConstants.GET_ONE_REQUEST };
   }
-  function success(product) {
-    return { type: productConstants.GET_ONE_SUCCESS, product };
+  function success(voucher) {
+    return { type: voucherConstants.GET_ONE_SUCCESS, voucher };
   }
   function failure(error) {
-    return { type: productConstants.GET_ONE_FAILURE, error };
+    return { type: voucherConstants.GET_ONE_FAILURE, error };
   }
 }
 
@@ -63,7 +63,7 @@ function create(values) {
   return dispatch => {
     dispatch(request());
 
-    productServices.create(values)
+    voucherServices.create(values)
       .then(
         data => dispatch(success(data['data'])),
         error => dispatch(failure(error.toString()))
@@ -71,13 +71,13 @@ function create(values) {
   };
 
   function request() {
-    return { type: productConstants.GET_ONE_REQUEST };
+    return { type: voucherConstants.GET_ONE_REQUEST };
   }
-  function success(product) {
-    return { type: productConstants.GET_ONE_SUCCESS, product };
+  function success(voucher) {
+    return { type: voucherConstants.GET_ONE_SUCCESS, voucher };
   }
   function failure(error) {
-    return { type: productConstants.GET_ONE_FAILURE, error };
+    return { type: voucherConstants.GET_ONE_FAILURE, error };
   }
 }
 
@@ -86,7 +86,7 @@ function update(values) {
   return dispatch => {
     dispatch(request());
 
-    productServices.update(values)
+    voucherServices.update(values)
       .then(
         data => dispatch(success(data['data'])),
         error => dispatch(failure(error.toString()))
@@ -94,13 +94,13 @@ function update(values) {
   };
 
   function request() {
-    return { type: productConstants.GET_ONE_REQUEST };
+    return { type: voucherConstants.GET_ONE_REQUEST };
   }
-  function success(product) {
-    return { type: productConstants.GET_ONE_SUCCESS, product };
+  function success(voucher) {
+    return { type: voucherConstants.GET_ONE_SUCCESS, voucher };
   }
   function failure(error) {
-    return { type: productConstants.GET_ONE_FAILURE, error };
+    return { type: voucherConstants.GET_ONE_FAILURE, error };
   }
 }
 
@@ -112,7 +112,7 @@ function deleteOne(id) {
   return dispatch => {
     dispatch(request(id));
 
-    productServices.deleteOne(id)
+    voucherServices.deleteOne(id)
       .then(
         () => dispatch(success(id)),
         error => dispatch(failure(id, error.toString()))
@@ -121,13 +121,13 @@ function deleteOne(id) {
 
 
   function request(id) {
-    return { type: productConstants.DELETE_ONE_REQUEST, id };
+    return { type: voucherConstants.DELETE_ONE_REQUEST, id };
   }
   function success(id) {
-    return { type: productConstants.DELETE_ONE_SUCCESS, id };
+    return { type: voucherConstants.DELETE_ONE_SUCCESS, id };
   }
   function failure(id, error) {
-    return { type: productConstants.DELETE_ONE_FAILURE, id, error };
+    return { type: voucherConstants.DELETE_ONE_FAILURE, id, error };
   }
 }
 
@@ -139,21 +139,21 @@ function deleteMany(values) {
   return dispatch => {
     dispatch(request(values));
 
-    productServices.deleteMany(values)
+    voucherServices.deleteMany(values)
       .then(
         (data) => dispatch(success(data["data"])),
-        error => dispatch(failure( error.toString()))
+        error => dispatch(failure(error.toString()))
       );
   };
 
 
   function request(id) {
-    return { type: productConstants.DELETE_MANY_REQUEST, id };
+    return { type: voucherConstants.DELETE_MANY_REQUEST, id };
   }
   function success(deleteCount) {
-    return { type: productConstants.DELETE_MANY_SUCCESS, deleteCount };
+    return { type: voucherConstants.DELETE_MANY_SUCCESS, deleteCount };
   }
   function failure(error) {
-    return { type: productConstants.DELETE_MANY_FAILURE, error };
+    return { type: voucherConstants.DELETE_MANY_FAILURE, error };
   }
 }
