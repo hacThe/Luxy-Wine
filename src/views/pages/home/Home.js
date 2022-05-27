@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../../actions/user.actions";
 import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap";
 import { IoStar } from "react-icons/io5";
-import { ProductComponent } from "./../../product-component/ProductComponent";
+import { ProductComponent } from "../../component/product-component/ProductComponent";
 import HorizontalScroll from "react-horizontal-scrolling";
 import { appActions } from "../../../actions";
 import "./Home.scss";
@@ -11,6 +11,7 @@ import "./Home.scss";
 const Home = () => {
   const dispatch = useDispatch();
   const product = {
+    _id: "1",
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
     avtURL:
       "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
@@ -134,7 +135,7 @@ const Home = () => {
 
   function Product() {
     return (
-      <Container className="product">
+      <div className="product">
         <h3 style={{ marginBottom: "32px" }}>Sản phẩm nổi bật của Luxy Wine</h3>
         <div className="px-5 py-3" id="container">
           <HorizontalScroll>
@@ -145,8 +146,9 @@ const Home = () => {
             ))}
           </HorizontalScroll>
         </div>
-      </Container>
-    );
+      </div>
+    )
+
   }
 
   function AboutUs() {

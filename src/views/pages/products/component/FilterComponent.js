@@ -1,5 +1,5 @@
 import React from "react"
-import { Accordion } from 'react-bootstrap'
+import { Accordion, Container } from 'react-bootstrap'
 import './FilterComponent.scss'
 
 function FilterComponent(props) {
@@ -41,7 +41,7 @@ function FilterComponent(props) {
     console.log(filters);
 
     return (
-        <div className="filter-component-wrapper">
+        <Container className="filter-component-wrapper">
             <h1>Rượu</h1>
             <div className="filter-group">
                 <Accordion defaultActiveKey={['0', '1', '2']} alwaysOpen>
@@ -58,7 +58,7 @@ function FilterComponent(props) {
                     ))}
                 </Accordion>
             </div>
-        </div>
+        </Container>
     )
 }
 export { FilterComponent }

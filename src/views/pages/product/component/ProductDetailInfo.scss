@@ -1,0 +1,52 @@
+.product-detail-info-wrapper {
+    padding: 2.4rem 2.4rem 4.5rem 2.4rem;
+    .left-grid {
+        h1 {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 22px;
+            color: #6C6C6C;
+            margin-bottom: 1rem;
+        }
+
+        .temperature {
+            font-weight: 400;
+            font-size: 48px;
+            line-height: 59px;
+            color: #000000;
+        }
+
+        .product-color {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 1.5rem;
+            svg{
+                height: 2.7rem;
+                width: 2.7rem;
+                margin-right: 1rem;
+                margin-left: 1rem;
+            }
+
+            .product-color-Red {
+                color: #880000;
+            }
+
+            .product-color-White {
+                color: #c7c7c7;
+            }
+        }
+
+        .food-product {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            color: #000000;
+            img{
+                height: 4rem;
+                width: 4rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+}

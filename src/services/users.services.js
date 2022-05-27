@@ -18,7 +18,7 @@ export const usersServices = {
 
 function login(email, password) {
   return handleResponse(
-    ajaxHelper.get(config.URL_LOGIN, { userID: email, password }, options())
+    ajaxHelper.post(config.URL_LOGIN, { username: email, password }, options())
   );
 }
 

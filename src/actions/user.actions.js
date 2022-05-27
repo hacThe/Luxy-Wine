@@ -14,7 +14,7 @@ export const userActions = {
 };
 
 /// này là hàm login
-function login(username, password) {
+function login(username, password, callback) {
   return (dispatch) => {
     dispatch(request());
     usersServices.login(username, password).then(
@@ -23,6 +23,9 @@ function login(username, password) {
         cookiesUtil.setAccessToken(user.token)
         //   cookiesUtil.setCurrentUserInfo(user.user)
         dispatch(success());
+        if (callback){
+          callback()
+        }
       },
       (error) => {
         alert(error);

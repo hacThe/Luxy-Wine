@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { ProductComponent } from '../../../component/product-component/ProductComponent'
 import { PaginationCustom } from '../../../component/PaginationCustom'
-import './ProductList.scss'
+import './SpecialProductList.scss'
 
 const products = [{
     _id: "1",
@@ -30,7 +30,7 @@ const products = [{
 }]
 
 
-function ProductList(props) {
+function SpecialProductList(props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     useEffect(() => {
@@ -50,7 +50,6 @@ function ProductList(props) {
                             <option value={'sales'}>Bán chạy nhất</option>
                             <option value={'newest'}>Mới nhất</option>
                         </select>
-                        <button>Tất cả sản phẩm</button>
                     </div>
 
                     <div className='result-filter'>
@@ -60,7 +59,7 @@ function ProductList(props) {
             </Container>
 
             <Container className='product-list'>
-                {Array.from({ length: 12 }).map((_, idx) => (
+                {Array.from({ length: 20 }).map((_, idx) => (
                     <div key={idx} className="py-3 px-3">
                         <ProductComponent product={products[0]} />
                     </div>
@@ -74,4 +73,4 @@ function ProductList(props) {
     )
 }
 
-export { ProductList } 
+export { SpecialProductList } 

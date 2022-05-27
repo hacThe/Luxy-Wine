@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './Page404.scss'
 const Page404 = () => {
   return (
-    <>
-    <div className="">
-      <h1>401 not found - ahihi</h1>
+    <div className='page404-wrapper'>
+      <img src='./404IMG.jpg'></img>
+      <div>
+        <h1>404</h1>
+        <p>Oops, Page Not Found!</p>
+        <Link to={'/trang-chu'}>Home Page</Link>
+      </div>
     </div>
-    <Link to={"/trang-chu"}>Về trang chủ</Link></>
   )
 }
 

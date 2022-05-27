@@ -54,11 +54,11 @@ function OldPrice(props) {
         </>
     )
 }
-function HoverContent() {
+function HoverContent(props) {
     return (
         <>
             <Card.Body className='hover-content row'>
-                <Link to={`/san-pham`} style={{ height: "93%", width: "100%", margin: "0px", padding: "0px", backgroundColor: "#00000020" }}>
+                <Link to={`/chi-tiet-san-pham/` + props.id} style={{ height: "93%", width: "100%", margin: "0px", padding: "0px", backgroundColor: "#00000020" }}>
                 </Link>
                 <Row style={{ height: "7%", backgroundColor: "#353535", margin: "0px", padding: "0px" }}>
                     <Col style={{ padding: "0px", borderRight: "solid 1px white" }}>
@@ -103,21 +103,21 @@ const ProductComponent = (props) => {
                     <Card.Body>
                         <ProductName name={props.product.name} />
                         <Description origin={props.product.origin} producer={props.product.producer} color={props.product.color} capacity={props.product.capacity} />
-                        {props.product.discountPrice !== 0? 
-                        <OldPrice oldPrice={props.product.sellPrice} newPrice={props.product.discountPrice} /> 
-                        :<Card.Text style={{
-                            height: "20px",
-                            margin: "0px"
-                        }}></Card.Text>}
-                        <NewPrice newPrice = {props.product.discountPrice !==0? props.product.discountPrice: props.product.sellPrice} />
+                        {props.product.discountPrice !== 0 ?
+                            <OldPrice oldPrice={props.product.sellPrice} newPrice={props.product.discountPrice} />
+                            : <Card.Text style={{
+                                height: "20px",
+                                margin: "0px"
+                            }}></Card.Text>}
+                        <NewPrice newPrice={props.product.discountPrice !== 0 ? props.product.discountPrice : props.product.sellPrice} />
                     </Card.Body>
-                    {props.product.isNew? <NewTag />: <></>}
-                    {props.product.isSpecial? <SpecialTag />: <></>}
-                    <HoverContent />
+                    {props.product.isNew ? <NewTag /> : <></>}
+                    {props.product.isSpecial ? <SpecialTag /> : <></>}
+                    <HoverContent id={props.product._id} />
                 </Card>
             </div>
         </>
     )
 }
 
-export {ProductComponent };
+export { ProductComponent };
