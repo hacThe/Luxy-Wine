@@ -103,21 +103,21 @@ const ProductComponent = (props) => {
                     <Card.Body>
                         <ProductName name={props.product.name} />
                         <Description origin={props.product.origin} producer={props.product.producer} color={props.product.color} capacity={props.product.capacity} />
-                        {props.product.discountPrice !== 0? 
-                        <OldPrice oldPrice={props.product.sellPrice} newPrice={props.product.discountPrice} /> 
-                        :<Card.Text style={{
-                            height: "20px",
-                            margin: "0px"
-                        }}></Card.Text>}
-                        <NewPrice newPrice = {props.product.discountPrice !==0? props.product.discountPrice: props.product.sellPrice} />
+                        {props.product.discountPrice !== 0 ?
+                            <OldPrice oldPrice={props.product.sellPrice} newPrice={props.product.discountPrice} />
+                            : <Card.Text style={{
+                                height: "20px",
+                                margin: "0px"
+                            }}></Card.Text>}
+                        <NewPrice newPrice={props.product.discountPrice !== 0 ? props.product.discountPrice : props.product.sellPrice} />
                     </Card.Body>
-                    {props.product.isNew? <NewTag />: <></>}
-                    {props.product.isSpecial? <SpecialTag />: <></>}
-                    <HoverContent id = {props.product._id}/>
+                    {props.product.isNew ? <NewTag /> : <></>}
+                    {props.product.isSpecial ? <SpecialTag /> : <></>}
+                    <HoverContent id={props.product._id} />
                 </Card>
             </div>
         </>
     )
 }
 
-export {ProductComponent };
+export { ProductComponent };

@@ -5,7 +5,7 @@ const Homepage = React.lazy(() => import('./views/pages/home/Home'));
 const Products = React.lazy(() => import('./views/pages/products/Products'))
 const SpecialProducts = React.lazy(() => import('./views/pages/special-products/SpecialProducts'))
 const Accessories = React.lazy(() => import('./views/pages/accessories/Accessories'))
-
+const Product = React.lazy(() => import('./views/pages/product/Product'))
 
 
 
@@ -72,7 +72,7 @@ const commonRoute = [
   { path: '/san-pham', name: 'Sản phẩm', element: <Products /> },
   { path: '/san-pham-dac-biet', name: 'Sản phẩm đặc biệt', element: <SpecialProducts /> },
   { path: '/phu-kien', name: 'Phụ kiện', element: <Accessories /> },
-  { path: '/chi-tiet-san-pham/:id', name: 'Chi tiết sản phẩm', element: <SpecialProducts /> },
+  { path: '/chi-tiet-san-pham/:id', name: 'Chi tiết sản phẩm', element: <Product /> },
 ]
 
 

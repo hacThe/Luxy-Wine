@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { userActions } from "../../actions/user.actions";
 import { Nav, Navbar, Container, Form, FormControl, Button, Row, Col } from 'react-bootstrap';
 import { MdPhoneInTalk, MdOutlineReceiptLong, MdLogout } from 'react-icons/md';
@@ -13,6 +13,7 @@ import './TheHeader.scss';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
+  const param = useParams();
 
   function HandleLogOutOnClick() {
     dispatch(userActions.logout())
@@ -22,13 +23,13 @@ const TheHeader = () => {
   useEffect(() => {
     const handleScroll = () => {
       let moving = window.pageYOffset
-      if(moving < 100) return;
+      if (moving < 100) return;
 
-      if(position > moving + 20){
+      if (position > moving + 20) {
         setVisible(true);
         setPosition(moving)
       }
-      if(position < moving - 20){
+      if (position < moving - 20) {
         setVisible(false);
         setPosition(moving)
       }
@@ -38,6 +39,9 @@ const TheHeader = () => {
       window.removeEventListener("scroll", handleScroll);
     })
   })
+  useEffect(() => {
+    setVisible(true);
+  }, [param])
   const cls = visible ? "visible" : "hidden";
 
   return (

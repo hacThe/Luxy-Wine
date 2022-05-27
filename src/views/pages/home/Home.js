@@ -10,6 +10,7 @@ import './Home.scss';
 const Home = () => {
 
   const product = {
+    _id: "1",
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
     avtURL: "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
     imgURLs: ["https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png", "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png"],
