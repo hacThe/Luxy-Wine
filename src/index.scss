@@ -24,6 +24,8 @@ html {
   --danger-color: #dc3545;
   --foreground-color: #000;
   --hover-background-color: #dedede;
+
+  --max-width: 1440px;
 }
 
 a {
@@ -37,7 +39,7 @@ code {
 
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .aspect-ratio {
