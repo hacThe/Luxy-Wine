@@ -34,6 +34,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
     "slick-carousel": "^1.8.1",
+    "suneditor": "^2.43.8",
+    "suneditor-react": "^3.4.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

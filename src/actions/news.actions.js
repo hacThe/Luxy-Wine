@@ -1,6 +1,5 @@
-import { newsConstants } from '../constaint';
-import { newsServices } from '../services';
-
+import { newsConstants } from "../constaint";
+import { newsServices } from "../services";
 
 export const newsActions = {
   getAll,
@@ -8,19 +7,17 @@ export const newsActions = {
   update,
   getOne,
   deleteOne,
-  deleteMany
-}; 
-
+  deleteMany,
+};
 
 function getAll(params) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    newsServices.getAll(params)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    newsServices.getAll(params).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -34,17 +31,25 @@ function getAll(params) {
   }
 }
 
-
-
-function getOne(id) {
-  return dispatch => {
+function getOne(id, callback, handleError) {
+  return (dispatch) => {
     dispatch(request());
 
-    newsServices.getOne(id)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    newsServices.getOne(id).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        if (handleError instanceof Function) {
+          handleError(error);
+        }
+        console.log("get error", error.toString());
+      }
+    );
   };
 
   function request() {
@@ -58,16 +63,19 @@ function getOne(id) {
   }
 }
 
-
-function create(values) {
-  return dispatch => {
+function create(values, callback) {
+  return (dispatch) => {
     dispatch(request());
 
-    newsServices.create(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    newsServices.create(values).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -80,17 +88,15 @@ function create(values) {
     return { type: newsConstants.GET_ONE_FAILURE, error };
   }
 }
-
 
 function update(values) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    newsServices.update(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    newsServices.update(values).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -104,21 +110,21 @@ function update(values) {
   }
 }
 
-
-
-
 // prefixed function name with underscore because delete is a reserved word in javascript
-function deleteOne(id) {
-  return dispatch => {
+function deleteOne(id, callback) {
+  return (dispatch) => {
     dispatch(request(id));
 
-    newsServices.deleteOne(id)
-      .then(
-        () => dispatch(success(id)),
-        error => dispatch(failure(id, error.toString()))
-      );
+    newsServices.deleteOne(id).then(
+      () => {
+        dispatch(success(id));
+        if (callback instanceof Function) {
+          callback(id);
+        }
+      },
+      (error) => dispatch(failure(id, error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: newsConstants.DELETE_ONE_REQUEST, id };
@@ -131,21 +137,16 @@ function deleteOne(id) {
   }
 }
 
-
-
-
 // prefixed function name with underscore because delete is a reserved word in javascript
 function deleteMany(values) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request(values));
 
-    newsServices.deleteMany(values)
-      .then(
-        (data) => dispatch(success(data["data"])),
-        error => dispatch(failure(error.toString()))
-      );
+    newsServices.deleteMany(values).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: newsConstants.DELETE_MANY_REQUEST, id };
@@ -153,7 +154,7 @@ function deleteMany(values) {
   function success(deleteCount) {
     return { type: newsConstants.DELETE_MANY_SUCCESS, deleteCount };
   }
-  function failure( error) {
+  function failure(error) {
     return { type: newsConstants.DELETE_MANY_FAILURE, error };
   }
 }
