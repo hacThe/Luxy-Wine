@@ -6,6 +6,7 @@ const Products = React.lazy(() => import('./views/pages/products/Products'))
 const SpecialProducts = React.lazy(() => import('./views/pages/special-products/SpecialProducts'))
 const Accessories = React.lazy(() => import('./views/pages/accessories/Accessories'))
 const Product = React.lazy(() => import('./views/pages/product/Product'))
+const Cart = React.lazy(() => import('./views/pages/cart/Cart'))
 
 
 
@@ -73,6 +74,7 @@ const commonRoute = [
   { path: '/san-pham-dac-biet', name: 'Sản phẩm đặc biệt', element: <SpecialProducts /> },
   { path: '/phu-kien', name: 'Phụ kiện', element: <Accessories /> },
   { path: '/chi-tiet-san-pham/:id', name: 'Chi tiết sản phẩm', element: <Product /> },
+  { path: '/gio-hang', name: 'Giỏ hàng', element: <Cart /> },
 ]
 
 

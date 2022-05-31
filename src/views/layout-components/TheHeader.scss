@@ -1,19 +1,20 @@
+.header-visible {
+  visibility: visible;
+  transition: all 0.4s;
+}
 
-.visible {
-    top: 0;
-    transition: top 0.3s ease-out;
-  }
-  
-  .hidden {
-    top: -110px;
-    transition: top 0.3s ease-out;
-  }
+.header-hidden {
+   visibility: hidden;
+   transition: all 0.4s;
+   transform: translateY(-100%);
+}
 
 .header-wrapper {
     background-color: #FFFFFF;
     position: fixed;
     left: 0;
     right: 0;
+    top: 0;
     box-shadow: 2px 2px 5px #7F7F7F;
     z-index: 110;
 

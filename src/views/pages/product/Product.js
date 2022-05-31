@@ -17,19 +17,19 @@ const product = {
         "https://vinoteka.vn/assets/components/phpthumbof/cache/071303-1.be16d2d411b9f5d48c089e890607cf09.jpg",
         "https://vinoteka.vn/assets/components/phpthumbof/cache/092104-1.e0b0155f7422a686f522524c1b1fbd23.jpg"],
 
-    quantity: 7,
+    quantity: 100,
     importPrice: 600000, // Giá nhập
     sellPrice: 750000, // Giá bán gốc
     discountPrice: 700000, // Giá bán đã sale
     temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
     color: ['Red', 'Blue'],
-    food: ["Bò khô", "Thịt chó"],
+    food: ["Thịt cừu", "Thịt bò"],
     origin: "Italy", // Xuất xứ
     producer: "DOCG", //Nhà sản xuất
     concentrationPercent: 40, //  nồng độ cồn ( tính theo %)
     capacity: 750, // Dung tích (ml)
     vintage: 2017, // Năm sản xuất
-    aboutProduct: "about product", // Một đoạn ngắn mô tả thông tin sản phẩm
+    aboutProduct: "The soil is calcareous-clayish and silt with south exposure. Yield per hectare: 9 tonnes. Manual harvest.Winemaking process:Fermented in stainless steel tanks, at a temperature of about 25-26'C, for 15 days in contact with the skins, it is drained to complete the primary fermentation without grape marc. After completing malolactic fermentation, it continues refinement in stainless steel tanks. ", // Một đoạn ngắn mô tả thông tin sản phẩm
     sugar: 10, // Hàm lượng đường
     experation: "Date",//Date
     productType: "wine", // wine/combo/accessory
@@ -57,7 +57,10 @@ function Product() {
             </div>
             {product.productType !== 'accessory' ?
                 <ProductDetailInfo product={product} /> :
-                <></>}
+                <Container className='accessory-detail'>
+                    <h5>Mô tả: </h5>
+                    <p>{product.aboutProduct}</p>
+                </Container>}
             <div className='suggest-product'>
                 <SuggestProduct />
             </div>
