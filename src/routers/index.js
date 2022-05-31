@@ -48,22 +48,24 @@ const Routers = () => {
           name="Cập nhật thông tin người dùng"
           element={<UpdateInfo />}
         />
-        <Route path="/xac-nhan-email/:id/:token" name="Xác nhận email" element={<EmailVerification />} />
+        <Route
+          path="/xac-nhan-email/:id/:token"
+          name="Xác nhận email"
+          element={<EmailVerification />}
+        />
 
         <Route path="/quan-ly" name="Trang chủ" element={<ManagerContent />}>
-          {
-            routes.managerRoute.map((route, idx) => {
-              return (
-                route.element && (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={route.element}
-                  />
-                )
-              );
-            })
-          }
+          {routes.managerRoute.map((route, idx) => {
+            return (
+              route.element && (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
+              )
+            );
+          })}
         </Route>
         <Route path="/" name="Trang chủ" element={<TheContent />}>
           <Route index name="Trang chủ" element={<Navigate to="trang-chu" />} />
@@ -106,14 +108,14 @@ const Routers = () => {
           })}
         </Route>
 
-        <Route
+        {/* <Route
           path="*"
           element={
             <Navigate
               to={authentication?.isLoggedIn ? "/trang-chu" : "/dang-nhap"}
             />
           }
-        />
+        /> */}
         {/* <Route path="*" element={<Navigate to="404" />}/> */}
 
         {/* <AuthGuard path="/" name="Trang chủ">

@@ -27,7 +27,7 @@ function ManagerHeader(props) {
     const isMenuOpen = Boolean(anchorEl);
     const isNotificationMenuOpen = Boolean(anchorNt);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const UserInfo = useSelector(state => state.authentication.user); /* console.log("user: ", typeof UserInfo === "undefined"); */
+    const UserInfo = useSelector(state => state.userReducer.currentUser); /* console.log("user: ", typeof UserInfo === "undefined"); */
 
 
     const dispatch = useDispatch()

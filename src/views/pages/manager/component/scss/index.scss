@@ -1,40 +1,4 @@
-.manager-wrapper {
-  display: flex;
-  position: relative;
-  .manager-content-wrapper {
-    flex: 1;
-    margin-top: 66px;
-  }
-}
-
-.content-of-manager {
-  padding: 24px;
-
-  .manager-page-title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 42px;
-  }
-
-  .food-toogle {
-    background-color: #fff;
-    border: 1px solid #666;
-    color: rgb(102, 102, 102);
-    font-size: 1.4rem;
-    font-weight: 600;
-    padding: 8px 12px;
-    display: inline-block;
-    margin-right: 12px;
-    border-radius: 15px;
-  }
-  .food-toogle.actived {
-    background-color: var(--primary-color);
-    color: #fff;
-  }
-}
-
-.manager-container {
+.manage-wapper {
   position: relative;
   width: 100%;
   justify-content: center;
@@ -42,21 +6,21 @@
   flex-direction: column;
   align-items: center;
 
-  .lw-btn {
+  .se-btn {
     position: absolute;
     top: 12px;
     right: 12px;
   }
 
-  .list-manager-wapper {
+  .CourseListManager-container {
     width: 100%;
     background-color: #fff;
     .title {
-      padding-top: 3.6rem;
+      padding-top: 4.2rem;
       width: 100%;
       text-align: center;
       font-size: 4rem;
-      font-weight: 600;
+      font-weight: 700;
     }
     .data-table-container {
       padding-bottom: 32px;

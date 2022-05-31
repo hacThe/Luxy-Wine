@@ -1,6 +1,5 @@
-import { productConstants } from '../constaint';
-import { productServices } from '../services';
-
+import { productConstants } from "../constaint";
+import { productServices } from "../services";
 
 export const productActions = {
   getAll,
@@ -8,19 +7,20 @@ export const productActions = {
   update,
   getOne,
   deleteOne,
-  deleteMany
-}; 
-
+  deleteMany,
+};
 
 function getAll(params) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    productServices.getAll(params)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    productServices.getAll(params).then(
+      (data) => {
+        console.log(data);
+        dispatch(success(data["data"]));
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -34,17 +34,14 @@ function getAll(params) {
   }
 }
 
-
-
 function getOne(id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    productServices.getOne(id)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    productServices.getOne(id).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -58,16 +55,18 @@ function getOne(id) {
   }
 }
 
-
-function create(values) {
-  return dispatch => {
+function create(values, callback) {
+  return (dispatch) => {
     dispatch(request());
-
-    productServices.create(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    productServices.create(values).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -81,16 +80,19 @@ function create(values) {
   }
 }
 
-
-function update(values) {
-  return dispatch => {
+function update(values, callback) {
+  return (dispatch) => {
     dispatch(request());
 
-    productServices.update(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    productServices.update(values).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -103,22 +105,22 @@ function update(values) {
     return { type: productConstants.GET_ONE_FAILURE, error };
   }
 }
-
-
-
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function deleteOne(id) {
-  return dispatch => {
+function deleteOne(id, callback) {
+  return (dispatch) => {
     dispatch(request(id));
 
-    productServices.deleteOne(id)
-      .then(
-        () => dispatch(success(id)),
-        error => dispatch(failure(id, error.toString()))
-      );
+    productServices.deleteOne(id).then(
+      () => {
+        dispatch(success(id));
+        if (callback instanceof Function) {
+          callback(id);
+        }
+      },
+      (error) => dispatch(failure(id, error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: productConstants.DELETE_ONE_REQUEST, id };
@@ -131,21 +133,16 @@ function deleteOne(id) {
   }
 }
 
-
-
-
 // prefixed function name with underscore because delete is a reserved word in javascript
 function deleteMany(values) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request(values));
 
-    productServices.deleteMany(values)
-      .then(
-        (data) => dispatch(success(data["data"])),
-        error => dispatch(failure( error.toString()))
-      );
+    productServices.deleteMany(values).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: productConstants.DELETE_MANY_REQUEST, id };

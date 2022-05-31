@@ -139,11 +139,10 @@ button {
   }
 }
 
-
-.lw-btn.text-btn{
+.lw-btn.text-btn {
   background-color: transparent;
   color: var(--foreground-color);
-  &:hover{
+  &:hover {
     background-color: var(--hover-background-color);
     filter: none;
   }
@@ -167,4 +166,10 @@ input[type="checkbox"] {
 
 .input-field {
   margin-bottom: 1.6rem;
+}
+
+.top-right-fixed {
+  position: fixed;
+  top: 100px;
+  right: 24px;
 }
