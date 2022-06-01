@@ -1,6 +1,17 @@
 .product-detail-info-wrapper {
-    padding: 2.4rem 2.4rem 4.5rem 2.4rem;
+    padding: 2.4rem;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+
     .left-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        div{
+            margin-right: 3rem;
+        }
+
         h1 {
             font-weight: 500;
             font-size: 18px;
@@ -21,7 +32,8 @@
             font-size: 18px;
             line-height: 22px;
             margin-bottom: 1.5rem;
-            svg{
+
+            svg {
                 height: 2.7rem;
                 width: 2.7rem;
                 margin-right: 1rem;
@@ -42,10 +54,64 @@
             font-size: 16px;
             line-height: 20px;
             color: #000000;
-            img{
+
+            img {
                 height: 4rem;
                 width: 4rem;
                 margin-right: 1rem;
+            }
+        }
+    }
+
+    .right-grid {
+
+        .list-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            min-height: 10rem;
+
+            .information-item {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                min-width: 25rem;
+                height: 5rem;
+                margin-right: 2rem;
+
+                h5 {
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #000000;
+                    margin-bottom: 0;
+                }
+
+                p {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 20px;
+                    margin-bottom: 0;
+                    margin-left: 1rem;
+                }
+            }
+
+        }
+
+        .description-item {
+            h5 {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 20px;
+                color: #000000;
+                margin: 0;
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 20px;
+                margin: 0;
             }
         }
     }

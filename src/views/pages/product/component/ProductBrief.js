@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
-import HorizontalScroll from 'react-horizontal-scrolling';
 import './ProductBrief.scss'
 
 function ProductBrief(props) {
@@ -17,6 +16,13 @@ function ProductBrief(props) {
     const discountPrice = formatter.format(props.product.discountPrice);
     const discountPercent = Math.floor((props.product.sellPrice - props.product.discountPrice) / props.product.sellPrice * 100);
 
+    const [quantity, setQuantity] = useState(1);
+    const handleChangeQuantity = (number) => {
+        if (parseInt(number) < 1) setQuantity(1);
+        else if(isNaN(parseInt(number)) && isNaN(quantity)) setQuantity(1);
+        else setQuantity(parseInt(number));
+    }
+
     return (
         <Container className="product-briefing-wrapper">
             <Row>
@@ -25,6 +31,7 @@ function ProductBrief(props) {
                         <img
                             onClick={() => handleImgClick(props.product.avtURL, 0)}
                             src={props.product.avtURL}
+                            alt='product-img'
                             className={currentImg.id === 0 ? "img-active" : ""}
                         ></img>
                         {props.product.imgURLs.map((val, idx) => (
@@ -32,49 +39,50 @@ function ProductBrief(props) {
                                 key={idx}
                                 onClick={() => handleImgClick(val, idx + 1)}
                                 src={val}
+                                alt='product-img'
                                 className={idx + 1 === currentImg.id ? "img-active" : ""}
                             ></img>
                         ))}
                     </div>
                     <div className='current-img'>
-                        <img src={currentImg.val}></img>
+                        <img src={currentImg.val} alt='product-img'></img>
                     </div>
                 </Col>
                 <Col xs={12} lg={6} className="product-briefing">
                     <Container>
 
-                    <div className='product-code'>
-                        <p>Mã sản phẩm: {props.product.sku}</p>
-                    </div>
-                    <div className='product-name'>
-                        <p>{props.product.name}</p>
-                    </div>
-                    <div className='product-discount'>
-                        {props.product.discountPrice !== 0 &&
-                            <>
-                                <p> {discountPrice}</p>
-                                <span>-{discountPercent}%</span>
-                            </>}
-                    </div>
-                    <div className='sell-price'>
-                        {props.product.discountPrice !== 0 ?
-                            <p>{discountPrice}</p> :
-                            <p>{sellPrice}</p>}
-                    </div>
-                    <div className='product-count'>
-                        <h3>Số lượng: {props.product.quantity}</h3>
-                       {/*  <div>
-                            <button></button>
-                            <input type={'number'}></input>
-                            <button></button>
-                        </div> */}
-                    </div>
-                    <div className='buy-btn-group'>
-                        <button className='btn-add-to-cast'>Thêm vào giỏ hàng</button>
-                        <br></br>
-                        <button className='btn-buy'>Đặt hàng</button>
-                    </div>
-                        </Container>
+                        <div className='product-code'>
+                            <p>Mã sản phẩm: {props.product.sku}</p>
+                        </div>
+                        <div className='product-name'>
+                            <p>{props.product.name}</p>
+                        </div>
+                        <div className='product-discount'>
+                            {props.product.discountPrice !== 0 &&
+                                <>
+                                    <p> {discountPrice}</p>
+                                    <span>-{discountPercent}%</span>
+                                </>}
+                        </div>
+                        <div className='sell-price'>
+                            {props.product.discountPrice !== 0 ?
+                                <p>{discountPrice}</p> :
+                                <p>{sellPrice}</p>}
+                        </div>
+                        <div className='product-count'>
+                            <h3>Số lượng</h3>
+                            <div>
+                                <button onClick={() => handleChangeQuantity(quantity - 1)}>-</button>
+                                <input type={'number'} value={quantity} onChange={(e) => handleChangeQuantity(e.target.value)} />
+                                <button onClick={() => handleChangeQuantity(quantity + 1)}>+</button>
+                            </div>
+                        </div>
+                        <div className='buy-btn-group'>
+                            <button className='btn-add-to-cast'>Thêm vào giỏ hàng</button>
+                            <br></br>
+                            <button className='btn-buy'>Đặt hàng</button>
+                        </div>
+                    </Container>
                 </Col>
             </Row>
         </Container>

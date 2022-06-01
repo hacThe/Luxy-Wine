@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap';
 import SliderProduct from './SliderProducts';
 import './SuggestProduct.scss'
 
@@ -168,7 +169,9 @@ const products = [{
 function SuggestProduct(props) {
     return (
         <div className='suggest-product-wrapper'>
-            <h1>Đề xuất cho bạn</h1>
+            <Container>
+                <h1>Đề xuất cho bạn</h1>
+            </Container>
             <div className='slider-product'>
                 <SliderProduct products={products} />
             </div>

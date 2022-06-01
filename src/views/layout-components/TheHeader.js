@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { userActions } from "../../actions/user.actions";
-import { Nav, Navbar, Container, Form, FormControl, Button, Row, Col } from 'react-bootstrap';
+import { Nav, Navbar, Container, Form, FormControl, Button, Row } from 'react-bootstrap';
 import { MdPhoneInTalk, MdOutlineReceiptLong, MdLogout } from 'react-icons/md';
 import { GoSearch } from 'react-icons/go';
 import { FaUserCircle } from 'react-icons/fa';
@@ -18,31 +18,43 @@ const TheHeader = () => {
   function HandleLogOutOnClick() {
     dispatch(userActions.logout())
   }
-  const [position, setPosition] = useState(window.pageYOffset)
   const [visible, setVisible] = useState(true)
+  const position = useRef();
+  position.current = window.pageYOffset;
+
   useEffect(() => {
     const handleScroll = () => {
       let moving = window.pageYOffset
-      if (moving < 100) return;
+      if (moving < 100 && visible) return;
 
-      if (position > moving + 20) {
+      if (position.current > moving + 20) {
         setVisible(true);
-        setPosition(moving)
+        position.current = moving;
       }
-      if (position < moving - 20) {
+      if (position.current < moving - 20) {
         setVisible(false);
-        setPosition(moving)
+        position.current = moving;
       }
+
     };
+
     window.addEventListener("scroll", handleScroll);
     return (() => {
       window.removeEventListener("scroll", handleScroll);
     })
   })
+
   useEffect(() => {
     setVisible(true);
+
+    //--Đóng navbar khi chuyển trang--//
+    var navbar = document.getElementById('navbarScroll');
+    var btn = document.getElementById('navbarScroll-control-btn');
+    if(navbar.classList.contains('show')){
+      btn.click();
+    }
   }, [param])
-  const cls = visible ? "visible" : "hidden";
+  const cls = visible ? "header-visible" : "header-hidden";
 
   return (
     <div className={'header-wrapper ' + cls} tabIndex={100}>
@@ -76,7 +88,7 @@ const TheHeader = () => {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item as="li">
-                <NavLink to={`/trang-chu`}>
+                <NavLink to={`/gio-hang`}>
                   <BsCartCheck />
                   Giỏ hàng
                 </NavLink>
@@ -88,13 +100,13 @@ const TheHeader = () => {
         <Row className='nav-2 mx-0'>
           <Container className='nav-2-navigate-group'>
             <Navbar bg="light" expand="xxl" className='nav-2-navbar-expand'>
-              <Navbar.Brand href="#" className='nav-2-navbar-brand mx-0'>
+              <Navbar.Brand href="/" className='nav-2-navbar-brand mx-0'>
                 <h1>
                   Luxy Wine
                 </h1>
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="navbarScroll" className='ms-4' style={{ height: "4rem", width: "4rem" }} />
-              <Navbar.Collapse id="navbarScroll">
+              <Navbar.Toggle id='navbarScroll-control-btn' aria-controls="navbarScroll" className='ms-4' style={{ height: "4rem", width: "4rem" }} />
+              <Navbar.Collapse id="navbarScroll" className={"jj"}>
                 <Nav
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: '100px' }}

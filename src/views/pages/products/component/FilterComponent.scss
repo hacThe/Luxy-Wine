@@ -23,6 +23,10 @@
                     color: #878787;
                 }
 
+                .accordion-button:hover {
+                    filter: none;
+                }
+
                 .accordion-button:focus {
                     box-shadow: none;
                 }

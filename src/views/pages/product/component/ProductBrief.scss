@@ -5,6 +5,7 @@
 
     .product-img-group {
         display: flex;
+        justify-content: center;
         flex-wrap: nowrap;
 
         .img-list {
@@ -115,23 +116,38 @@
                 margin-bottom: 1.6rem;
             }
 
-
-            /*    input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
+            div{
+                display: flex;
+                margin-bottom: 3.3rem;
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                input {
+                    height: 4rem;
+                    width: 7rem;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #000000;
+                    border-top: 1px solid #C0C0C0;
+                    border-bottom: 1px solid #C0C0C0;
+                    text-align: center;
+                }
+                button{
+                    background-color: #FFFFFF;
+                    border: 1px solid #C0C0C0;
+                    color: #000000;
+                    font-size: 2rem;
+                    height: 4rem;
+                    width: 4rem;
+                    padding: 0rem;
+                }
+                button:hover{
+                    filter: none;
+                }
             }
-
-            input {
-                height: 4rem;
-                width: 10rem;
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 22px;
-                color: #000000;
-                border: 1px solid #C0C0C0;
-                text-align: center;
-            } */
         }
 
         .buy-btn-group {
@@ -142,11 +158,12 @@
                 font-size: 18px;
                 line-height: 22px;
                 color: #FFFFFF;
-                background-color:  #353535;
+                background-color: #353535;
                 border: none;
                 margin-bottom: 1.2rem;
             }
-            .btn-buy{
+
+            .btn-buy {
                 width: 250px;
                 height: 40px;
                 font-weight: 500;
