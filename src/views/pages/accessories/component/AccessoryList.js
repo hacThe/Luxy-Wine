@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { productActions } from '../../../../actions/product.actions'
+import { Container } from 'react-bootstrap'
 import { ProductComponent } from '../../../component/product-component/ProductComponent'
 import { PaginationCustom } from '../../../component/PaginationCustom'
 import './AccessoryList.scss'
 
-const product = {
+/* const product = {
     _id: "6293b9ae984ace117e99b886",
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
     sku: "HT3892",
@@ -35,10 +37,21 @@ const product = {
     isSpecial: true,
     isNew: true,
     hasSold: 50,//số sp đã bán
-}
+} */
 
 
 function AccessoryList(props) {
+
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.productReducer.products) || []
+    const isLoading = useSelector(state => state.productReducer.isLoading)
+  
+    useEffect(() => {
+      const query = {
+        productType: "accessory"
+      }
+      dispatch(productActions.getList(query));
+    }, [])
 
     const [currentPage, setCurrentPage] = useState(1);
     useEffect(() => {
@@ -46,6 +59,7 @@ function AccessoryList(props) {
     }, [currentPage])
 
     return (
+        isLoading ? <h1 style={{ marginTop: "12rem" }}>Loading............</h1>:
         <Container className='product-list-wrapper'>
             <Container className='product-list-header-wrapper'>
                 <div className='product-list-header'>
@@ -66,16 +80,17 @@ function AccessoryList(props) {
                 </div>
             </Container>
 
+            {products.length > 0 &&
             <Container className='product-list'>
-                {Array.from({ length: 20 }).map((_, idx) => (
+                {Array.from({ length: products.length }).map((_, idx) => (
                     <div key={idx} className="py-3 px-3">
-                        <ProductComponent product={product} />
+                        <ProductComponent product={products[idx]} />
                     </div>
                 ))}
                 <div className='product-list-footer'>
                     <PaginationCustom numberOfElement={65} elementPerPage={3} setCurrentPage={setCurrentPage} />
                 </div>
-            </Container>
+            </Container>}
 
         </Container>
     )

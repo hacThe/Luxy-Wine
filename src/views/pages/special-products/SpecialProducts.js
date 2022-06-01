@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { Banner } from '../../component/BannerProduct'
 import { SpecialProductList } from './component/SpecialProductList'
 import { SuggestProduct } from '../../component/SuggestProduct'
 import {GrPrevious, GrNext} from 'react-icons/gr'
 import './SpecialProducts.scss'
-import { color } from '@mui/system'
 
 const filters = [
   {

@@ -1,44 +1,23 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import { ProductComponent } from '../../../component/product-component/ProductComponent'
 import { PaginationCustom } from '../../../component/PaginationCustom'
+import { productActions } from '../../../../actions/product.actions'
 import './ProductList.scss'
 
-const product = {
-    _id: "6293b9ae984ace117e99b886",
-    name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
-    sku: "HT3892",
-    aboutProduct: "Một đoạn ngắn mô tả thông tin sản phẩm",
-    avtURL: "https://vinoteka.vn/assets/components/phpthumbof/cache/092121-1.f82e22adba27a7c64145c7a97710f316.jpg",
-    imgURLs: [
-        "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-        "https://vinoteka.vn/assets/components/phpthumbof/cache/092121-1.f82e22adba27a7c64145c7a97710f316.jpg",
-        "https://vinoteka.vn/assets/components/phpthumbof/cache/071303-1.be16d2d411b9f5d48c089e890607cf09.jpg",
-        "https://vinoteka.vn/assets/components/phpthumbof/cache/092104-1.e0b0155f7422a686f522524c1b1fbd23.jpg"],
-
-    quantity: 100,
-    importPrice: 600000, // Giá nhập
-    originPrice: 750000, // Giá bán gốc
-    price: 700000, // Giá bán đã sale
-    temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
-    color: ['Red', 'Blue'],
-    food: ["Thịt cừu", "Thịt bò"],
-    origin: "Italy", // Xuất xứ
-    producer: "DOCG", //Nhà sản xuất
-    concentrationPercent: 40, //  nồng độ cồn ( tính theo %)
-    capacity: 750, // Dung tích (ml)
-    vintage: 2017, // Năm sản xuất
-    aboutProduct: "The soil is calcareous-clayish and silt with south exposure. Yield per hectare: 9 tonnes. Manual harvest.Winemaking process:Fermented in stainless steel tanks, at a temperature of about 25-26'C, for 15 days in contact with the skins, it is drained to complete the primary fermentation without grape marc. After completing malolactic fermentation, it continues refinement in stainless steel tanks. ", // Một đoạn ngắn mô tả thông tin sản phẩm
-    sugar: 10, // Hàm lượng đường
-    experation: "Date",//Date
-    productType: "wine", // wine/combo/accessory
-    isSpecial: true,
-    isNew: true,
-    hasSold: 50,//số sp đã bán
-}
-
-
 function ProductList(props) {
+
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.productReducer.products) || []
+    const isLoading = useSelector(state => state.productReducer.isLoading)
+  
+    useEffect(() => {
+      const query = {
+        productType: "wine"
+      }
+      dispatch(productActions.getList(query));
+    }, [])
 
     const [currentPage, setCurrentPage] = useState(1);
     useEffect(() => {
@@ -46,6 +25,7 @@ function ProductList(props) {
     }, [currentPage])
 
     return (
+        isLoading ? <h1 style={{ marginTop: "12rem" }}>Loading............</h1>:
         <Container className='product-list-wrapper'>
             <Container className='product-list-header-wrapper'>
                 <div className='product-list-header'>
@@ -67,16 +47,17 @@ function ProductList(props) {
                 </div>
             </Container>
 
+            {products.length > 0 &&
             <Container className='product-list'>
-                {Array.from({ length: 12 }).map((_, idx) => (
+                {Array.from({ length: products.length }).map((_, idx) => (
                     <div key={idx} className="py-3 px-3">
-                        <ProductComponent product={product} />
+                        <ProductComponent product={products[idx]} />
                     </div>
                 ))}
                 <div className='product-list-footer'>
                     <PaginationCustom numberOfElement={65} elementPerPage={3} setCurrentPage={setCurrentPage} />
                 </div>
-            </Container>
+            </Container>}
 
         </Container>
     )

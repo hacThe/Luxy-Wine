@@ -4,6 +4,7 @@ import ajaxHelper from "./api";
 
 export const productServices = {
   getAll,
+  getList,
   getOne,
   create,
   update,
@@ -12,6 +13,12 @@ export const productServices = {
 };
 
 function getAll(params = {}) {
+  return handleResponse(
+    ajaxHelper.get(config.URL_PRODUCT + `/list`, params, options())
+  );
+}
+
+function getList(params) {
   return handleResponse(
     ajaxHelper.get(config.URL_PRODUCT + `/list`, params, options())
   );

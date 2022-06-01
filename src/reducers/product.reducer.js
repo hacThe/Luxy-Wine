@@ -29,6 +29,27 @@ export function productReducer(state = initialState, action) {
         error: action.error,
       };
 
+      case productConstants.GET_LIST_REQUEST:
+        return {
+          ...state,
+          isLoading: true,
+          error: false,
+        };
+      case productConstants.GET_LIST_SUCCESS:
+        console.log(action.products, action);
+        return {
+          ...state,
+          isLoading: false,
+          products: action.products,
+          error: false,
+        };
+      case productConstants.GET_LIST_FAILURE:
+        return {
+          ...state,
+          isLoading: false,
+          error: action.error,
+        };
+
     case productConstants.GET_ONE_REQUEST:
       return {
         ...state,
