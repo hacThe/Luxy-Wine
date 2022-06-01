@@ -5,10 +5,6 @@ import './FilterComponent.scss'
 function FilterComponent(props) {
     const filters = [
         {
-            name: 'Độ bọt',
-            values: ['vang sủi', 'vang không sủi']
-        },
-        {
             name: 'Màu sắc',
             values: ['Đỏ', 'Rose', 'Trắng']
         },
@@ -18,10 +14,6 @@ function FilterComponent(props) {
         },
         {
             name: 'Dung tích',
-            values: ['vang sủi', 'vang không sủi']
-        },
-        {
-            name: 'Hàm lượng đường',
             values: ['vang sủi', 'vang không sủi']
         },
         {

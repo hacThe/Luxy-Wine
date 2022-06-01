@@ -19,8 +19,8 @@ const product = {
 
     quantity: 100,
     importPrice: 600000, // Giá nhập
-    sellPrice: 750000, // Giá bán gốc
-    discountPrice: 700000, // Giá bán đã sale
+    originPrice: 750000, // Giá bán gốc
+    price: 700000, // Giá bán đã sale
     temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
     color: ['Red', 'Blue'],
     food: ["Thịt cừu", "Thịt bò"],

@@ -12,14 +12,14 @@ function ProductBrief(props) {
         currency: 'VND',
     });
 
-    const sellPrice = formatter.format(props.product.sellPrice);
-    const discountPrice = formatter.format(props.product.discountPrice);
-    const discountPercent = Math.floor((props.product.sellPrice - props.product.discountPrice) / props.product.sellPrice * 100);
+    const originPrice = formatter.format(props.product.originPrice);
+    const price = formatter.format(props.product.price);
+    const discountPercent = Math.floor((props.product.originPrice - props.product.price) / props.product.originPrice * 100);
 
     const [quantity, setQuantity] = useState(1);
     const handleChangeQuantity = (number) => {
         if (parseInt(number) < 1) setQuantity(1);
-        else if(isNaN(parseInt(number)) && isNaN(quantity)) setQuantity(1);
+        else if (isNaN(parseInt(number)) && isNaN(quantity)) setQuantity(1);
         else setQuantity(parseInt(number));
     }
 
@@ -58,16 +58,14 @@ function ProductBrief(props) {
                             <p>{props.product.name}</p>
                         </div>
                         <div className='product-discount'>
-                            {props.product.discountPrice !== 0 &&
+                            {props.product.price < props.product.originPrice &&
                                 <>
-                                    <p> {discountPrice}</p>
+                                    <p> {originPrice}</p>
                                     <span>-{discountPercent}%</span>
                                 </>}
                         </div>
                         <div className='sell-price'>
-                            {props.product.discountPrice !== 0 ?
-                                <p>{discountPrice}</p> :
-                                <p>{sellPrice}</p>}
+                            <p>{price}</p>
                         </div>
                         <div className='product-count'>
                             <h3>Số lượng</h3>

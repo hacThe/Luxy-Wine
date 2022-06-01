@@ -15,8 +15,8 @@ function CartItem(props) {
         currency: 'VND',
     });
 
-    const sellPrice = formatter.format(props.product.sellPrice);
-    const discountPrice = formatter.format(props.product.discountPrice);
+    const originPrice = formatter.format(props.product.originPrice);
+    const price = formatter.format(props.product.price);
 
     return (
         <Row className='cart-item'>
@@ -39,12 +39,10 @@ function CartItem(props) {
 
                 <div className='product-price'>
                     <div>
-                        {props.product.discountPrice > 0 ?
-                            <>
-                                <p className='old-price'>{sellPrice}</p>
-                                <p className='sell-price'>{discountPrice}</p>
-                            </> : <p className='sell-price'>{sellPrice}</p>
+                        {props.product.price < props.product.originPrice &&
+                                <p className='old-price'>{originPrice}</p>
                         }
+                        <p className='sell-price'>{price}</p>
                     </div>
                 </div>
 

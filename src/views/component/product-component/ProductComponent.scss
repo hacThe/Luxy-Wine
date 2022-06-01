@@ -1,20 +1,25 @@
 @import "~bootstrap/scss/bootstrap";
 
-.product-card{
+.product-card {
     width: 23rem;
     height: 44rem;
     position: relative;
     text-align: center;
-    :hover{
-        :last-child{
+
+    :hover {
+        :last-child {
             transition: 0.5s;
             opacity: 1;
         }
     }
-    .card-img-top{
+
+    .card-img-top {
         padding: 20px;
+        height: 20rem;
+        object-fit: contain;
     }
-    .product-name{
+
+    .product-name {
         font-family: Montserrat;
         font-weight: 500 !important;
         font-size: 15px !important;
@@ -23,8 +28,8 @@
         text-decoration: none;
         margin-bottom: 24px;
     }
-    
-    .desciption{
+
+    .desciption {
         font-family: Montserrat;
         font-weight: normal !important;
         font-size: 12px !important;
@@ -32,10 +37,11 @@
         color: #6A6A6A;
         margin-bottom: 24px;
     }
-    
-    .text-end{
+
+    .text-end {
         padding: 0px 6px;
-        .old-price{
+
+        .old-price {
             font-family: Montserrat;
             font-weight: 600;
             font-size: 16px;
@@ -44,9 +50,11 @@
             color: #949494;
         }
     }
-    .text-start{
+
+    .text-start {
         padding: 0px 6px;
-        .discount-percent{
+
+        .discount-percent {
             font-family: Montserrat;
             font-weight: 600;
             font-size: 16.1161px;
@@ -54,7 +62,8 @@
             color: #DE0000;
         }
     }
-    .new-price{
+
+    .new-price {
         font-family: Montserrat;
         font-style: normal;
         font-weight: 600 !important;
@@ -63,10 +72,10 @@
         color: #000000;
         margin-bottom: 32px !important;
     }
-    
 
-    
-    .hover-content{
+
+
+    .hover-content {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -75,11 +84,13 @@
         opacity: 0;
         padding: 0px !important;
         margin: 0px !important;
-        .col{
+
+        .col {
             display: flex;
             align-items: center;
             justify-content: center;
-            button{
+
+            button {
                 height: 100%;
                 width: 100%;
                 background-color: transparent;
@@ -88,20 +99,24 @@
                 line-height: 16px;
                 border: none;
                 border-radius: 0%;
-                svg{
+
+                svg {
                     height: 2rem;
                     width: 2rem;
                 }
             }
         }
-        a{
+
+        a {
             text-decoration: none !important;
         }
     }
-    .new-tag{
+
+    .new-tag {
         position: absolute;
         transform: translate(170px, 150px);
-        .shape1{
+
+        .shape1 {
             position: absolute;
             top: 0;
             left: 0;
@@ -110,7 +125,7 @@
             background: #CF365A;
             transform: rotate(135deg);
         }
-        
+
         .shape2 {
             background: #CF365A;
             width: 30px;
@@ -123,14 +138,16 @@
             justify-content: center;
         }
     }
-    .special-tag{
+
+    .special-tag {
         position: absolute;
         height: 56px;
         width: 46px;
         transform: translateX(170px);
         background-color: #CF365A;
         font-size: 11px;
-        .rectangle{
+
+        .rectangle {
             height: 46px;
             width: 100%;
             color: #FFFFFF;
@@ -138,7 +155,8 @@
             align-items: center;
             text-align: center;
         }
-        .triangle{
+
+        .triangle {
             width: 0;
             height: 0;
             border-left: 23px solid transparent;
@@ -147,8 +165,7 @@
         }
     }
 }
-.card{
+
+.card {
     margin: 0px !important;
 }
-
-
