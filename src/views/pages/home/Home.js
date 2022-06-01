@@ -7,6 +7,7 @@ import { ProductComponent } from "../../component/product-component/ProductCompo
 import HorizontalScroll from "react-horizontal-scrolling";
 import { appActions } from "../../../actions";
 import "./Home.scss";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const Home = () => {
     isSpecial: true,
     isNew: true,
   };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -53,7 +55,7 @@ const Home = () => {
             console.log("Click", appActions);
             dispatch(
               appActions.openConfirmDialog("Click me oke", () =>
-                alert("ahiihi")
+                navigate("/quan-ly/san-pham/")
               )
             );
           }}
@@ -147,8 +149,7 @@ const Home = () => {
           </HorizontalScroll>
         </div>
       </div>
-    )
-
+    );
   }
 
   function AboutUs() {

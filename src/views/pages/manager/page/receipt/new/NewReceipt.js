@@ -1,11 +1,25 @@
-import React from 'react';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { receiptActions } from "../../../../../../actions/receipt.actions";
+import SingleReceiptForm from "../component/SingleReceiptForm";
 
 function NewReceipt(props) {
-    return (
-        <div>
-            New Receipt
-        </div>
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onSubmit = (values) => {
+    dispatch(
+      receiptActions.create(values, () => {
+        navigate("/quan-ly/hoa-don");
+      })
     );
+  };
+  return (
+    <div>
+      <h1 className="manager-page-title">Thêm sản phẩm</h1>
+      <SingleReceiptForm onSubmit={onSubmit} />
+    </div>
+  );
 }
 
 export default NewReceipt;

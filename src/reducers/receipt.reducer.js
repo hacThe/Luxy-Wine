@@ -4,6 +4,7 @@ const initialState = {
   error: false,
   receipts: [],
   receipt: {},
+  receiptProduct: [],
   deleteCount: 0,
 };
 export function receiptReducer(state = initialState, action) {
