@@ -12,16 +12,16 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
   const product = {
-    _id: "1",
+    _id: "6293b9ae984ace117e99b886",
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
     sku: "HT3892",
     aboutProduct: "Một đoạn ngắn mô tả thông tin sản phẩm",
     avtURL: "https://vinoteka.vn/assets/components/phpthumbof/cache/092121-1.f82e22adba27a7c64145c7a97710f316.jpg",
     imgURLs: [
-        "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-        "https://vinoteka.vn/assets/components/phpthumbof/cache/092121-1.f82e22adba27a7c64145c7a97710f316.jpg",
-        "https://vinoteka.vn/assets/components/phpthumbof/cache/071303-1.be16d2d411b9f5d48c089e890607cf09.jpg",
-        "https://vinoteka.vn/assets/components/phpthumbof/cache/092104-1.e0b0155f7422a686f522524c1b1fbd23.jpg"],
+      "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
+      "https://vinoteka.vn/assets/components/phpthumbof/cache/092121-1.f82e22adba27a7c64145c7a97710f316.jpg",
+      "https://vinoteka.vn/assets/components/phpthumbof/cache/071303-1.be16d2d411b9f5d48c089e890607cf09.jpg",
+      "https://vinoteka.vn/assets/components/phpthumbof/cache/092104-1.e0b0155f7422a686f522524c1b1fbd23.jpg"],
 
     quantity: 100,
     importPrice: 600000, // Giá nhập
@@ -42,7 +42,7 @@ const Home = () => {
     isSpecial: true,
     isNew: true,
     hasSold: 50,//số sp đã bán
-}
+  }
   const navigate = useNavigate();
 
   return (

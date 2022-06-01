@@ -5,7 +5,7 @@ import { PaginationCustom } from '../../../component/PaginationCustom'
 import './SpecialProductList.scss'
 
 const product = {
-    _id: "1",
+    _id: "6293b9ae984ace117e99b886",
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
     sku: "HT3892",
     aboutProduct: "Một đoạn ngắn mô tả thông tin sản phẩm",
@@ -22,7 +22,7 @@ const product = {
     price: 700000, // Giá bán đã sale
     temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
     color: ['Red', 'Blue'],
-    food: ["Thịt cừu", "Thịt bò"],
+    foods: ["Thịt cừu", "Thịt bò"],
     origin: "Italy", // Xuất xứ
     producer: "DOCG", //Nhà sản xuất
     concentrationPercent: 40, //  nồng độ cồn ( tính theo %)

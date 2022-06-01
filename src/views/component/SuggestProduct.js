@@ -3,7 +3,7 @@ import SliderProduct from './SliderProducts';
 import './SuggestProduct.scss'
 
 const product = {
-    _id: "1",
+    _id: "6293b9ae984ace117e99b886",
     name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
     sku: "HT3892",
     aboutProduct: "Một đoạn ngắn mô tả thông tin sản phẩm",
