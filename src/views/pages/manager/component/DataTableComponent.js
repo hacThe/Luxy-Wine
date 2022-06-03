@@ -70,7 +70,7 @@ const DataTableComponent = ({ rowDocs, columnDocs, filter, onRowClick }) => {
       <DataGrid
         rows={getShowingData(filter)}
         columns={columnDocs}
-        checkboxSelection
+        // checkboxSelection
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
           console.log(selectionModel);

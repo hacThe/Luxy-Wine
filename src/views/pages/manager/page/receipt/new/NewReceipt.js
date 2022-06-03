@@ -16,7 +16,8 @@ function NewReceipt(props) {
   };
   return (
     <div>
-      <h1 className="manager-page-title">Thêm sản phẩm</h1>
+      <h1 className="manager-page-title">Tạo đơn hàng</h1>
+      
       <SingleReceiptForm onSubmit={onSubmit} />
     </div>
   );

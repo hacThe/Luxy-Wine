@@ -1,6 +1,5 @@
-import { voucherConstants } from '../constaint';
-import { voucherServices } from '../services';
-
+import { voucherConstants } from "../constaint";
+import { voucherServices } from "../services";
 
 export const voucherActions = {
   getAll,
@@ -8,19 +7,17 @@ export const voucherActions = {
   update,
   getOne,
   deleteOne,
-  deleteMany
-}; 
-
+  deleteMany,
+};
 
 function getAll(params) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    voucherServices.getAll(params)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    voucherServices.getAll(params).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -34,17 +31,14 @@ function getAll(params) {
   }
 }
 
-
-
 function getOne(id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    voucherServices.getOne(id)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    voucherServices.getOne(id).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -58,16 +52,19 @@ function getOne(id) {
   }
 }
 
-
-function create(values) {
-  return dispatch => {
+function create(values, callback) {
+  return (dispatch) => {
     dispatch(request());
 
-    voucherServices.create(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    voucherServices.create(values).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -81,16 +78,19 @@ function create(values) {
   }
 }
 
-
-function update(values) {
-  return dispatch => {
+function update(values, callback) {
+  return (dispatch) => {
     dispatch(request());
 
-    voucherServices.update(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    voucherServices.update(values).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -103,22 +103,22 @@ function update(values) {
     return { type: voucherConstants.GET_ONE_FAILURE, error };
   }
 }
-
-
-
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function deleteOne(id) {
-  return dispatch => {
+function deleteOne(id, callback) {
+  return (dispatch) => {
     dispatch(request(id));
 
-    voucherServices.deleteOne(id)
-      .then(
-        () => dispatch(success(id)),
-        error => dispatch(failure(id, error.toString()))
-      );
+    voucherServices.deleteOne(id).then(
+      () => {
+        dispatch(success(id));
+        if (callback instanceof Function) {
+          callback(id);
+        }
+      },
+      (error) => dispatch(failure(id, error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: voucherConstants.DELETE_ONE_REQUEST, id };
@@ -131,21 +131,16 @@ function deleteOne(id) {
   }
 }
 
-
-
-
 // prefixed function name with underscore because delete is a reserved word in javascript
 function deleteMany(values) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request(values));
 
-    voucherServices.deleteMany(values)
-      .then(
-        (data) => dispatch(success(data["data"])),
-        error => dispatch(failure(error.toString()))
-      );
+    voucherServices.deleteMany(values).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: voucherConstants.DELETE_MANY_REQUEST, id };

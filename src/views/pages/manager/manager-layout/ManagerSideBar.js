@@ -2,14 +2,13 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { BsFillGiftFill } from "react-icons/bs";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { BiNews } from "react-icons/bi";
+import { BiNews, BiUserCircle } from "react-icons/bi";
 import { GiKnightBanner } from "react-icons/gi";
 import { FaProductHunt } from "react-icons/fa";
-import { RiBillLine } from 'react-icons/ri'
+import { RiBillLine } from "react-icons/ri";
 import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import "./ManagerSideBar.scss";
 function TheNavigation() {
-
   const menuList = [
     {
       name: "Dashboard",
@@ -37,10 +36,15 @@ function TheNavigation() {
       link: "/quan-ly/tin-tuc",
     },
     {
-      name: 'Quản lý Banner',
-      icon: <GiKnightBanner/>,
-      link: "/quan-ly/banner"
-    }
+      name: "Quản lý Banner",
+      icon: <GiKnightBanner />,
+      link: "/quan-ly/banner",
+    },
+    {
+      name: "Quản lý người dùng",
+      icon: <BiUserCircle />,
+      link: "/quan-ly/nguoi-dung",
+    },
   ];
   return (
     <>

@@ -31,7 +31,7 @@ function SingleNewsForm({ news, onSubmit }) {
       if (e.target.files[0]["type"].split("/")[0] === "image") {
         firebaseStorageServices.uploadFileToFirebase(
           e.target.files[0],
-          "avatar",
+          "news",
           null,
           (err) => console.log(err),
           (url) => {

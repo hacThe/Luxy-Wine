@@ -1,7 +1,8 @@
 export const numberUtils = {
-  numberWithThousandSeperator
+  numberWithThousandSeperator,
 };
 
 function numberWithThousandSeperator(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  console.log(number);
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

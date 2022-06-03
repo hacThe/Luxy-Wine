@@ -13,7 +13,7 @@ export const usersServices = {
   deleteMany,
   register,
   update,
-  
+  create,
 };
 
 function login(email, password) {
@@ -28,7 +28,9 @@ function logout() {
 }
 
 function getAll(params = {}) {
-  return handleResponse(ajaxHelper.get(config.URL_USER, params, options()));
+  return handleResponse(
+    ajaxHelper.get(config.URL_USER + "/list", params, options())
+  );
 }
 
 function getOne(id) {
@@ -44,6 +46,12 @@ function getCurrent() {
 }
 
 function register(user) {
+  return handleResponse(
+    ajaxHelper.post(config.URL_USER + `/new`, user, options())
+  );
+}
+
+function create(user) {
   return handleResponse(
     ajaxHelper.post(config.URL_USER + `/new`, user, options())
   );

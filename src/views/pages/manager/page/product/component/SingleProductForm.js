@@ -14,8 +14,8 @@ function SingleLessonForm({ product, onSubmit }) {
     imgURLs: [],
     quantity: 0,
     importPrice: 0, // Giá nhập
-    sellPrice: 0, // Giá bán gốc
-    discountPrice: 0, // Giá bán đã sale
+    originPrice: 0, // Giá bán gốc
+    price: 0, // Giá bán đã sale
     temperature: { minimum: 0, maximum: 100 }, // Nhiệt độ sử dụng
     color: "red",
     foods: [],
@@ -28,8 +28,8 @@ function SingleLessonForm({ product, onSubmit }) {
     sugar: 0, // Hàm lượng đường
     experation: undefined, //Date.now(), //Date
     productType: "wine", // wine/combo/accessory
-    isSpecial: false,
-    isNew: false,
+    isSpecialProduct: false,
+    isNewProduct: false,
     ...product,
   };
   console.log("initial value nè", initialValues);
@@ -53,8 +53,8 @@ function SingleLessonForm({ product, onSubmit }) {
     // avtURL: Yup.string().required("Đây là trường bắt buộc"),
     quantity: Yup.number().min(0).required("Đây là trường bắt buộc"),
     importPrice: Yup.number().min(0).required("Đây là trường bắt buộc"),
-    sellPrice: Yup.number().min(0).required("Đây là trường bắt buộc"),
-    discountPrice: Yup.number().min(0).required("Đây là trường bắt buộc"),
+    originPrice: Yup.number().min(0).required("Đây là trường bắt buộc"),
+    price: Yup.number().min(0).required("Đây là trường bắt buộc"),
     // aboutProduct: Yup.string().required("Đây là trường bắt buộc"),
   });
 
@@ -63,7 +63,7 @@ function SingleLessonForm({ product, onSubmit }) {
       if (e.target.files[0]["type"].split("/")[0] === "image") {
         firebaseStorageServices.uploadFileToFirebase(
           e.target.files[0],
-          "avatar",
+          "product",
           null,
           (err) => console.log(err),
           (url) => {
@@ -171,22 +171,20 @@ function SingleLessonForm({ product, onSubmit }) {
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="sellPrice">
+                      <label htmlFor="originPrice">
                         Giá bán trước khuyến mãi
                       </label>
-                      <Field name="sellPrice" type="number" />
-                      {errors.sellPrice && touched.sellPrice && (
-                        <div>{errors.sellPrice}</div>
+                      <Field name="originPrice" type="number" />
+                      {errors.originPrice && touched.originPrice && (
+                        <div>{errors.originPrice}</div>
                       )}
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="discountPrice">
-                        Giá bán sau khuyến mãi
-                      </label>
-                      <Field name="discountPrice" type="number" />
-                      {errors.discountPrice && touched.discountPrice && (
-                        <div>{errors.discountPrice}</div>
+                      <label htmlFor="price">Giá bán sau khuyến mãi</label>
+                      <Field name="price" type="number" />
+                      {errors.price && touched.price && (
+                        <div>{errors.price}</div>
                       )}
                     </div>
 
@@ -353,7 +351,11 @@ function SingleLessonForm({ product, onSubmit }) {
                         fontWeight: "400",
                       }}
                     >
-                      <Field type="checkbox" name="isNew" />
+                      <Field
+                        type="checkbox"
+                        name="isNewProduct"
+                        onChange={handleChange}
+                      />
                       Là sản phẩm mới
                     </label>
                     <div className="mystery-box"></div>
@@ -365,7 +367,11 @@ function SingleLessonForm({ product, onSubmit }) {
                         fontWeight: "400",
                       }}
                     >
-                      <Field type="checkbox" name="isSpecial" />
+                      <Field
+                        type="checkbox"
+                        name="isSpecialProduct"
+                        onChange={handleChange}
+                      />
                       Là sản phẩm đặc biệt
                     </label>
                   </div>
@@ -522,6 +528,7 @@ function SingleLessonForm({ product, onSubmit }) {
                     <input
                       type="date"
                       id="experation"
+                      name="experation"
                       value={values.experation}
                       onChange={handleChange}
                     ></input>

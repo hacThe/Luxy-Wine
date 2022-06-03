@@ -1,40 +1,81 @@
-import React from "react";
-import { ManagerProductComponent } from "../../../component/product-component/ManagerProductComponent";
-const products = [
-  {
-    _id: "1",
-    name: "Wine Castellari Bergaglio, Salluvii Gavi, 2017",
-    avtURL:
-      "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-    imgURLs: [
-      "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-      "https://res.cloudinary.com/tanthanh0805/image/upload/v1645587735/LuxyWine/Rectangle10_tmk53m.png",
-    ],
-    quantity: 7,
-    importPrice: 600000, // Giá nhập
-    sellPrice: 750000, // Giá bán gốc
-    discountPrice: 70000, // Giá bán đã sale
-    temperature: { minimum: 10, maximun: 40 }, // Nhiệt độ sử dụng
-    color: ["White", "Blue"],
-    food: ["Bò khô"],
-    origin: "Italy", // Xuất xứ
-    producer: "DOCG", //Nhà sản xuất
-    concentrationPercent: 40, //  nồng độ cồn ( tính theo %)
-    capacity: 750, // Dung tích (ml)
-    vintage: 2017, // Năm sản xuất
-    aboutProduct: "about product", // Một đoạn ngắn mô tả thông tin sản phẩm
-    suger: 10, // Hàm lượng đường
-    experation: "Date", //Date
-    productType: "wine", // wine/combo/accessory
-    isSpecial: true,
-    isNew: true,
-  },
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { receiptActions } from "../../../../../../actions/receipt.actions";
+import LeadingIconButton from "../../../component/LeadingIconButton";
+import { GrDocumentExcel } from "react-icons/gr";
+import DataTableComponent from "../../../component/DataTableComponent";
+const columnDocs = [
+  // {field: , headerName: , width: }
+  { field: "stt", headerName: "STT", width: 50 },
+  { field: "title", headerName: "Tên bài viết", width: 300 },
+  { field: "description", headerName: "Mô tả", width: 150, flex: 1 },
+
+  { field: "createdAt", headerName: "Ngày tạo", width: 150 },
 ];
 function ReceiptList(props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(receiptActions.getAll());
+  }, []);
+  const rawData = useSelector((state) => {
+    console.log({ state });
+    return state.receiptReducer.receipts || [];
+  });
+  console.log({ rawData });
+
+  const rowDocs = rawData.map((item, index) => {
+    item.id = item._id;
+    item.stt = index + 1;
+    return item;
+  });
+
+  const navigate = useNavigate();
+  var [filter, setFilter] = useState("");
+  var changeFilter = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const editCourseHandleOnClick = (e) => {
+    navigate(`/quan-ly/hoa-don/${e.id}`);
+  };
+
+  const addReceiptOnClick = () => {
+    navigate("/quan-ly/hoa-don/new");
+  };
   return (
-    <div>
-      Receipt List
-      <ManagerProductComponent product={products[0]} />
+    <div className="manager-container">
+      <span onClick={addReceiptOnClick} className="lw-btn">
+        Tạo đơn hàng
+      </span>
+      <div className="list-manager-wapper">
+        <div className="title">Quản lý đơn hàng</div>
+        <div className="data-table-container">
+          <div className="table-header">
+            <div className="heading">
+              <div className="header">Danh sách đơn hàng</div>
+              <LeadingIconButton
+                icon={<GrDocumentExcel size={24} />}
+                content={"Xuất Excel"}
+              />
+            </div>
+            <div className="filter-container">
+              <p className="filter-label">Nhập bất kỳ để tìm kiếm</p>
+              <input
+                className="filter-input"
+                type="text"
+                onChange={(e) => changeFilter(e)}
+              ></input>
+            </div>
+          </div>
+          <DataTableComponent
+            onRowClick={editCourseHandleOnClick}
+            columnDocs={columnDocs}
+            rowDocs={rowDocs}
+            filter={filter}
+          />
+        </div>
+      </div>
     </div>
   );
 }

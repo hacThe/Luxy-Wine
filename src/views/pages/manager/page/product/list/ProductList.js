@@ -10,7 +10,7 @@ const columnDocs = [
   { field: "stt", headerName: "STT", width: 50 },
   { field: "sku", headerName: "Mã SKU", width: 150 },
   { field: "name", headerName: "Tên khóa học", width: 150, flex: 1 },
-  { field: "importPrice", headerName: "Giá", width: 150 },
+  { field: "price", headerName: "Giá", width: 150 },
   { field: "quantity", headerName: "Số lượng", width: 150 },
   { field: "producer", headerName: "Nhà sản xuất", width: 150 },
   { field: "experation", headerName: "Hạn sử dụng", width: 150 },
