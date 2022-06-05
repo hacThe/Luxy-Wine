@@ -8,7 +8,7 @@ import "./ProductComponent.scss";
 function ProductName(props) {
     return (
         <>
-            <Card.Title className='product-name'>{props.name}</Card.Title>
+            <Card.Text className='product-name'>{props.name}</Card.Text>
         </>
     )
 }

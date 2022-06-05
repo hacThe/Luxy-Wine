@@ -36,7 +36,7 @@ function FilterComponent(props) {
         <Container className="filter-component-wrapper">
             <h1>Rượu</h1>
             <div className="filter-group">
-                <Accordion defaultActiveKey={['0', '1', '2']} alwaysOpen>
+                <Accordion defaultActiveKey={['0', '1']} alwaysOpen>
                     {filters.map((item, idx) => (
                         <Accordion.Item eventKey={idx.toString()} key={idx} className={'filter-item'}>
                             <Accordion.Header className="item-header">{item.name}</Accordion.Header>
