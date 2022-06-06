@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
 import { Container } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { productActions } from '../../../../actions/product.actions'
 import { ProductComponent } from '../../../component/product-component/ProductComponent'
 import { PaginationCustom } from '../../../component/PaginationCustom'
-import { productActions } from '../../../../actions/product.actions'
 import './ProductList.scss'
+import { useNavigate } from 'react-router-dom'
 
 function ProductList(props) {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const products = useSelector(state => state.productReducer.products) || []
-    const isLoading = useSelector(state => state.productReducer.isLoading)
+    const products = props.products;
+    const [sortProduct, setSortProduct] = useState("name");
     const [currentPage, setCurrentPage] = useState(1);
     const elementPerPage = 2;
-    const [sortProduct, setSortProduct] = useState("name");
+    const isLoading = useSelector(state => state.productReducer.isLoading)
 
     if (sortProduct !== "0") {
         ///sort
@@ -56,14 +58,12 @@ function ProductList(props) {
             default: break;
         }
     }
-    
+
     const productsInPage = products.slice((currentPage - 1) * elementPerPage, currentPage * elementPerPage)
-
-    useEffect(() => {
-        const query = {}
-        dispatch(productActions.getList(query));
-    }, [])
-
+    const getAllProduct = () => {
+        navigate('/san-pham');
+        dispatch(productActions.getList({productType: 'wine'}));
+    }
     return (
         isLoading ? <h1 style={{ marginTop: "12rem" }}>Loading............</h1> :
             <Container className='product-list-wrapper'>
@@ -71,14 +71,14 @@ function ProductList(props) {
                     <div className='product-list-header'>
                         <div className='product-sort'>
                             <label>Sấp xếp theo: </label>
-                            <select onChange={(e) => { setSortProduct(e.target.value) ; setCurrentPage(1)}}>
+                            <select onChange={(e) => { setSortProduct(e.target.value); setCurrentPage(1) }}>
                                 <option value={'name'}>Tên A-Z</option>
                                 <option value={'cheapest'}>Giá thấp nhất</option>
                                 <option value={'mostExpensive'}>Giá cao nhất</option>
                                 <option value={'salest'}>Bán chạy nhất</option>
                                 <option value={'newest'}>Mới nhất</option>
                             </select>
-                            <button>Tất cả sản phẩm</button>
+                            <button onClick={() => getAllProduct()}>Tất cả sản phẩm</button>
                         </div>
 
                         <div className='result-filter'>
@@ -95,7 +95,7 @@ function ProductList(props) {
                             </div>
                         ))}
                         <div className='product-list-footer'>
-                            <PaginationCustom numberOfElement={products.length} elementPerPage={elementPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+                            <PaginationCustom numberOfElement={products.length} elementPerPage={elementPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
                         </div>
                     </Container>}
 

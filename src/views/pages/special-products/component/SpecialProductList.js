@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import { ProductComponent } from '../../../component/product-component/ProductComponent'
