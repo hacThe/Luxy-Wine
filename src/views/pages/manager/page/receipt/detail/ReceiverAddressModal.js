@@ -1,7 +1,11 @@
 import React from "react";
+import { Box, Modal } from "@mui/material";
 import SingleReceiverForm from "../component/SingleReceiverForm";
+import { useDispatch } from "react-redux";
+import { receiptActions } from "../../../../../../actions";
 
-function ReceiverAddressModal(receiver, open, handleClose) {
+function ReceiverAddressModal({ receipt, receiver, open, handleClose }) {
+  console.log({ receipt, receiver, open, handleClose });
   const style = {
     position: "absolute",
     top: "40%",
@@ -14,10 +18,15 @@ function ReceiverAddressModal(receiver, open, handleClose) {
     boxShadow: 24,
     p: 4,
   };
+  const dispatch = useDispatch();
 
   const onSubmit = (values) => {
     console.log("Receiver modal log: ", values);
+    const newReceipt = { ...receipt, receiver: values };
+    dispatch(receiptActions.update(newReceipt, handleClose));
   };
+  console.log("Receiver modal log: ", handleClose);
+
   return (
     <Modal
       open={open}
@@ -27,8 +36,19 @@ function ReceiverAddressModal(receiver, open, handleClose) {
     >
       <Box sx={style}>
         <div>
-          <h1>Chỉnh sửa địa chỉ người nhận</h1>
-          <SingleReceiverForm receiverInfo={receiver} onSubmit={onSubmit} />
+          <h1
+            style={{
+              marginBottom: 24,
+            }}
+          >
+            Chỉnh sửa địa chỉ người nhận
+          </h1>
+          <SingleReceiverForm
+            submitText={"Lưu"}
+            receiverInfo={receiver}
+            onSubmit={onSubmit}
+            onCancel={handleClose}
+          />
         </div>
       </Box>
     </Modal>

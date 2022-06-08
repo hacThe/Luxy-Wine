@@ -9,7 +9,10 @@ import { numberUtils } from "../../../../../../utilities";
 import DataTableComponent from "../../../component/DataTableComponent";
 import "./ReceiptDetail.scss";
 import LeadingIconButton from "../../../component/LeadingIconButton";
+import ReceiverAddressModal from "./ReceiverAddressModal";
 function ReceiptDetail(props) {
+  const [receiverAddressModal, setReceiverAddressModal] = useState(false);
+  console.log({ receiverAddressModal, setReceiverAddressModal });
   const statusList = [
     { color: "#f00", title: "Đã hủy" },
     { color: "#f00", title: "Chờ xác nhận" },
@@ -97,9 +100,17 @@ function ReceiptDetail(props) {
     temp.avtURL = item.product.avtURL;
     return temp;
   });
-  console.log({ cartItems });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const handleChangeReceiptStatus = () => {
+    if (receiptStatus != receipt.status) {
+      dispatch(
+        receiptActions.update({ ...receipt, status: receiptStatus }, () => {
+          alert("Sửa thành công");
+        })
+      );
+    }
+  };
   const { id } = useParams();
   const handleEditOnClick = () => {
     navigate(`/quan-ly/hoa-don/edit/${id}`);
@@ -146,14 +157,33 @@ function ReceiptDetail(props) {
 
           <div className="infomation-wrapper">
             <div className="display-flex">
+              {receiverAddressModal && (
+                <ReceiverAddressModal
+                  receipt={receipt}
+                  open={receiverAddressModal}
+                  receiver={receipt.receiver || {}}
+                  handleClose={() => {
+                    setReceiverAddressModal(false);
+                  }}
+                />
+              )}
               <h2 className="information-field">Địa chỉ nhận hàng</h2>
-              <span className="icon-button">
+              <span
+                onClick={() => {
+                  setReceiverAddressModal(true);
+                }}
+                className="icon-button"
+              >
                 <AiOutlineEdit size={18} />
               </span>
             </div>
             <p className="infomation-content">
               <strong>{`${receipt.receiver?.name}`}</strong>
               {`(${receipt?.receiver?.phone}) \n ${receipt.receiver?.description} ${receipt.receiver?.ward.name} ${receipt.receiver?.district.name} ${receipt.receiver?.province.name}`}
+            </p>
+            <p className="infomation-content">
+              <strong>Ghi chú: </strong>
+              {receipt.receiver?.note}
             </p>
           </div>
         </Grid>
@@ -177,7 +207,11 @@ function ReceiptDetail(props) {
                   );
                 })}
               </select>
-              <span style={{ marginLeft: 12 }} className="lw-btn">
+              <span
+                onClick={handleChangeReceiptStatus}
+                style={{ marginLeft: 12 }}
+                className="lw-btn"
+              >
                 Cập nhật
               </span>
             </div>

@@ -3,6 +3,7 @@ export const numberUtils = {
 };
 
 function numberWithThousandSeperator(number) {
-  console.log(number);
+  // if (number instanceof Number)
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // else return number;
 }

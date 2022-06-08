@@ -78,12 +78,17 @@ function create(values, callback) {
   }
 }
 
-function update(values) {
+function update(values, callback) {
   return (dispatch) => {
     dispatch(request());
 
     receiptServices.update(values).then(
-      (data) => dispatch(success(data["data"])),
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data.data);
+        }
+      },
       (error) => dispatch(failure(error.toString()))
     );
   };

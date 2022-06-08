@@ -7,7 +7,7 @@ import { IoIosAdd } from "react-icons/io";
 import { firebaseStorageServices } from "../../../../../../services";
 import { receiptActions } from "../../../../../../actions/receipt.actions";
 import SuneditorComponent from "../../../../../component/suneditor-component/SunEditorComponent";
-function SingleReceiverForm({ receiverInfo, onSubmit }) {
+function SingleReceiverForm({ submitText, receiverInfo, onSubmit, onCancel }) {
   const [province, setProvince] = useState(receiverInfo.province);
   const [district, setDistrict] = useState(receiverInfo.district);
   const [ward, setWard] = useState(receiverInfo.ward);
@@ -21,6 +21,7 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const validationSchema = Yup.object({
     name: Yup.string().required("Đây là trường bắt buộc"),
+    phone: Yup.string().required("Đây là trường bắt buộc"),
   });
 
   const renderOptionList = (options) => {
@@ -50,9 +51,9 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
           handleSubmit,
           setFieldValue,
         }) => {
-          console.log({ values });
+          console.log({ errors });
           return (
-            <Form style={{ paddingBottom: "36px" }}>
+            <Form style={{}}>
               <div className="input-field">
                 <label htmlFor="name">Tên người dùng</label>
                 <Field name="name" type="text" />
@@ -63,12 +64,6 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
                 <label htmlFor="phone">Số điện thoại</label>
                 <Field name="phone" type="phone" />
                 {errors.phone && touched.phone && <div>{errors.phone}</div>}
-              </div>
-
-              <div className="input-field">
-                <label htmlFor="note">Ghi chú</label>
-                <Field name="note" type="text" />
-                {errors.note && touched.note && <div>{errors.note}</div>}
               </div>
 
               <div className="input-field">
@@ -139,11 +134,25 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
                   </div>
                 </Grid>
               </Grid>
+              <div className="input-field">
+                <label htmlFor="note">Ghi chú</label>
+                <Field as="textarea" name="note" type="text" />
+                {errors.note && touched.note && <div>{errors.note}</div>}
+              </div>
 
-              <button type="submit" style={{ display: "inline-block" }}>
-                {receiverInfo.name ? "Lưu" : "Tiếp tục"}
+              <button
+                className="lw-btn"
+                type="submit"
+                style={{ display: "inline-block" }}
+              >
+                {submitText ? submitText : "Tiếp tục"}
               </button>
               <button
+                className="lw-btn"
+                onClick={() => {
+                  console.log(onCancel);
+                  onCancel();
+                }}
                 style={{
                   display: "inline-block",
                   marginLeft: "12px",
