@@ -2,7 +2,11 @@ import React from "react";
 import "./scss/LeadingIconButton.scss";
 function LeadingIconButton(props) {
   return (
-    <div onClick={props.onClick} className="display-flex leading-icon-button">
+    <div
+      style={props.style || {}}
+      onClick={props.onClick}
+      className="display-flex leading-icon-button"
+    >
       {props.icon}
       <div
         style={{

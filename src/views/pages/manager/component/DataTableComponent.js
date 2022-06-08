@@ -18,8 +18,7 @@ const datagridSx = {
   //   },
   // },
   "& .MuiDataGrid-columnHeaders": {
-    backgroundColor: "#444444",
-    color: "#fff",
+    color: "#000",
     fontSize: 14,
     fontWeight: "600",
     fontFamily: "Montserrat",
@@ -36,6 +35,7 @@ const datagridSx = {
 };
 
 const DataTableComponent = ({
+  autoHeight,
   rowHeight,
   rowDocs,
   columnDocs,
@@ -52,6 +52,7 @@ const DataTableComponent = ({
   };
 
   const getShowingData = (filter) => {
+    if (!filter) return rowDocs;
     filter.toString();
 
     if (filter == "") return rowDocs;
@@ -64,7 +65,11 @@ const DataTableComponent = ({
 
   return (
     <div
-      style={{ height: 750, width: "100%" }}
+      style={
+        autoHeight
+          ? { maxHeight: 750, width: "100%" }
+          : { height: 750, width: "100%" }
+      }
       className="datagrid-container-wrapper"
     >
       {selectionModel?.length > 0 && (
@@ -77,6 +82,7 @@ const DataTableComponent = ({
         rows={getShowingData(filter)}
         columns={columnDocs}
         // checkboxSelection
+        pageSize={10}
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
           console.log(selectionModel);
@@ -87,6 +93,7 @@ const DataTableComponent = ({
         onRowClick={handleOnRowClick}
         disableSelectionOnClick
         hideFooterSelectedRowCount
+        autoHeight={!!autoHeight}
       />
     </div>
   );

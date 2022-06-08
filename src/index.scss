@@ -180,3 +180,17 @@ input[type="checkbox"] {
 .sun-editor-editable {
   font-family: "Montserrat", sans-serif;
 }
+
+.icon-button {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--hover-background-color);
+  }
+}
