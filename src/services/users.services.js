@@ -13,12 +13,12 @@ export const usersServices = {
   deleteMany,
   register,
   update,
-  
+
 };
 
 function login(email, password) {
   return handleResponse(
-    ajaxHelper.post(config.URL_LOGIN, { username: email, password }, options())
+    ajaxHelper.post(config.URL_LOGIN, { email, password }, options())
   );
 }
 
@@ -45,7 +45,7 @@ function getCurrent() {
 
 function register(user) {
   return handleResponse(
-    ajaxHelper.post(config.URL_USER + `/new`, user, options())
+    ajaxHelper.post(config.URL_REGISTER, user , options())
   );
 }
 

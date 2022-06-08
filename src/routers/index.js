@@ -108,14 +108,14 @@ const Routers = () => {
           })}
         </Route>
 
-        {/* <Route
+        <Route
           path="*"
           element={
             <Navigate
               to={authentication?.isLoggedIn ? "/trang-chu" : "/dang-nhap"}
             />
           }
-        /> */}
+        />
         {/* <Route path="*" element={<Navigate to="404" />}/> */}
 
         {/* <AuthGuard path="/" name="Trang chủ">

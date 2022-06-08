@@ -40,7 +40,7 @@ function Product() {
             <div className='detail-banner'>
                 <h1>ĐẶC TRƯNG</h1>
             </div>
-            {product.productType !== 'accessory' ?
+            {product.productType !== 'accessary' ?
                 <ProductDetailInfo product={product} /> :
                 <Container className='accessory-detail'>
                     <h5>Mô tả: </h5>

@@ -1,34 +1,62 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom';
-import { userActions } from '../../../../actions/user.actions';
-import {cookiesUtil} from '../../../../utilities'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { userActions } from "../../../../actions/user.actions";
+import { Stack } from "@mui/material";
+import "./Login.scss";
+import ListOfLoginMethodModal from "./ListOfLoginMethodModal";
+import LoginWithUserNameAndPasswordModal from "./LoginWithUserNameAndPasswordModal";
+
 const Login = () => {
-
+  // currentPage đại diện cho page đang hiển thị, 0: Login method, 1: LoginWithUserNameAndPassword
+  const [currentPage, setPage] = useState(0);
   const dispatch = useDispatch();
-  const authentication = useSelector((state)=> state.userReducer)
+  const userReducer = useSelector((state) => state.userReducer);
 
-  function HandleSignInButtonOnClick()
-  {
-    cookiesUtil.set('THIS IS USER IDENTIFY KEY', "haizz")
-    dispatch(userActions.login("username", "password", ()=>{console.log("ahihi")}))
-    console.log(authentication)
+  function GoToLoginWithUsernameAndPasswordScreen() {
+    setPage(1);
   }
 
-  if (authentication.isLoggedIn)
-  return <Navigate to='/trang-chu'/>
+  function BackToChooseLoginMethodScreen() {
+    setPage(0);
+  }
+
+  function HandleSignInButtonOnClick(values) {
+    dispatch(userActions.login(values.email, values.password));
+  }
+
+  if (userReducer.isLoggedIn) return <Navigate to="/trang-chu" />;
 
 
   return (
     <>
-    <div className="">
-      <h1>This is login page</h1>
-      <button onClick={()=>{
-        HandleSignInButtonOnClick()
-      }}>Sign in</button>
-    </div>
-    </>
-  )
-}
+      <div className="login-page-wrapper">
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            height: "100vh",
+          }}
+        >
+          {currentPage === 0 && (
+            <ListOfLoginMethodModal
+              GoToLoginWithUsernameAndPasswordScreen={
+                GoToLoginWithUsernameAndPasswordScreen
+              }
+            />
+          )}
 
-export default Login
+          {currentPage === 1 && (
+            <LoginWithUserNameAndPasswordModal
+              HandleSignInButtonOnClick={HandleSignInButtonOnClick}
+              BackToChooseLoginMethodScreen={BackToChooseLoginMethodScreen}
+            />
+          )}
+        </Stack>
+      </div>
+    </>
+  );
+};
+
+export default Login;
