@@ -35,6 +35,7 @@ const datagridSx = {
 };
 
 const DataTableComponent = ({
+  checkboxSelection,
   autoHeight,
   rowHeight,
   rowDocs,
@@ -47,8 +48,7 @@ const DataTableComponent = ({
   const handleOnRowClick = (e) => {
     if (onRowClick) {
       onRowClick(e);
-    } else alert(JSON.stringify(e), null, 2);
-    console.log(e);
+    }
   };
 
   const getShowingData = (filter) => {
@@ -81,7 +81,7 @@ const DataTableComponent = ({
       <DataGrid
         rows={getShowingData(filter)}
         columns={columnDocs}
-        // checkboxSelection
+        checkboxSelection={!!checkboxSelection}
         pageSize={10}
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);

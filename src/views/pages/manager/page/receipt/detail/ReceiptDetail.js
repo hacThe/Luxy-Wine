@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { appActions, receiptActions } from "../../../../../../actions";
+import {
+  appActions,
+  productActions,
+  receiptActions,
+} from "../../../../../../actions";
 import { Grid } from "@mui/material";
 import BackToPageButton from "../../../component/BackToPageButton";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
@@ -11,9 +15,11 @@ import "./ReceiptDetail.scss";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import ReceiverAddressModal from "./ReceiverAddressModal";
 import ShipmentStatusModal from "./ShipmentStatusModal";
+import EditReceiptCartModal from "./EditReceiptCartModal";
 function ReceiptDetail(props) {
   const [receiverAddressModal, setReceiverAddressModal] = useState(false);
   const [shipmentStatusModal, setShipmentStatusModal] = useState(false);
+  const [editReceiptCartModal, setEditReceiptCartModal] = useState(false);
   const statusList = [
     { color: "#f00", title: "Đã hủy" },
     { color: "#f00", title: "Chờ xác nhận" },
@@ -118,6 +124,7 @@ function ReceiptDetail(props) {
   };
   useEffect(() => {
     dispatch(receiptActions.getOne(id));
+    dispatch(productActions.getAll());
   }, []);
   const handleDeleteOnClick = () => {
     dispatch(
@@ -220,9 +227,19 @@ function ReceiptDetail(props) {
         </Grid>
       </Grid>
       <div className="infomation-wrapper">
+        {editReceiptCartModal && (
+          <EditReceiptCartModal
+            receipt={receipt}
+            open={editReceiptCartModal}
+            handleClose={() => setEditReceiptCartModal(false)}
+          />
+        )}
         <div className="display-flex">
           <h2 className="information-field">Thông tin giỏ hàng</h2>
-          <span className="icon-button">
+          <span
+            onClick={() => setEditReceiptCartModal(true)}
+            className="icon-button"
+          >
             <AiOutlineEdit size={18} />
           </span>
         </div>
