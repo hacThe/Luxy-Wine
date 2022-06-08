@@ -15,6 +15,7 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
     name: receiverInfo.name,
     phone: receiverInfo.phone,
     description: receiverInfo.description,
+    note: receiverInfo.note,
   };
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -62,6 +63,12 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
                 <label htmlFor="phone">Số điện thoại</label>
                 <Field name="phone" type="phone" />
                 {errors.phone && touched.phone && <div>{errors.phone}</div>}
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="note">Ghi chú</label>
+                <Field name="note" type="text" />
+                {errors.note && touched.note && <div>{errors.note}</div>}
               </div>
 
               <div className="input-field">

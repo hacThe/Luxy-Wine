@@ -5,7 +5,7 @@ import { productActions } from "../../../../../../actions/product.actions";
 import { Col, Container, Row } from "react-bootstrap";
 import { PaginationCustom } from "../../../../../component/PaginationCustom";
 import "./index.scss";
-import { ManagerProductComponent } from "../../../component/product-component/ManagerProductComponent";
+// import { ManagerProductComponent } from "../../../component/product-component/ManagerProductComponent";
 import { Grid } from "@mui/material";
 import { Breadcrumb } from "../../../../../component/Breadcrumb";
 import { CartItem } from "../../../../cart/component/CartItem";
@@ -94,7 +94,7 @@ function SelectProductList({ receiverInfo }) {
           </div>
 
           <Container className="product-list">
-            {products
+            {/* {products
               ?.filter((product) => {
                 const infoSearch = product.name + product.sku + product.price;
                 return infoSearch.includes(filter);
@@ -108,7 +108,7 @@ function SelectProductList({ receiverInfo }) {
                     />
                   </div>
                 );
-              })}
+              })} */}
 
             <div className="product-list-footer">
               <PaginationCustom

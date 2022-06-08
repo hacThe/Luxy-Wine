@@ -62,10 +62,6 @@ body {
   object-fit: contain;
 }
 
-img {
-  object-fit: contain;
-}
-
 .display-flex {
   display: flex;
 }
@@ -130,10 +126,10 @@ textarea {
 button {
   outline: none;
   border: none;
-  font-size: 1.4rem !important;
-  font-weight: 600 !important;
+  font-size: 1.4rem;
+  font-weight: 600;
   display: block;
-  line-height: 40px !important;
+  line-height: 40px;
   padding: 0 20px;
   border-radius: 1px;
   background-color: var(--primary-color);
