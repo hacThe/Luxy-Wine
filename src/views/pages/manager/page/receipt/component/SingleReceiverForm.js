@@ -20,7 +20,6 @@ function SingleReceiverForm({ receiverInfo, onSubmit }) {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const validationSchema = Yup.object({
     name: Yup.string().required("Đây là trường bắt buộc"),
-    phone: Yup.string().matches(phoneRegExp, "Số điện thoại không hợp lệ"),
   });
 
   const renderOptionList = (options) => {

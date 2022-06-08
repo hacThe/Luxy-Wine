@@ -1,6 +1,5 @@
-import { receiptConstants } from '../constaint';
-import { receiptServices } from '../services';
-
+import { receiptConstants } from "../constaint";
+import { receiptServices } from "../services";
 
 export const receiptActions = {
   getAll,
@@ -8,19 +7,17 @@ export const receiptActions = {
   update,
   getOne,
   deleteOne,
-  deleteMany
-}; 
-
+  deleteMany,
+};
 
 function getAll(params) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    receiptServices.getAll(params)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    receiptServices.getAll(params).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -34,17 +31,14 @@ function getAll(params) {
   }
 }
 
-
-
 function getOne(id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    receiptServices.getOne(id)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    receiptServices.getOne(id).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -58,16 +52,19 @@ function getOne(id) {
   }
 }
 
-
-function create(values) {
-  return dispatch => {
+function create(values, callback) {
+  return (dispatch) => {
     dispatch(request());
 
-    receiptServices.create(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    receiptServices.create(values).then(
+      (data) => {
+        dispatch(success(data["data"]));
+        if (callback instanceof Function) {
+          callback(data["data"]);
+        }
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -80,17 +77,15 @@ function create(values) {
     return { type: receiptConstants.GET_ONE_FAILURE, error };
   }
 }
-
 
 function update(values) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
-    receiptServices.update(values)
-      .then(
-        data => dispatch(success(data['data'])),
-        error => dispatch(failure(error.toString()))
-      );
+    receiptServices.update(values).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
 
   function request() {
@@ -103,22 +98,17 @@ function update(values) {
     return { type: receiptConstants.GET_ONE_FAILURE, error };
   }
 }
-
-
-
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function deleteOne(id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request(id));
 
-    receiptServices.deleteOne(id)
-      .then(
-        () => dispatch(success(id)),
-        error => dispatch(failure(id, error.toString()))
-      );
+    receiptServices.deleteOne(id).then(
+      () => dispatch(success(id)),
+      (error) => dispatch(failure(id, error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: receiptConstants.DELETE_ONE_REQUEST, id };
@@ -131,21 +121,16 @@ function deleteOne(id) {
   }
 }
 
-
-
-
 // prefixed function name with underscore because delete is a reserved word in javascript
 function deleteMany(values) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request(values));
 
-    receiptServices.deleteMany(values)
-      .then(
-        (data) => dispatch(success(data["data"])),
-        error => dispatch(failure(error.toString()))
-      );
+    receiptServices.deleteMany(values).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
   };
-
 
   function request(id) {
     return { type: receiptConstants.DELETE_MANY_REQUEST, id };

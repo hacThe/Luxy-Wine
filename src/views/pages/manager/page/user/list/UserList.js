@@ -8,10 +8,27 @@ import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
-  { field: "name", headerName: "Tên bài viết", width: 300 },
-  { field: "email", headerName: "Mô tả", width: 150, flex: 1 },
-
-  { field: "phone", headerName: "Ngày tạo", width: 150 },
+  { field: "name", headerName: "Tên người dùng", width: 300 },
+  { field: "email", headerName: "Email", width: 150, flex: 1 },
+  { field: "phone", headerName: "Số điện thoại", width: 150 },
+  {
+    field: "gender",
+    headerName: "Giới tính",
+    width: 150,
+    valueFormatter: ({ value }) => {
+      const genders = ["Nam", "Nữ", "Khác"];
+      return genders[value - 1];
+    },
+  },
+  {
+    field: "role",
+    headerName: "Vai trò",
+    width: 150,
+    valueFormatter: ({ value }) => {
+      return value == "user" ? "Người dùng" : "Quản trị viên";
+    },
+  },
+  { field: "createdAt", headerName: "Ngày tham gia", width: 150 },
 ];
 function UserList(props) {
   const dispatch = useDispatch();

@@ -8,11 +8,79 @@ import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
-  { field: "title", headerName: "Tên bài viết", width: 300 },
-  { field: "description", headerName: "Mô tả", width: 150, flex: 1 },
+  {
+    field: "voucher-ui",
+    headerName: "Tên khuyến mãi",
+    width: 350,
+    renderCell: (params) => {
+      const { avtURL, name, description } = params.row;
+      return (
+        <div className="product-info-cell display-flex">
+          <img src={avtURL} height="50px" alt="" />
+          <div
+            style={{
+              marginLeft: "12px",
+              textAlign: "left",
+              display: "flex",
+              alignItems: "center",
+            }}
+            className="price-wrapper"
+          >
+            <p
+              style={{
+                whiteSpace: "break-spaces",
+                maxWidth: "350px",
+                fontSize: "1.4rem",
+              }}
+            >
+              {name}
+            </p>
+            {/* <p dangerouslySetInnerHTML={{ __html: description }}></p> */}
+          </div>
+        </div>
+      );
+    },
+  },
+  {
+    field: "amount",
+    headerName: "Mức khuyến mãi",
+    width: 150,
+    renderCell: (params) => {
+      const { amount, type } = params.row;
+      const unit = ["VNĐ", "%"];
+      return (
+        <p
+          style={{
+            fontSize: "1.4rem",
+            fontFamily: "Montserrat",
+          }}
+        >{`${amount.toLocaleString()} ${unit[type - 1]}`}</p>
+      );
+    },
+  },
+  { field: "quantity", headerName: "Số lượng còn lại", width: 150 },
+  {
+    field: "isEnable",
+    headerName: "Trạng thái",
+    width: 150,
+    valueFormatter: (params) => {
+      return params.value ? "Kích hoạt" : "Không kích hoạt";
+    },
+  },
+  {
+    field: "isPublic",
+    headerName: "Phạm vi",
+    width: 150,
+    valueFormatter: (params) => {
+      return params.value ? "Công khai" : "Mã nội bộ";
+    },
+  },
+  { field: "exp", headerName: "Hạn sử dụng", width: 150 },
 
   { field: "createdAt", headerName: "Ngày tạo", width: 150 },
+  { field: "updatedAt", headerName: "Ngày sửa đổi", width: 150 },
 ];
+
 function VoucherList(props) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -69,6 +137,7 @@ function VoucherList(props) {
             </div>
           </div>
           <DataTableComponent
+            rowHeight={100}
             onRowClick={editCourseHandleOnClick}
             columnDocs={columnDocs}
             rowDocs={rowDocs}

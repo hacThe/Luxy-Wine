@@ -97,7 +97,7 @@ input {
   display: block;
   padding: 6px 12px;
   height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   font-family: "Montserrat", sans-serif;
   border-radius: 1px;
   // min-width: 500px;
@@ -130,10 +130,10 @@ textarea {
 button {
   outline: none;
   border: none;
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
   display: block;
-  line-height: 40px;
+  line-height: 40px !important;
   padding: 0 20px;
   border-radius: 1px;
   background-color: var(--primary-color);

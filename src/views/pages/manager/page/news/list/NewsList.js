@@ -6,12 +6,56 @@ import LeadingIconButton from "../../../component/LeadingIconButton";
 import { GrDocumentExcel } from "react-icons/gr";
 import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
+  //avtUrl
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
-  { field: "title", headerName: "Tên bài viết", width: 300 },
-  { field: "description", headerName: "Mô tả", width: 150, flex: 1 },
+  { field: "_id", headerName: "ID", width: 250 },
+  {
+    field: "news-ui",
+    headerName: "Tên bài viết",
+    minWidth: 600,
+    flex: 2,
+    renderCell: (params) => {
+      const { avtUrl, title, description } = params.row;
+      return (
+        <div className="product-info-cell display-flex">
+          <img src={avtUrl} width="100px" height="100px" alt="" />
 
-  { field: "createdAt", headerName: "Ngày tạo", width: 150 },
+          <div
+            style={{
+              marginLeft: "24px",
+              textAlign: "left",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+            className=""
+          >
+            <p
+              style={{
+                whiteSpace: "break-spaces",
+                maxWidth: "350px",
+                fontSize: "1.7rem",
+                fontWeight: "600",
+              }}
+            >
+              {title}
+            </p>
+            <p
+              style={{
+                fontSize: "1.3rem",
+                color: "rgba(0, 0, 0, 0.6)",
+              }}
+            >
+              {description}
+            </p>
+          </div>
+        </div>
+      );
+    },
+  },
+  { field: "createdAt", headerName: "Ngày tạo", flex: 1 },
+  { field: "updatedAt", headerName: "Ngày cập nhật", flex: 1 },
 ];
 function NewsList(props) {
   const dispatch = useDispatch();
@@ -69,6 +113,7 @@ function NewsList(props) {
             </div>
           </div>
           <DataTableComponent
+            rowHeight={100}
             onRowClick={editCourseHandleOnClick}
             columnDocs={columnDocs}
             rowDocs={rowDocs}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import { receiptActions } from "../../../../../../actions/receipt.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
@@ -8,8 +9,115 @@ import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
-  { field: "title", headerName: "Tên bài viết", width: 300 },
-  { field: "description", headerName: "Mô tả", width: 150, flex: 1 },
+  // {
+  //   field: "creater",
+  //   headerName: "Người tạo đơn hàng",
+  //   width: 300,
+  //   renderCell: (params) => {
+  //     const { creater, receiver } = params.row;
+  //     return (
+  //       <p
+  //         style={{
+  //           fontSize: "1.4rem",
+  //           fontFamily: "Montserrat",
+  //         }}
+  //       >{`${creater.name ? creater.name : receiver.name}`}</p>
+  //     );
+  //   },
+  // },
+  {
+    field: "receiver",
+    headerName: "Người nhận",
+    width: 150,
+    valueFormatter: (params) => {
+      return params.value.name;
+    },
+  },
+
+  {
+    field: "phone",
+    headerName: "Số điện thoại",
+    width: 150,
+    renderCell: (params) => {
+      const { receiver } = params.row;
+      return (
+        <p
+          style={{
+            fontSize: "1.4rem",
+            fontFamily: "Montserrat",
+          }}
+        >{`${receiver.phone}`}</p>
+      );
+    },
+  },
+  {
+    field: "address",
+    headerName: "Địa chỉ người nhận",
+    width: 350,
+    renderCell: (params) => {
+      const { receiver } = params.row;
+      return (
+        <p
+          style={{
+            whiteSpace: "break-spaces",
+            textAlign: "left",
+            fontSize: "1.2rem",
+            fontFamily: "Montserrat",
+          }}
+        >{`${receiver.description}, ${receiver.ward.name}, ${receiver.district.name}, ${receiver.province.name}`}</p>
+      );
+    },
+  },
+  {
+    field: "totalPrice",
+    headerName: "Tổng cộng",
+    width: 125,
+    valueFormatter: (params) => {
+      return `${params.value.toLocaleString()} VNĐ`;
+    },
+  },
+
+  {
+    field: "cart",
+    headerName: "Số sản phẩm",
+    width: 125,
+    valueFormatter: (params) => {
+      return `${params.value.length}`;
+    },
+  },
+
+  {
+    field: "status",
+    headerName: "Trạng thái",
+    width: 200,
+    renderCell: (params) => {
+      const { status } = params.row;
+      const statusList = [
+        { color: "#f00", title: "Đã hủy" },
+        { color: "#f00", title: "Chờ xác nhận" },
+        { color: "#f00", title: "Đã xác nhận" },
+        { color: "#f00", title: "Đang giao hàng" },
+        { color: "#f00", title: "Đã nhận hàng" },
+        { color: "#f00", title: "Không nhận hàng" },
+      ];
+
+      //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã giao, 5: hoàn thành, 6: Giao không thành công
+      return (
+        <p
+          style={{
+            color: "white",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            lineHeight: "40px",
+            padding: "0px 12px",
+            backgroundColor: `${statusList[status].color}`,
+            fontSize: "1.4rem",
+            fontFamily: "Montserrat",
+          }}
+        >{`${status + 1}. ${statusList[status].title}`}</p>
+      );
+    },
+  },
 
   { field: "createdAt", headerName: "Ngày tạo", width: 150 },
 ];
@@ -69,6 +177,7 @@ function ReceiptList(props) {
             </div>
           </div>
           <DataTableComponent
+            rowHeight={100}
             onRowClick={editCourseHandleOnClick}
             columnDocs={columnDocs}
             rowDocs={rowDocs}

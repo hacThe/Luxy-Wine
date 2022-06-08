@@ -60,24 +60,24 @@ function OldPrice(props) {
     </>
   );
 }
-function HoverContent(props) {
+function HoverContent({ product, addToCart }) {
   const [amount, setAmount] = useState(1);
   return (
     <>
       <Card.Body className="hover-content row">
         <div
-          to={`/chi-tiet-san-pham/` + props.id}
+          to={`/chi-tiet-san-pham/` + product.id}
           style={{
-            height: "93%",
+            height: "90%",
             width: "100%",
             margin: "0px",
             padding: "0px",
-            backgroundColor: "#00000020",
+            backgroundColor: "#00000040",
           }}
         ></div>
         <Row
           style={{
-            height: "7%",
+            height: "10%",
             backgroundColor: "#353535",
             margin: "0px",
             padding: "0px",
@@ -90,7 +90,7 @@ function HoverContent(props) {
               borderRight: "solid 1px white",
             }}
           >
-            <div class="number-input">
+            <div className="number-input">
               <span
                 onClick={() => {
                   if (parseInt(amount) > 1) {
@@ -114,7 +114,11 @@ function HoverContent(props) {
             </div>
           </Col>
           <Col style={{ padding: "0px" }}>
-            <Button>
+            <Button
+              onClick={() => {
+                addToCart({ ...product }, amount);
+              }}
+            >
               <BsCartPlusFill />
             </Button>
           </Col>
@@ -159,10 +163,10 @@ const ManagerProductComponent = (props) => {
               color={props.product.color}
               capacity={props.product.capacity}
             />
-            {props.product.discountPrice !== 0 ? (
+            {props.product.price < props.product.originPrice ? (
               <OldPrice
-                oldPrice={props.product.sellPrice}
-                newPrice={props.product.discountPrice}
+                oldPrice={props.product.originPrice}
+                newPrice={props.product.price}
               />
             ) : (
               <Card.Text
@@ -174,15 +178,15 @@ const ManagerProductComponent = (props) => {
             )}
             <NewPrice
               newPrice={
-                props.product.discountPrice !== 0
-                  ? props.product.discountPrice
-                  : props.product.sellPrice
+                props.product.price !== 0
+                  ? props.product.price
+                  : props.product.originPrice
               }
             />
           </Card.Body>
           {props.product.isNew ? <NewTag /> : <></>}
           {props.product.isSpecial ? <SpecialTag /> : <></>}
-          <HoverContent id={props.product._id} />
+          <HoverContent product={props.product} addToCart={props.addToCart} />
         </Card>
       </div>
     </>

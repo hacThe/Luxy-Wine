@@ -63,7 +63,7 @@ function SingleUserForm({ user, onSubmit }) {
     phone: "",
     gender: 1,
     role: "user",
-    street: "",
+    description: "",
     avatar: "",
     ...user,
   };
@@ -112,13 +112,13 @@ function SingleUserForm({ user, onSubmit }) {
               district,
               province,
               ward,
-              description: values.street,
+              description: values.description,
               name: values.name,
               phone: values.phone,
             },
           ];
           values.address = address;
-          delete values.street;
+          delete values.description;
 
           console.log(values, "submit");
           onSubmit(values);
@@ -201,17 +201,17 @@ function SingleUserForm({ user, onSubmit }) {
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="type">Vai trò</label>
-                      <Field as="select" name="type">
+                      <label htmlFor="role">Vai trò</label>
+                      <Field as="select" name="role">
                         <option value={"user"}>Người dùng</option>
                         <option value={"admin"}>Quản trị viên</option>
                       </Field>
-                      {errors.type && touched.type && <div>{errors.type}</div>}
+                      {errors.role && touched.role && <div>{errors.role}</div>}
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="street">Đường, số nhà</label>
-                      <Field name="street" type="text" />
+                      <label htmlFor="description">Đường, số nhà</label>
+                      <Field name="description" type="text" />
                     </div>
                   </Grid>
 

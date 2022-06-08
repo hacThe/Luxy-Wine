@@ -10,7 +10,7 @@ function NewUser(props) {
   const onSubmit = (values) => {
     dispatch(
       userActions.create(values, () => {
-        navigate("/quan-ly/khuyen-mai");
+        navigate("/quan-ly/nguoi-dung");
       })
     );
   };

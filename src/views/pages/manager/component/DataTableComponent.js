@@ -4,19 +4,19 @@ import "./scss/DataTableComponent.scss";
 
 const datagridSx = {
   borderRadius: 2,
-  "& .MuiDataGrid-main": { borderRadius: 2 },
-  '& div[data-rowIndex][role="row"]': {
-    color: "#000",
-    fontSize: 14,
-    //risky
-    minHeight: "60px !important",
-    height: 60,
-    "& div": {
-      minHeight: "60px !important",
-      height: 60,
-      lineHeight: "59px !important",
-    },
-  },
+  // "& .MuiDataGrid-main": { borderRadius: 2 },
+  // '& div[data-rowIndex][role="row"]': {
+  //   color: "#000",
+  //   fontSize: 14,
+  //   //risky
+  //   minHeight: "60px !important",
+  //   height: 60,
+  //   "& div": {
+  //     minHeight: "60px !important",
+  //     height: 60,
+  //     lineHeight: "59px !important",
+  //   },
+  // },
   "& .MuiDataGrid-columnHeaders": {
     backgroundColor: "#444444",
     color: "#fff",
@@ -35,7 +35,13 @@ const datagridSx = {
   },
 };
 
-const DataTableComponent = ({ rowDocs, columnDocs, filter, onRowClick }) => {
+const DataTableComponent = ({
+  rowHeight,
+  rowDocs,
+  columnDocs,
+  filter,
+  onRowClick,
+}) => {
   const [selectionModel, setSelectionModel] = React.useState([]);
 
   const handleOnRowClick = (e) => {
@@ -77,7 +83,7 @@ const DataTableComponent = ({ rowDocs, columnDocs, filter, onRowClick }) => {
         }}
         selectionModel={selectionModel}
         sx={datagridSx}
-        rowHeight={48}
+        rowHeight={rowHeight || 48}
         onRowClick={handleOnRowClick}
         disableSelectionOnClick
         hideFooterSelectedRowCount

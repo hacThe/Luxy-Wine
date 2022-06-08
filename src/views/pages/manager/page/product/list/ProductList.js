@@ -5,12 +5,43 @@ import { productActions } from "../../../../../../actions/product.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { GrDocumentExcel } from "react-icons/gr";
 import DataTableComponent from "../../../component/DataTableComponent";
+import { numberUtils } from "../../../../../../utilities";
+import "./ProductList.scss";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
   { field: "sku", headerName: "Mã SKU", width: 150 },
-  { field: "name", headerName: "Tên khóa học", width: 150, flex: 1 },
-  { field: "price", headerName: "Giá", width: 150 },
+  {
+    field: "action",
+    headerName: "Sản phẩm",
+    minWidth: 300,
+    flex: 1,
+    renderCell: (params) => {
+      const { avtURL, name, price } = params.row;
+      return (
+        <div className="product-info-cell display-flex">
+          <img src={avtURL} height="50px" alt="" />
+          <div
+            style={{ marginLeft: "12px", textAlign: "left" }}
+            className="price-wrapper"
+          >
+            <p
+              style={{
+                whiteSpace: "break-spaces",
+                maxWidth: "350px",
+                fontSize: "1.4rem",
+              }}
+            >
+              {name}
+            </p>
+            <p style={{ color: "red", fontWeight: "600", fontSize: "1.3rem" }}>
+              {numberUtils.numberWithThousandSeperator(price || 0)}
+            </p>
+          </div>
+        </div>
+      );
+    },
+  },
   { field: "quantity", headerName: "Số lượng", width: 150 },
   { field: "producer", headerName: "Nhà sản xuất", width: 150 },
   { field: "experation", headerName: "Hạn sử dụng", width: 150 },
@@ -47,7 +78,7 @@ function ProductList(props) {
     navigate("/quan-ly/san-pham/new");
   };
   return (
-    <div className="manager-container">
+    <div className="product-list-wrapper manager-container">
       <span onClick={addProductOnClick} className="lw-btn">
         Thêm sản phẩm
       </span>
@@ -72,6 +103,7 @@ function ProductList(props) {
             </div>
           </div>
           <DataTableComponent
+            rowHeight={100}
             onRowClick={editCourseHandleOnClick}
             columnDocs={columnDocs}
             rowDocs={rowDocs}
