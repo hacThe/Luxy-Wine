@@ -10,9 +10,10 @@ import DataTableComponent from "../../../component/DataTableComponent";
 import "./ReceiptDetail.scss";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import ReceiverAddressModal from "./ReceiverAddressModal";
+import ShipmentStatusModal from "./ShipmentStatusModal";
 function ReceiptDetail(props) {
   const [receiverAddressModal, setReceiverAddressModal] = useState(false);
-  console.log({ receiverAddressModal, setReceiverAddressModal });
+  const [shipmentStatusModal, setShipmentStatusModal] = useState(false);
   const statusList = [
     { color: "#f00", title: "Đã hủy" },
     { color: "#f00", title: "Chờ xác nhận" },
@@ -264,6 +265,11 @@ function ReceiptDetail(props) {
         </div>
 
         <div className="display-flex justify-content-between">
+          <span className="receipt-brief">Đã thanh toán</span>
+          <span className="money-formatter">0 VNĐ</span>
+        </div>
+
+        <div className="display-flex justify-content-between">
           <span style={{ fontWeight: "bold" }} className="receipt-brief">
             Tổng cộng
           </span>
@@ -274,10 +280,20 @@ function ReceiptDetail(props) {
       </div>
 
       <div className="infomation-wrapper">
+        {shipmentStatusModal && (
+          <ShipmentStatusModal
+            receipt={receipt}
+            open={shipmentStatusModal}
+            handleClose={() => setShipmentStatusModal(false)}
+          />
+        )}
         <div className="display-flex">
           <h2 className="information-field">Trạng thái giao hàng</h2>
           <span className="icon-button">
-            <AiOutlineEdit size={18} />
+            <AiOutlineEdit
+              onClick={() => setShipmentStatusModal(true)}
+              size={18}
+            />
           </span>
         </div>
         <p className="infomation-content">
