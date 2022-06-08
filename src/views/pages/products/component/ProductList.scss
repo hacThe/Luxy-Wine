@@ -26,11 +26,13 @@
 
             select {
                 width: 15rem;
-                height: 3rem;
+                height: 3.5rem;
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 17px;
-                color: #7F7F7F;
+                color: #707070;
+
+                padding: .3rem .7rem;
             }
 
             button {

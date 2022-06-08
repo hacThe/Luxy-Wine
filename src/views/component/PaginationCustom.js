@@ -22,6 +22,13 @@ function PaginationCustom(props) {
     setCurrentPage(num);
     props.setCurrentPage(num);
   };
+  if (currentPage != props.currentPage) setCurrentPage(props.currentPage);
+  useEffect(() => {
+    setNumberOfPage(
+      countNumberOfPage(props.numberOfElement, props.elementPerPage)
+    );
+    choosePage(1);
+  }, [props.numberOfElement]);
 
   return (
     <div className="pagination-wrapper">

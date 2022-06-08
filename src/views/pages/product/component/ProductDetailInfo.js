@@ -9,24 +9,26 @@ function ProductDetailInfo(props) {
     return (
         <Row className="product-detail-info-wrapper">
             <Col xs={12} lg={3} className='left-grid'>
-                <div>
-                    <h1>NHIỆT ĐỘ SỬ DỤNG</h1>
-                    <p className="temperature">{props.product.temperature.minimum}-{props.product.temperature.maximun}&deg;C</p>
-                </div>
+                <div className="left-grid-wrapper">
+                    <div>
+                        <h1>NHIỆT ĐỘ SỬ DỤNG</h1>
+                        <p className="temperature">{props.product.temperature.minimum}-{props.product.temperature.maximum}&deg;C</p>
+                    </div>
 
-                <div>
-                    <h1>MÀU SẮC </h1>
-                    <p className="product-color"><BsFillCircleFill className={"product-color-" + props.product.color[0]} /> {props.product.color[0]}</p>
-                </div>
+                    <div>
+                        <h1>MÀU SẮC </h1>
+                        <p className="product-color"><BsFillCircleFill className={"product-color-" + props.product.color} /> {props.product.color}</p>
+                    </div>
 
-                <div>
-                    <h1>SỬ DỤNG KÈM THEO</h1>
-                    {props.product.food.map((val, idx) => (
-                        <p className="food-product" key={idx}>
-                            <img src={'/Foods/' + (foodlist.indexOf(val) + 1) + '.svg'}></img>
-                            {val}
-                        </p>
-                    ))}
+                    <div>
+                        <h1>SỬ DỤNG KÈM THEO</h1>
+                        {props.product.foods.map((val, idx) => (
+                            <p className="food-product" key={idx}>
+                                <img src={'/Foods/' + (foodlist.indexOf(val) + 1) + '.svg'}></img>
+                                {val}
+                            </p>
+                        ))}
+                    </div>
                 </div>
             </Col>
 

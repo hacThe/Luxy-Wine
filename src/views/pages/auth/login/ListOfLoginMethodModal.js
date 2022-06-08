@@ -1,11 +1,14 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import { BsGoogle, BsFacebook } from "react-icons/bs";
+import { BsGoogle } from "react-icons/bs";
+import { FaFacebookSquare } from "react-icons/fa"
 import { Link } from "react-router-dom";
+import { IoReturnUpBackSharp } from "react-icons/io5";
 
 function ListOfLoginMethodModal(props) {
   return (
     <div className="list-of-login-method-modal">
+      <Link to='/trang-chu' className="back-to-home"> <IoReturnUpBackSharp /></Link>
       <Stack
         direction="column"
         justifyContent="center"
@@ -17,8 +20,7 @@ function ListOfLoginMethodModal(props) {
           borderRadius: "10px",
         }}
       >
-        <div className="app-logo" />
-        <h1 className="modal-title">Đăng nhập vào SE</h1>
+        <h1 className="modal-title">Đăng nhập vào Luxy Wine</h1>
 
         <Stack
           sx={{
@@ -29,21 +31,23 @@ function ListOfLoginMethodModal(props) {
           direction="column"
           margin="24px"
         >
-          <div
+          <button
             onClick={props.GoToLoginWithUsernameAndPasswordScreen}
-            className="se-btn outline-btn"
+            className="outline-btn"
           >
-            Đăng nhập với username/ password
-          </div>
+            Đăng nhập với email/ password
+          </button>
 
-          <div className="se-btn google-login">
-            <BsGoogle />
-            <div className="full-width-text">Đăng nhập với Google</div>
-          </div>
+          <div  className="google-facebook">
+            <div className="google-login">
+              <BsGoogle />
+              <p className="full-width-text">Google</p>
+            </div>
 
-          <div className="se-btn facebook-login">
-            <BsFacebook />
-            <div className="full-width-text">Đăng nhập với Facebook</div>
+            <div className="facebook-login">
+              <FaFacebookSquare />
+              <p className="full-width-text">Facebook</p>
+            </div>
           </div>
         </Stack>
 

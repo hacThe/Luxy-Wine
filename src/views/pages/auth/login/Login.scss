@@ -1,5 +1,5 @@
 .login-page-wrapper {
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a2d3f001-96f0-4cfc-9d04-e7d5d742060f/df04q4s-3e509513-b804-4d95-a505-2aa5094f6d29.jpg/v1/fill/w_1280,h_852,q_75,strp/tony_by_night_by_la_tete_ailleurs_df04q4s-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODUyIiwicGF0aCI6IlwvZlwvYTJkM2YwMDEtOTZmMC00Y2ZjLTlkMDQtZTdkNWQ3NDIwNjBmXC9kZjA0cTRzLTNlNTA5NTEzLWI4MDQtNGQ5NS1hNTA1LTJhYTUwOTRmNmQyOS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.kWqYCFjpW1ZZPo5GN2mcpf7L9lDzx3Hi16CYEIBjReQ");
+  background-image: url("https://oldworldwine.vn/upload/468014_-01-10-2019-14-33-12.jpg");
   background-position: center;
   background-size: cover;
 
@@ -18,69 +18,78 @@
     width: 80%;
   }
 
-  .login-with-username-and-password-modal,
   .list-of-login-method-modal {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 4rem;
     width: 94%;
     max-width: 700px;
+    position: relative;
+    .back-to-home{
+      position: absolute;
+      top: 5rem;
+      left: 5.5rem;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #000000;
+      text-decoration: none;
+      svg{
+        height: 2rem;
+        width: 2rem;
+      }
+    }
 
-    .se-btn {
-      width: 100%;
+    .css-51s1cf-MuiStack-root{
+      padding: 2rem;
+      div{
+        padding: 1rem 2rem;
+        border-radius: .5rem;
+        display: flex;
+        svg{
+          height: 2rem;
+          width: 2rem;
+        }
+        p{
+          margin-left: 1rem;
+          font-size: 1.7rem;
+          font-weight: 600;
+          line-height: 2rem;
+        }
+      }
     }
     .outline-btn {
       background: #ffffff;
       border: 1px solid #989898;
+      border-radius: .5rem;
       box-sizing: border-box;
       color: #000;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      font-weight: 400;
     }
-
-    .google-login {
-      background-color: #e24747;
-    }
-
-    .facebook-login {
-      background-color: #566eef;
+    .google-facebook{
+      display: flex;
+      justify-content: space-between;
+      padding: 0rem !important;
+      .google-login {
+        border: solid 1px #989898;
+        color: #e24747;
+        width: 49%;
+        justify-content: center;
+      }
+  
+      .facebook-login {
+        color: #566eef;
+        border: solid 1px #989898;
+        width: 49%;
+        justify-content: center;
+      }
     }
 
     p {
       font-size: 1.4rem;
+      margin-bottom: 0rem;
     }
-  }
-
-  .login-with-username-and-password-modal {
-
-    position: relative;
-
-    .back-btn{
-        position: absolute;
-        top: 12px;
-        left: 58px;
-        font-size: 2rem;
-        color: #999;
-
-        &:hover{
-            cursor: pointer;
-            opacity: 0.6;
-        }
+    strong{
+      color: #000000;
     }
-
-    
-
-    .se-btn {
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 16px;
-      height: 56px;
-    }
-  }
-
-  .app-logo {
-    height: 40px;
-    width: 40px;
-    border-radius: 5px;
-    background-color: var(--primary-color);
   }
 
   .modal-title {
@@ -91,20 +100,12 @@
     margin-top: 36px;
     margin-bottom: 31px;
   }
-}
 
-
-section {
-  position: relative;
-}
-
-section::after {
-  border-width: 20px 40px;
-  border-color: red transparent transparent red;
-  content: "";
-  width: 0;
-  height: 0;
-  left: 0;
-  top: 0;
-  position: absolute;
+  .input-error-validation{
+    color: #e24747;
+    margin-top: .3rem;
+    margin-left: .3rem;
+    font-size: 1.3rem !important;
+    font-style: italic;
+  }
 }

@@ -8,7 +8,7 @@ import "./ProductComponent.scss";
 function ProductName(props) {
     return (
         <>
-            <Card.Title className='product-name'>{props.name}</Card.Title>
+            <Card.Text className='product-name'>{props.name}</Card.Text>
         </>
     )
 }
@@ -38,9 +38,9 @@ function OldPrice(props) {
         currency: 'VND',
     });
 
-    let price = formatter.format(props.oldPrice);
+    let price = formatter.format(props.originPrice);
 
-    let percent = Math.floor((props.oldPrice - props.newPrice) / props.oldPrice * 100);
+    let percent = Math.floor((props.originPrice - props.price) / props.originPrice * 100);
     return (
         <>
             <Row>
@@ -103,13 +103,13 @@ const ProductComponent = (props) => {
                     <Card.Body>
                         <ProductName name={props.product.name} />
                         <Description origin={props.product.origin} producer={props.product.producer} color={props.product.color} capacity={props.product.capacity} />
-                        {props.product.discountPrice !== 0 ?
-                            <OldPrice oldPrice={props.product.sellPrice} newPrice={props.product.discountPrice} />
+                        {props.product.price < props.product.originPrice ?
+                            <OldPrice originPrice={props.product.originPrice} price = {props.product.price}/>
                             : <Card.Text style={{
                                 height: "20px",
                                 margin: "0px"
                             }}></Card.Text>}
-                        <NewPrice newPrice={props.product.discountPrice !== 0 ? props.product.discountPrice : props.product.sellPrice} />
+                        <NewPrice newPrice={props.product.price} />
                     </Card.Body>
                     {props.product.isNew ? <NewTag /> : <></>}
                     {props.product.isSpecial ? <SpecialTag /> : <></>}

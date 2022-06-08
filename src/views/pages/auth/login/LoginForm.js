@@ -8,11 +8,11 @@ function LoginForm(props) {
     validateOnBlur: true,
     validateOnMount: false,
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Required"),
+      email: Yup.string().email().required("Required"),
       password: Yup.string()
         .required("Required")
         .matches(
@@ -30,14 +30,14 @@ function LoginForm(props) {
       <div className="mb-3">
         <input
           type="text"
-          id="username"
-          name="username"
-          placeholder="Username or Email"
-          value={formik.values.username}
+          id="email"
+          name="email"
+          placeholder="Email"
+          value={formik.values.email}
           onChange={formik.handleChange}
         />
-        {formik.errors.username && formik.touched.username && (
-          <p className="input-error-validation"> {formik.errors.username} </p>
+        {formik.errors.email && formik.touched.email && (
+          <p className="input-error-validation"> {formik.errors.email} </p>
         )}
       </div>
 

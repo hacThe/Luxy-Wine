@@ -7,7 +7,6 @@ function SignUpForm(props) {
     validateOnBlur: true,
     validateOnMount: false,
     initialValues: {
-      username: "",
       password: "",
       repassword: "",
       fullname: "",
@@ -17,7 +16,6 @@ function SignUpForm(props) {
       gender: "nam"
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Vui lòng nhập tên đăng nhập").matches(/^[a-zA-Z0-9]+$/, "Tên đăng nhập chỉ chứa chữ cái và chữ số "),
       fullname: Yup.string().required("Vui lòng nhập họ và tên"),
       password: Yup.string()
         .required("Vui lòng nhập mật khẩu")
@@ -42,21 +40,8 @@ function SignUpForm(props) {
     },
   });
   return (
-    <div>
+    <div className="sign-up_form">
       <form onSubmit={formik.handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="username">Tên đăng nhập</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-          />
-          {formik.errors.username && formik.touched.username && (
-            <p className="input-error-validation"> {formik.errors.username} </p>
-          )}
-        </div>
 
         <div className="mb-3">
           <label htmlFor="email">Email</label>
@@ -111,14 +96,6 @@ function SignUpForm(props) {
           {formik.errors.birthday && formik.touched.birthday && (
             <p className="input-error-validation"> {formik.errors.birthday} </p>
           )}
-        </div>
-        <div className="mb-3">
-          <label>Giới tính</label>
-          <select id="gender" value={formik.values.gender} onChange={formik.handleChange}>
-            <option value="Vietcombank">nam</option>
-            <option value="nữ">nữ</option>
-            <option value="khác">khác</option>
-          </select>
         </div>
 
         <div className="mb-3">

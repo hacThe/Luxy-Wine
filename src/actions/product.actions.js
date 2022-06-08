@@ -3,6 +3,9 @@ import { productServices } from "../services";
 
 export const productActions = {
   getAll,
+  getList,
+  getListSpecialProduct,
+  getListAccessary,
   create,
   update,
   getOne,
@@ -31,6 +34,78 @@ function getAll(params) {
   }
   function failure(error) {
     return { type: productConstants.GET_ALL_FAILURE, error };
+  }
+}
+
+function getList(params) {
+  return (dispatch) => {
+    dispatch(request());
+
+    productServices.getList(params).then(
+      (data) => {
+        console.log(data);
+        dispatch(success(data["data"]));
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+
+  function request() {
+    return { type: productConstants.GET_LIST_REQUEST };
+  }
+  function success(products) {
+    return { type: productConstants.GET_LIST_SUCCESS, products };
+  }
+  function failure(error) {
+    return { type: productConstants.GET_LIST_FAILURE, error };
+  }
+}
+
+function getListSpecialProduct() {
+  return (dispatch) => {
+    dispatch(request());
+
+    productServices.getListSpecialProduct().then(
+      (data) => {
+        console.log(data);
+        dispatch(success(data["data"]));
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+
+  function request() {
+    return { type: productConstants.GET_LIST_REQUEST };
+  }
+  function success(products) {
+    return { type: productConstants.GET_LIST_SUCCESS, products };
+  }
+  function failure(error) {
+    return { type: productConstants.GET_LIST_FAILURE, error };
+  }
+}
+
+function getListAccessary() {
+  return (dispatch) => {
+    dispatch(request());
+
+    productServices.getListAccessary().then(
+      (data) => {
+        console.log(data);
+        dispatch(success(data["data"]));
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+
+  function request() {
+    return { type: productConstants.GET_LIST_REQUEST };
+  }
+  function success(products) {
+    return { type: productConstants.GET_LIST_SUCCESS, products };
+  }
+  function failure(error) {
+    return { type: productConstants.GET_LIST_FAILURE, error };
   }
 }
 

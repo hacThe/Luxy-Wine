@@ -10,19 +10,19 @@ export const userActions = {
   getOne,
   delete: _delete,
   update,
-  deleteMany,
+  getOne,
   create,
+  deleteMany,
 };
 
 /// này là hàm login
-function login(username, password, callback) {
+function login(email, password, callback) {
   return (dispatch) => {
     dispatch(request());
-    usersServices.login(username, password).then(
+    usersServices.login(email, password).then(
       (user) => {
         alert("login successfully", user);
         cookiesUtil.setAccessToken(user.token);
-        //   cookiesUtil.setCurrentUserInfo(user.user)
         dispatch(success());
         if (callback) {
           callback();
@@ -82,24 +82,29 @@ function logout() {
   }
 }
 
-function register(user) {
+function register(user, callback) {
   return (dispatch) => {
-    dispatch(request(user));
+    // dispatch(request(user));
 
     usersServices.register(user).then(
-      () => {
-        dispatch(success());
+      (data) => {
+        // dispatch(success());
         // history.push('/login');
         // dispatch(alertActions.success('Registration successful'));
+        alert("Đăng ký thành công");
+        if (callback instanceof Function) {
+          callback();
+        }
       },
       (error) => {
-        dispatch(failure(error.toString()));
+        // dispatch(failure(error.toString()));
         // dispatch(alertActions.error(error.toString()));
+        alert("Đăng ký thất bại! " + error);
       }
     );
   };
 
-  function request(user) {
+  /*   function request(user) {
     return { type: userConstants.REGISTER_REQUEST, user };
   }
   function success(user) {
@@ -107,7 +112,7 @@ function register(user) {
   }
   function failure(error) {
     return { type: userConstants.REGISTER_FAILURE, error };
-  }
+  } */
 }
 
 function getOne(id) {
