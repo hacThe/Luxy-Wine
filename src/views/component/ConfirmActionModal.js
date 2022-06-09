@@ -17,10 +17,12 @@ function ConfirmActionModal(props) {
     });
   };
 
-  const handleAction = () =>{
+  const handleAction = () => {
     confirmActionModal.action();
-    setTimeout(()=>{handleClose()}, 0)
-  }
+    setTimeout(() => {
+      handleClose();
+    }, 0);
+  };
 
   const style = {
     position: "absolute",
@@ -44,11 +46,38 @@ function ConfirmActionModal(props) {
     >
       <Box sx={style}>
         <div className="modal-container-fe">
-          <h1 style={{fontSize: "18px", fontWeight: "600"}}>Xác nhận thao tác</h1>
-          <p style={{fontSize: "14px", fontWeight: "400"}}>{confirmActionModal.content}</p>
-          <div style={{display: "flex", justifyContent: "end"}} className="action-btn">
-            <span style={{marginRight: "18px"}} onClick={handleClose} className="lw-btn text-btn">HỦY</span>
-            <span  onClick={handleAction} className="lw-btn">ĐỒNG Ý</span>
+          <h1
+            style={{
+              marginBottom: ".5rem",
+              fontSize: "18px",
+              fontWeight: "600",
+            }}
+          >
+            Xác nhận thao tác
+          </h1>
+          <p
+            style={{
+              fontSize: "14px",
+              fontWeight: "400",
+              marginBottom: "1rem",
+            }}
+          >
+            {confirmActionModal.content}
+          </p>
+          <div
+            style={{ display: "flex", justifyContent: "end" }}
+            className="action-btn"
+          >
+            <span
+              style={{ marginRight: "18px" }}
+              onClick={handleClose}
+              className="lw-btn text-btn"
+            >
+              HỦY
+            </span>
+            <span onClick={handleAction} className="lw-btn">
+              ĐỒNG Ý
+            </span>
           </div>
         </div>
       </Box>

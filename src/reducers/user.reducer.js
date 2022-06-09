@@ -1,9 +1,9 @@
 import { userConstants } from "../constaint";
 import { cookiesUtil } from "../utilities";
 
-let accessToken = cookiesUtil.getAccessToken();
-const initialState = accessToken
-  ? { loading: false, isLoggedIn: true, logedUser: {}, user: undefined }
+let user = cookiesUtil.getCurrentUser();
+const initialState = user
+  ? { loading: false, isLoggedIn: true, logedUser: user, user: undefined }
   : { loading: false, isLoggedIn: false };
 // logedUser lưu thông tin user đang đăng nhập, user lưu thông tin user đc get one về
 export function userReducer(state = initialState, action) {

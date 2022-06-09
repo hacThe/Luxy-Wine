@@ -23,6 +23,7 @@ function login(email, password, callback) {
       (user) => {
         console.log("login successfully", user);
         cookiesUtil.setAccessToken(user.token);
+        cookiesUtil.setCurrentUser(user.user);
         dispatch(success(user.user));
         if (callback) {
           callback();

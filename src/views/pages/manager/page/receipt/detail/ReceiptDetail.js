@@ -119,9 +119,7 @@ function ReceiptDetail(props) {
     }
   };
   const { id } = useParams();
-  const handleEditOnClick = () => {
-    navigate(`/quan-ly/hoa-don/edit/${id}`);
-  };
+
   useEffect(() => {
     dispatch(receiptActions.getOne(id));
     dispatch(productActions.getAll());
@@ -129,7 +127,7 @@ function ReceiptDetail(props) {
   const handleDeleteOnClick = () => {
     dispatch(
       appActions.openConfirmDialog(
-        "Bạn có thực sự muốn xóa sản phẩm này khỏi trang web?",
+        "Bạn có thực sự muốn xóa hóa đơn này khỏi trang web?",
         () => {
           dispatch(
             receiptActions.deleteOne(id, () => {
@@ -147,6 +145,7 @@ function ReceiptDetail(props) {
       <div className="display-flex justify-content-between">
         <BackToPageButton content={"Xem danh sách hóa đơn"} />
         <LeadingIconButton
+          onClick={handleDeleteOnClick}
           style={{
             backgroundColor: "rgb(143, 0, 0)",
             color: "white",
@@ -160,7 +159,15 @@ function ReceiptDetail(props) {
         <Grid item xs={12} md={6}>
           <div className="infomation-wrapper">
             <h2 className="information-field">Người tạo đơn hàng</h2>
-            <p className="infomation-content">{receipt.receiver?.name}</p>
+            <p className="infomation-content">
+              {receipt.creater
+                ? `${receipt.creater.name}${
+                    receipt.creater.role === "user"
+                      ? " - Người dùng"
+                      : " - Quản trị viên"
+                  }`
+                : receipt.receiver?.name}
+            </p>
           </div>
 
           <div className="infomation-wrapper">

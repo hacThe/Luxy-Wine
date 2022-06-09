@@ -1,8 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 const AjaxHelper = {};
 
 AjaxHelper.get = (url, params, options) => {
+  console.log({ params, options });
   return axios.get(url, { params: params, ...options });
 };
 
@@ -19,9 +20,7 @@ AjaxHelper.delete = (url, options) => {
 };
 
 AjaxHelper.deleteMany = (url, params, options) => {
-  return axios.delete(url, {params: params, ...options});
+  return axios.delete(url, { params: params, ...options });
 };
-
-
 
 export default AjaxHelper;

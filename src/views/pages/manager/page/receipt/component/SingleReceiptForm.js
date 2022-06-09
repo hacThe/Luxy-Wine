@@ -7,12 +7,13 @@ import { numberUtils } from "../../../../../../utilities";
 import "./index.scss";
 import { useDispatch } from "react-redux";
 import { receiptActions } from "../../../../../../actions/receipt.actions";
+import { useNavigate } from "react-router-dom";
 function SingleReceiptForm() {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [receiverInfo, setReceiverInfo] = useState({ name: undefined });
   const [cart, setCart] = useState([]);
-
+  const navigate = useNavigate();
   const cartItems = cart.map((item, index) => {
     const temp = {};
     temp.id = item.product._id;
@@ -51,14 +52,19 @@ function SingleReceiptForm() {
     const profit = totalPrice - originalPrice;
     console.log({ receiverInfo, cart, totalPrice, profit });
     dispatch(
-      receiptActions.create({
-        reciever: receiverInfo,
-        cart,
-        totalPrice,
-        profit,
-        status: 2,
-        paymethod: 2,
-      })
+      receiptActions.create(
+        {
+          receiver: receiverInfo,
+          cart,
+          totalPrice,
+          profit,
+          status: 2,
+          paymethod: 2,
+        },
+        () => {
+          navigate("/quan-ly/hoa-don");
+        }
+      )
     );
   };
   const columnDocs = [

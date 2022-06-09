@@ -105,12 +105,17 @@ function update(values, callback) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function deleteOne(id) {
+function deleteOne(id, callback) {
   return (dispatch) => {
     dispatch(request(id));
 
     receiptServices.deleteOne(id).then(
-      () => dispatch(success(id)),
+      () => {
+        dispatch(success(id));
+        if (callback instanceof Function) {
+          callback();
+        }
+      },
       (error) => dispatch(failure(id, error.toString()))
     );
   };
