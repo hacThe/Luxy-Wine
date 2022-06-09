@@ -11,7 +11,7 @@
   padding: 24px;
 
   .manager-page-title {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 42px;
@@ -52,11 +52,12 @@
     width: 100%;
     background-color: #fff;
     .title {
-      padding-top: 3.6rem;
+      padding-top: 2.2rem;
       width: 100%;
       text-align: center;
-      font-size: 4rem;
-      font-weight: 600;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: rgb(120, 0, 0);
     }
     .data-table-container {
       padding-bottom: 32px;
@@ -85,16 +86,15 @@
           }
         }
         .filter-container {
-          display: flex;
           .filter-label {
             display: flex;
+
             font-size: 1.4rem;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 2.4rem;
           }
           .filter-input {
-            height: 2.4rem;
-            margin-left: 1.2rem;
+            height: 4rem;
           }
         }
       }

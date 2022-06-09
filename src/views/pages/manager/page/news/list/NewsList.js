@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { newsActions } from "../../../../../../actions/news.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
-import { GrDocumentExcel } from "react-icons/gr";
+import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
   //avtUrl
@@ -99,7 +99,7 @@ function NewsList(props) {
             <div className="heading">
               <div className="header">Danh sách tin tức</div>
               <LeadingIconButton
-                icon={<GrDocumentExcel size={24} />}
+                icon={<AiOutlineExport size={18} />}
                 content={"Xuất Excel"}
               />
             </div>

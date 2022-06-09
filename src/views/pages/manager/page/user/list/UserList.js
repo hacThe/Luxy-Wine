@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../../../../../../actions/user.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
-import { GrDocumentExcel } from "react-icons/gr";
+import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
   // {field: , headerName: , width: }
@@ -72,7 +72,7 @@ function UserList(props) {
             <div className="heading">
               <div className="header">Danh sách user</div>
               <LeadingIconButton
-                icon={<GrDocumentExcel size={24} />}
+                icon={<AiOutlineExport size={18} />}
                 content={"Xuất Excel"}
               />
             </div>

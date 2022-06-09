@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { BsFillGiftFill } from "react-icons/bs";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { BiNews, BiUserCircle } from "react-icons/bi";
@@ -46,13 +46,23 @@ function TheNavigation() {
       link: "/quan-ly/nguoi-dung",
     },
   ];
+  const navigate = useNavigate();
   return (
     <>
       <div className="manager-side-bar-wrapper">
         <div className="mystery-box"></div>
         <div className="fixed-position-content">
           <div className="branding-heading">
-            <h1>Luxy Wine manager</h1>
+            <h1
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                navigate("/trang-chu");
+              }}
+            >
+              Luxy Wine manager
+            </h1>
           </div>
           <List className="manager-side-bar">
             {menuList.map((item, index) => (

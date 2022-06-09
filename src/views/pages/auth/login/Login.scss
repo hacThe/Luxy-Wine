@@ -1,19 +1,19 @@
 .login-page-wrapper {
-  background-image: url("https://oldworldwine.vn/upload/468014_-01-10-2019-14-33-12.jpg");
+  background-image: url("../../../../../assets/img/auth-background.jpg");
   background-position: center;
   background-size: cover;
 
-  button{
+  button {
     display: block;
     width: 100%;
     margin-top: 1.8rem;
   }
 
-  input{
+  input {
     width: 100%;
   }
 
-  form{
+  form {
     margin: auto;
     width: 80%;
   }
@@ -23,7 +23,7 @@
     width: 94%;
     max-width: 700px;
     position: relative;
-    .back-to-home{
+    .back-to-home {
       position: absolute;
       top: 5rem;
       left: 5.5rem;
@@ -31,23 +31,23 @@
       font-weight: 400;
       color: #000000;
       text-decoration: none;
-      svg{
+      svg {
         height: 2rem;
         width: 2rem;
       }
     }
 
-    .css-51s1cf-MuiStack-root{
+    .css-51s1cf-MuiStack-root {
       padding: 2rem;
-      div{
+      div {
         padding: 1rem 2rem;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         display: flex;
-        svg{
+        svg {
           height: 2rem;
           width: 2rem;
         }
-        p{
+        p {
           margin-left: 1rem;
           font-size: 1.7rem;
           font-weight: 600;
@@ -58,13 +58,13 @@
     .outline-btn {
       background: #ffffff;
       border: 1px solid #989898;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       box-sizing: border-box;
       color: #000;
       font-size: 1.5rem;
       font-weight: 400;
     }
-    .google-facebook{
+    .google-facebook {
       display: flex;
       justify-content: space-between;
       padding: 0rem !important;
@@ -74,7 +74,7 @@
         width: 49%;
         justify-content: center;
       }
-  
+
       .facebook-login {
         color: #566eef;
         border: solid 1px #989898;
@@ -87,7 +87,7 @@
       font-size: 1.4rem;
       margin-bottom: 0rem;
     }
-    strong{
+    strong {
       color: #000000;
     }
   }
@@ -101,10 +101,10 @@
     margin-bottom: 31px;
   }
 
-  .input-error-validation{
+  .input-error-validation {
     color: #e24747;
-    margin-top: .3rem;
-    margin-left: .3rem;
+    margin-top: 0.3rem;
+    margin-left: 0.3rem;
     font-size: 1.3rem !important;
     font-style: italic;
   }

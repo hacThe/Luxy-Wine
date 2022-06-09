@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { voucherActions } from "../../../../../../actions/voucher.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
-import { GrDocumentExcel } from "react-icons/gr";
+import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
 const columnDocs = [
   // {field: , headerName: , width: }
@@ -123,7 +123,7 @@ function VoucherList(props) {
             <div className="heading">
               <div className="header">Danh sách voucher</div>
               <LeadingIconButton
-                icon={<GrDocumentExcel size={24} />}
+                icon={<AiOutlineExport size={18} />}
                 content={"Xuất Excel"}
               />
             </div>

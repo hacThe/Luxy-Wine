@@ -21,9 +21,9 @@ function login(email, password, callback) {
     dispatch(request());
     usersServices.login(email, password).then(
       (user) => {
-        alert("login successfully", user);
+        console.log("login successfully", user);
         cookiesUtil.setAccessToken(user.token);
-        dispatch(success());
+        dispatch(success(user.user));
         if (callback) {
           callback();
         }
@@ -38,8 +38,8 @@ function login(email, password, callback) {
   function request() {
     return { type: userConstants.LOGIN_REQUEST };
   }
-  function success() {
-    return { type: userConstants.LOGIN_SUCCESS };
+  function success(logedUser) {
+    return { type: userConstants.LOGIN_SUCCESS, logedUser };
   }
   function failure(error) {
     return { type: userConstants.LOGIN_FAILURE, error };

@@ -16,8 +16,10 @@ function NewReceipt(props) {
   };
   return (
     <div>
-      <h1 className="manager-page-title">Tạo đơn hàng</h1>
-      
+      <h1 style={{ textAlign: "left" }} className="manager-page-title">
+        Tạo đơn hàng
+      </h1>
+
       <SingleReceiptForm onSubmit={onSubmit} />
     </div>
   );

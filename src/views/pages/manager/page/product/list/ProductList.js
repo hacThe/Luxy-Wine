@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { productActions } from "../../../../../../actions/product.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
-import { GrDocumentExcel } from "react-icons/gr";
+import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
 import { numberUtils } from "../../../../../../utilities";
 import "./ProductList.scss";
@@ -89,7 +89,7 @@ function ProductList(props) {
             <div className="heading">
               <div className="header">Danh sách khóa học</div>
               <LeadingIconButton
-                icon={<GrDocumentExcel size={24} />}
+                icon={<AiOutlineExport size={18} />}
                 content={"Xuất Excel"}
               />
             </div>

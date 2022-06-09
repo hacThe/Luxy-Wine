@@ -30,7 +30,8 @@ const EmailVerification = React.lazy(() =>
 );
 
 const Routers = () => {
-  const authentication = useSelector((state) => state.authentication);
+  const authentication = useSelector((state) => state.userReducer);
+  console.log({ authentication });
   return (
     // <React.Suspense fallback={loading}>
     <React.Suspense fallback={loading}>
@@ -55,17 +56,19 @@ const Routers = () => {
         />
 
         <Route path="/quan-ly" name="Trang chủ" element={<ManagerContent />}>
-          {routes.managerRoute.map((route, idx) => {
-            return (
-              route.element && (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.element}
-                />
-              )
-            );
-          })}
+          {!authentication.isLoggedIn ||
+            (authentication?.logedUser.role === "admin" &&
+              routes.managerRoute.map((route, idx) => {
+                return (
+                  route.element && (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      element={route.element}
+                    />
+                  )
+                );
+              }))}
         </Route>
         <Route path="/" name="Trang chủ" element={<TheContent />}>
           <Route index name="Trang chủ" element={<Navigate to="trang-chu" />} />
