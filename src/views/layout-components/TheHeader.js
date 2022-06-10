@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useDispatch } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { userActions } from "../../actions/user.actions";
+import { appActions } from '../../actions';
 import { Nav, Navbar, Container, Form, FormControl, Button, Row } from 'react-bootstrap';
-import { MdPhoneInTalk, MdOutlineReceiptLong, MdLogout } from 'react-icons/md';
+import { MdPhoneInTalk, MdOutlineReceiptLong, MdLogout, MdLogin } from 'react-icons/md';
 import { GoSearch } from 'react-icons/go';
 import { FaUserCircle } from 'react-icons/fa';
 import { BsCartCheck } from 'react-icons/bs'
@@ -13,10 +14,24 @@ import './TheHeader.scss';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const param = useParams();
 
+  const isLoggedIn = useSelector(state => state.userReducer.isLoggedIn);
+  const currentUser = useSelector(state => state.userReducer.logedUser) || {};
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(userActions.getCurrent());
+    }
+  }, [])
+
   function HandleLogOutOnClick() {
-    dispatch(userActions.logout())
+    console.log("Click", appActions);
+    dispatch(
+      appActions.openConfirmDialog("Bạn có muốn đăng xuất ?", () =>
+        dispatch(userActions.logout())
+      )
+    );
   }
   const [visible, setVisible] = useState(true)
   const position = useRef();
@@ -50,7 +65,7 @@ const TheHeader = () => {
     //--Đóng navbar khi chuyển trang--//
     var navbar = document.getElementById('navbarScroll');
     var btn = document.getElementById('navbarScroll-control-btn');
-    if(navbar.classList.contains('show')){
+    if (navbar.classList.contains('show')) {
       btn.click();
     }
   }, [param])
@@ -75,18 +90,29 @@ const TheHeader = () => {
                   Tra cứu đơn hàng
                 </NavLink>
               </Nav.Item>
-              <Nav.Item as="li">
-                <NavLink to={`/404`}>
-                  <FaUserCircle />
-                  Nguyen Tan Thanh
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item as="li">
-                <Nav.Link onClick={() => { HandleLogOutOnClick() }}>
-                  <MdLogout />
-                  Đăng xuất
-                </Nav.Link>
-              </Nav.Item>
+              {
+                isLoggedIn ?
+                  <>
+                    <Nav.Item as="li">
+                      <NavLink to={`/404`}>
+                        <FaUserCircle />
+                        {currentUser?.email}
+                      </NavLink>
+                    </Nav.Item>
+                    <Nav.Item as="li">
+                      <Nav.Link onClick={() => { HandleLogOutOnClick() }}>
+                        <MdLogout />
+                        Đăng xuất
+                      </Nav.Link>
+                    </Nav.Item>
+                  </> :
+                  <Nav.Item as="li">
+                    <Nav.Link onClick={() => { navigate('/dang-nhap') }}>
+                      <MdLogin />
+                      Đăng Nhập
+                    </Nav.Link>
+                  </Nav.Item>
+              }
               <Nav.Item as="li">
                 <NavLink to={`/gio-hang`}>
                   <BsCartCheck />

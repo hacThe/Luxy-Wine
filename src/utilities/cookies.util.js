@@ -7,7 +7,9 @@ export const cookiesUtil = {
     setAccessToken,
     getAccessToken,
 
-
+    setProductCart,
+    getProductCart,
+    removeProductCart,
 };
 
 const cookies = new Cookies();
@@ -43,5 +45,15 @@ function setAccessToken(value) {
 
 function getAccessToken() {
     return cookies.get("_JWT__");
+}
+
+function setProductCart(value) {
+    cookies.set("_LUXY_WINE_PRODUCT_CART__", value);
+}
+function getProductCart() {
+    return cookies.get("_LUXY_WINE_PRODUCT_CART__");
+}
+function removeProductCart(){
+    return remove("_LUXY_WINE_PRODUCT_CART__");
 }
 

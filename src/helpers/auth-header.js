@@ -2,7 +2,7 @@ import { cookiesUtil } from '../utilities';
 
 export function authHeader() {
   // return authorization header with jwt token
-  let accessToken = cookiesUtil.getCurrentUser();
+  let accessToken = cookiesUtil.getAccessToken();
   if (accessToken) {
     return { Authorization: 'Bearer ' + accessToken };
   } else {

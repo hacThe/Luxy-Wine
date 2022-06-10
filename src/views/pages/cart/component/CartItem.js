@@ -2,14 +2,34 @@ import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import "./CartItem.scss";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../../../actions";
+import { appActions } from './../../../../actions/app.actions';
 
 function CartItem(props) {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(props.quantity);
+  const handleEditCart = (number) => {
+    if (Number.isInteger(number) && quantity !== number) {
+      console.log("modifyyyy: ", number)
+      dispatch(userActions.editCart({ product: props.product._id, quantity: number }));
+    }
+  }
   const handleChangeQuantity = (number) => {
-    if (parseInt(number) < 1) setQuantity(1);
-    else if (isNaN(parseInt(number)) && isNaN(quantity)) setQuantity(1);
-    else setQuantity(parseInt(number));
+    if (parseInt(number) < 1) {
+      setQuantity(1);
+      handleEditCart(1);
+    }
+    else if (isNaN(parseInt(number)) && isNaN(quantity)) {
+      setQuantity(1);
+      handleEditCart(1);
+    }
+    else {
+      setQuantity(parseInt(number));
+      handleEditCart(parseInt(number));
+    }
   };
+
   var formatter = new Intl.NumberFormat("vi-VN", {
     style: "currency",
     currency: "VND",
@@ -50,12 +70,18 @@ function CartItem(props) {
         </div>
 
         <div className="btn-delete">
-          <button>
+          <button onClick={() => {
+            dispatch(
+              appActions.openConfirmDialog("Xác nhận xóa sản phẩm: " + props.product._id, () =>
+                props.handleDeleteCart(props.product._id)
+              )
+            );
+          }}>
             <AiOutlineDelete />
           </button>
         </div>
       </Col>
-    </Row>
+    </Row >
   );
 }
 export { CartItem };

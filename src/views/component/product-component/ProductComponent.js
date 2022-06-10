@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { BsCartPlusFill } from "react-icons/bs";
 
 import "./ProductComponent.scss";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../../actions";
 
 function ProductName(props) {
   return (
@@ -60,6 +62,15 @@ function OldPrice(props) {
   );
 }
 function HoverContent(props) {
+  const dispatch = useDispatch();
+  const handleAddToCart = (id) => {
+    const cartItem = {
+      product: id,
+      quantity: 1
+    }
+    dispatch(userActions.addToCart(cartItem));
+  }
+
   return (
     <>
       <Card.Body className="hover-content row">
@@ -82,12 +93,12 @@ function HoverContent(props) {
           }}
         >
           <Col style={{ padding: "0px", borderRight: "solid 1px white" }}>
-            <Button>
+            <Button onClick={() => handleAddToCart(props.id)}>
               <BsCartPlusFill />
             </Button>
           </Col>
           <Col style={{ padding: "0px" }}>
-            <Button to={`/san-pham`}>Mua Ngay</Button>
+            <Button>Mua Ngay</Button>
           </Col>
         </Row>
       </Card.Body>

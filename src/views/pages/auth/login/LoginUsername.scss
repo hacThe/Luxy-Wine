@@ -1,29 +1,43 @@
 .login-with-username-and-password-modal {
-    padding-left: 40px;
-    padding-right: 40px;
-    width: 94%;
-    max-width: 700px;
-    position: relative;
-    .back-btn{
-        position: absolute;
-        top: 12px;
-        left: 58px;
-        font-size: 2rem;
-        color: #000000;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 94%;
+  max-width: 700px;
+  position: relative;
 
-        &:hover{
-            cursor: pointer;
-            opacity: 0.6;
-        }
-    }
+  .back-btn {
+    position: absolute;
+    top: 12px;
+    left: 58px;
+    font-size: 2rem;
+    color: #000000;
 
-    p {
-      font-size: 1.4rem;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
     }
-    input{
-      margin-top: 1rem;
-    }
-    strong{
-        color: #000000;
-      }
   }
+
+  p {
+    font-size: 1.4rem;
+  }
+
+  input {
+    margin-top: 1rem;
+  }
+
+  strong {
+    color: #000000;
+  }
+
+  .submit-button {
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: block;
+    line-height: 40px;
+    padding: 0 20px;
+    border-radius: 1px;
+    color: white;
+  }
+}

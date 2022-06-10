@@ -14,6 +14,9 @@ export const usersServices = {
   register,
   update,
   create,
+  addToCart,
+  editCart,
+  getProductsInCart,
 };
 
 function login(email, password) {
@@ -41,7 +44,7 @@ function getOne(id) {
 
 function getCurrent() {
   return handleResponse(
-    ajaxHelper.get(config.URL_USER + `/getCurrent`, {}, options())
+    ajaxHelper.get(config.URL_USER + `/getCurrentUser`, {}, options())
   );
 }
 
@@ -70,5 +73,23 @@ function deleteOne(id) {
 function deleteMany(userIds) {
   return handleResponse(
     ajaxHelper.deleteMany(config.URL_USER, userIds, options())
+  );
+}
+
+function addToCart(value) {
+  return handleResponse(
+    ajaxHelper.post(config.URL_USER + '/addItemToCart', value, options())
+  );
+}
+
+function editCart(value) {
+  return handleResponse(
+    ajaxHelper.post(config.URL_USER + '/editCart', value, options())
+  );
+}
+
+function getProductsInCart(cart) {
+  return handleResponse(
+    ajaxHelper.post(config.URL_PRODUCT + '/getProductsInCart', { cart }, options())
   );
 }

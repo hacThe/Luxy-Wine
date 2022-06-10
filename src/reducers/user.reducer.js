@@ -3,8 +3,8 @@ import { cookiesUtil } from "../utilities";
 
 let accessToken = cookiesUtil.getAccessToken();
 const initialState = accessToken
-  ? { loading: false, isLoggedIn: true, logedUser: {}, user: undefined }
-  : { loading: false, isLoggedIn: false };
+  ? { loading: false, isLoggedIn: true, logedUser: {}, user: undefined, productsInCart: [] }
+  : { loading: false, isLoggedIn: false, productsInCart: [] };
 // logedUser lưu thông tin user đang đăng nhập, user lưu thông tin user đc get one về
 export function userReducer(state = initialState, action) {
   console.log("dispatch from authentication.reducer");
@@ -22,7 +22,7 @@ export function userReducer(state = initialState, action) {
         error: false,
       };
     case userConstants.LOGOUT:
-      window.location.reload(true);
+      //   window.location.reload(true);
       return {};
     case userConstants.LOGIN_FAILURE:
       return {
@@ -65,6 +65,26 @@ export function userReducer(state = initialState, action) {
         error: action.error,
       };
 
+    case userConstants.GET_CURRENT_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+      };
+    case userConstants.GET_CURRENT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        logedUser: action.user,
+        error: false,
+      };
+    case userConstants.GET_CURRENT_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      };
+
     case userConstants.DELETE_MANY_REQUEST:
       return {
         isLoading: true,
@@ -78,6 +98,64 @@ export function userReducer(state = initialState, action) {
       };
     case userConstants.DELETE_MANY_FAILURE:
       return {
+        isLoading: false,
+        error: action.error,
+      };
+
+    case userConstants.ADD_TO_CART_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+      };
+    case userConstants.ADD_TO_CART_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: false,
+      };
+    case userConstants.ADD_TO_CART_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      };
+    case userConstants.EDIT_CART_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+      };
+    case userConstants.EDIT_CART_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        logedUser: action.user,
+        error: false,
+      };
+    case userConstants.EDIT_CART_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      };
+
+      case userConstants.GET_PRODUCTS_IN_CART_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+      };
+    case userConstants.GET_PRODUCTS_IN_CART_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        productsInCart: action.products,
+        error: false,
+      };
+    case userConstants.GET_PRODUCTS_IN_CART_FAILURE:
+      return {
+        ...state,
         isLoading: false,
         error: action.error,
       };

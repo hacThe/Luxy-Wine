@@ -8,11 +8,14 @@ export const userActions = {
   register,
   getAll,
   getOne,
+  getCurrent,
   delete: _delete,
   update,
-  getOne,
   create,
   deleteMany,
+  addToCart,
+  editCart,
+  getProductsInCart
 };
 
 /// này là hàm login
@@ -75,6 +78,7 @@ function create(values, callback) {
 function logout() {
   return (dispatch) => {
     usersServices.logout();
+    cookiesUtil.remove('_JWT__');
     dispatch(success());
   };
   function success() {
@@ -133,6 +137,28 @@ function getOne(id) {
   }
   function failure(error) {
     return { type: userConstants.GET_ONE_FAILURE, error };
+  }
+}
+
+
+function getCurrent() {
+  return (dispatch) => {
+    dispatch(request());
+
+    usersServices.getCurrent().then(
+      (data) => dispatch(success(data["data"][0])),
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+
+  function request() {
+    return { type: userConstants.GET_CURRENT_REQUEST };
+  }
+  function success(user) {
+    return { type: userConstants.GET_CURRENT_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.GET_CURRENT_FAILURE, error };
   }
 }
 
@@ -218,5 +244,175 @@ function deleteMany(values) {
   }
   function failure(error) {
     return { type: userConstants.DELETE_MANY_FAILURE, error };
+  }
+}
+
+function addToCart(value) {
+  return (dispatch) => {
+    if (!cookiesUtil.getAccessToken()) {
+      if (cookiesUtil.getProductCart()) {
+        var productExist = -1;
+        const cart = cookiesUtil.getProductCart();
+
+        cart.forEach((element, idx) => {
+          if (element.product === value.product) {
+            productExist = idx;
+          }
+        });
+        if (productExist > -1) {
+          const newCart = [...cart.slice(0, productExist), { product: value.product, quantity: value.quantity + cart[productExist].quantity }, ...cart.slice(productExist + 1)];
+          cookiesUtil.setProductCart(JSON.stringify(newCart));
+          alert("add to cart successfully, product exist!!!");
+        }
+        else {
+          const newCart = [...cart];
+          newCart.push(value)
+          cookiesUtil.setProductCart(JSON.stringify(newCart));
+          alert("add to cart successfully");
+        }
+      }
+      else {
+        cookiesUtil.setProductCart(JSON.stringify([value]));
+        alert("first time, add to cart successfully");
+      }
+
+    }
+    else {
+
+      dispatch(request());
+      usersServices.addToCart(value).then(
+        () => {
+          dispatch(success());
+          alert('add to user cart successfully');
+        }
+        ,
+        (error) => {
+          dispatch(failure(error.toString()));
+          alert(error);
+        }
+      );
+    }
+
+  };
+
+  function request() {
+    return { type: userConstants.ADD_TO_CART_REQUEST };
+  }
+  function success() {
+    return { type: userConstants.ADD_TO_CART_SUCCESS };
+  }
+  function failure(error) {
+    return { type: userConstants.ADD_TO_CART_FAILURE, error };
+  }
+}
+
+function editCart(value) {
+  return (dispatch) => {
+    if (!cookiesUtil.getAccessToken()) {
+      if (cookiesUtil.getProductCart()) {
+        var productExist = -1;
+        const cart = cookiesUtil.getProductCart();
+        console.log("pre cart: ", cart);
+
+        cart.forEach((element, idx) => {
+          if (element.product === value.product) {
+            productExist = idx;
+          }
+        });
+        if (productExist > -1) {
+          if (value.quantity > 0) {
+            const newCart = [...cart.slice(0, productExist), value, ...cart.slice(productExist + 1)];
+            cookiesUtil.setProductCart(JSON.stringify(newCart));
+            alert("edit cart successfully, quantity: " + value.quantity);
+          }
+          else {
+            const newCart = [...cart.slice(0, productExist), ...cart.slice(productExist + 1)];
+            cookiesUtil.setProductCart(JSON.stringify(newCart));
+            dispatch(userActions.getProductsInCart());
+            alert("remove item from cart successfully");
+          }
+        }
+      }
+    }
+    else {
+      dispatch(request);
+      usersServices.editCart(value).then(
+        (data) => {
+          dispatch(success(data.user));
+          dispatch(userActions.getProductsInCart());
+          alert("edit user cart succesfully: quantity " + value.quantity);
+        },
+        (error) => {
+          dispatch(failure(error.toString()));
+          alert("edit cart error: " + error);
+        }
+      )
+    }
+  }
+
+  function request() {
+    return { type: userConstants.EDIT_CART_REQUEST };
+  }
+  function success(user) {
+    return { type: userConstants.EDIT_CART_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.EDIT_CART_FAILURE, error };
+  }
+}
+
+function getProductsInCart() {
+
+  return (dispatch) => {
+    dispatch(request());
+
+    if (!cookiesUtil.getAccessToken()) {
+      if (cookiesUtil.getProductCart() && cookiesUtil.getProductCart().length > 0) {
+        const cart = cookiesUtil.getProductCart();
+        usersServices.getProductsInCart(cart).then(
+          (data) => {
+            dispatch(success(data['data']));
+            console.log("response data get prduct incart: ", data);
+          },
+          (error) => {
+            dispatch(failure(error));
+          }
+        )
+      }
+      else {
+        dispatch(success([]));
+      }
+    }
+    else {
+      usersServices.getCurrent().then(
+        (data) => {
+          if (data["data"][0].cart && data["data"][0].cart.length > 0) {
+            const cart = data['data'][0].cart;
+            usersServices.getProductsInCart(cart).then(
+              (data) => {
+                dispatch(success(data['data']));
+                console.log("response data get prduct incart: ", data);
+              },
+              (error) => {
+                dispatch(failure(error));
+              }
+            )
+          }
+        },
+        (error) => {
+          dispatch(failure(error));
+        }
+      )
+    }
+  }
+
+  function request() {
+    return { type: userConstants.GET_PRODUCTS_IN_CART_REQUEST };
+  }
+  function success(products) {
+    return { type: userConstants.GET_PRODUCTS_IN_CART_SUCCESS, products };
+  }
+  function failure(error) {
+    return { type: userConstants.GET_PRODUCTS_IN_CART_FAILURE, error };
   }
 }

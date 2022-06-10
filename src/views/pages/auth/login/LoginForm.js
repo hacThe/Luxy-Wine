@@ -55,7 +55,7 @@ function LoginForm(props) {
         )}
       </div>
 
-      <button type="submit"> Đăng nhập </button>
+      <button type="submit" className="submit-button"> Đăng nhập </button>
     </form>
   );
 }
