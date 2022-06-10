@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../../../actions';
 import './ProductBrief.scss'
 
 function ProductBrief(props) {
+    const dispatch = useDispatch();
+
     const [currentImg, setCurrentImg] = useState({ val: props.product.avtURL, id: 0 });
     const handleImgClick = (val, id) => {
         setCurrentImg({ val: val, id: id });
@@ -23,6 +27,9 @@ function ProductBrief(props) {
         else setQuantity(parseInt(number));
     }
 
+    const handleAddToCart = (id, quantity) => {
+        dispatch(userActions.addToCart({product: id, quantity: quantity}));
+    }
     return (
         <Container className="product-briefing-wrapper">
             <Row>
@@ -76,7 +83,7 @@ function ProductBrief(props) {
                             </div>
                         </div>
                         <div className='buy-btn-group'>
-                            <button className='btn-add-to-cast'>Thêm vào giỏ hàng</button>
+                            <button className='btn-add-to-cast' onClick={() => handleAddToCart(props.product._id, quantity)}>Thêm vào giỏ hàng</button>
                             <br></br>
                             <button className='btn-buy'>Đặt hàng</button>
                         </div>

@@ -4,10 +4,10 @@ import { Breadcrumb } from '../../component/Breadcrumb'
 import { ContactForm } from "../../component/ContactForm";
 import { CartItem } from "./component/CartItem";
 import './Cart.scss'
-import { cookiesUtil } from "../../../utilities";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../actions";
+import { useNavigate } from "react-router-dom";
 
 function Cast() {
 
@@ -18,7 +18,10 @@ function Cast() {
         }]
 
     const [rerender, setRerender] = useState(true);
+    const total = useRef();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isLoggedIn = useSelector(state => state.userReducer.isLoggedIn);
     const products = useSelector(state => state.userReducer.productsInCart) || {};
 
     const handleDeleteCart = (id) => {
@@ -27,9 +30,23 @@ function Cast() {
         setRerender(!rerender);
     }
 
+    var formatter = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+    });
+
     useEffect(() => {
         dispatch(userActions.getProductsInCart());
-    }, [])
+    }, [isLoggedIn])
+
+    if (products.length > 0) {
+        var price = 0
+        products.forEach(element => {
+            price += element.product.price * element.quantity;
+        });
+        total.current = price;
+    }
+    const totalPrice = formatter.format(total.current);
 
     return (
         <Container className="cart-wrapper">
@@ -57,7 +74,7 @@ function Cast() {
                         <p>Chưa bao gồm phí vận chuyển</p>
                         <div className="total-price">
                             <p>Tổng tiền: </p>
-                            <p>1.900.000đ</p>
+                            <p>{totalPrice}</p>
                         </div>
                         <hr></hr>
 
@@ -65,7 +82,7 @@ function Cast() {
 
                         <div className="button-group">
                             <button className="btn-buy">Tiến hành đặt hàng</button>
-                            <button className="btn-to-store">Mua thêm sản phẩm</button>
+                            <button className="btn-to-store" onClick={() => navigate('/san-pham')}>Mua thêm sản phẩm</button>
                         </div>
                     </div>
                 </Col>

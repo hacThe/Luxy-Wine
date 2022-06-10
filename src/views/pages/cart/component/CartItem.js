@@ -72,7 +72,7 @@ function CartItem(props) {
         <div className="btn-delete">
           <button onClick={() => {
             dispatch(
-              appActions.openConfirmDialog("Xác nhận xóa sản phẩm: " + props.product._id, () =>
+              appActions.openConfirmDialog("Xác nhận xóa sản phẩm: " + props.product.name, () =>
                 props.handleDeleteCart(props.product._id)
               )
             );

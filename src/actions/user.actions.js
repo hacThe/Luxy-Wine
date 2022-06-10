@@ -323,6 +323,7 @@ function editCart(value) {
           if (value.quantity > 0) {
             const newCart = [...cart.slice(0, productExist), value, ...cart.slice(productExist + 1)];
             cookiesUtil.setProductCart(JSON.stringify(newCart));
+            dispatch(userActions.getProductsInCart());
             alert("edit cart successfully, quantity: " + value.quantity);
           }
           else {
