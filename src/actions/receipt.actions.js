@@ -68,13 +68,13 @@ function create(values, callback) {
   };
 
   function request() {
-    return { type: receiptConstants.GET_ONE_REQUEST };
+    return { type: receiptConstants.CREATE_ONE_REQUEST };
   }
-  function success(receipt) {
-    return { type: receiptConstants.GET_ONE_SUCCESS, receipt };
+  function success(data) {
+    return { type: receiptConstants.CREATE_ONE_SUCCESS };
   }
   function failure(error) {
-    return { type: receiptConstants.GET_ONE_FAILURE, error };
+    return { type: receiptConstants.CREATE_ONE_FAILURE, error };
   }
 }
 

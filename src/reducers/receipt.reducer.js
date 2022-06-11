@@ -59,6 +59,24 @@ export function receiptReducer(state = initialState, action) {
         isLoading: false,
         error: action.error,
       };
+      case receiptConstants.CREATE_ONE_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+      };
+    case receiptConstants.CREATE_ONE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: false,
+      };
+    case receiptConstants.CREATE_ONE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      };
 
     default:
       return state;

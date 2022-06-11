@@ -48,12 +48,20 @@ function getAccessToken() {
 }
 
 function setProductCart(value) {
-    cookies.set("_LUXY_WINE_PRODUCT_CART__", value);
+    const current = new Date();
+    const nextYear = new Date();
+
+    nextYear.setFullYear(current.getFullYear() + 1);
+
+    cookies.set('_LUXY_WINE_PRODUCT_CART__', value, {
+        path: '/',
+        expires: nextYear,
+    });
 }
 function getProductCart() {
     return cookies.get("_LUXY_WINE_PRODUCT_CART__");
 }
-function removeProductCart(){
+function removeProductCart() {
     return remove("_LUXY_WINE_PRODUCT_CART__");
 }
 

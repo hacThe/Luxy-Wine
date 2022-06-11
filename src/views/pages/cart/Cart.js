@@ -22,7 +22,7 @@ function Cast() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isLoggedIn = useSelector(state => state.userReducer.isLoggedIn);
-    const products = useSelector(state => state.userReducer.productsInCart) || {};
+    const products = useSelector(state => state.userReducer.productsInCart) || [];
 
     const handleDeleteCart = (id) => {
         console.log("item delete: ", id);
@@ -39,6 +39,7 @@ function Cast() {
         dispatch(userActions.getProductsInCart());
     }, [isLoggedIn])
 
+    total.current = 0;
     if (products.length > 0) {
         var price = 0
         products.forEach(element => {
@@ -46,7 +47,6 @@ function Cast() {
         });
         total.current = price;
     }
-    const totalPrice = formatter.format(total.current);
 
     return (
         <Container className="cart-wrapper">
@@ -74,14 +74,14 @@ function Cast() {
                         <p>Chưa bao gồm phí vận chuyển</p>
                         <div className="total-price">
                             <p>Tổng tiền: </p>
-                            <p>{totalPrice}</p>
+                            <p>{formatter.format(total.current)}</p>
                         </div>
                         <hr></hr>
 
                         <p><i>Bạn có thể nhập mã ở trang thanh toán</i></p>
 
                         <div className="button-group">
-                            <button className="btn-buy">Tiến hành đặt hàng</button>
+                            <button className="btn-buy" onClick={()=> navigate('/thanh-toan')}>Tiến hành đặt hàng</button>
                             <button className="btn-to-store" onClick={() => navigate('/san-pham')}>Mua thêm sản phẩm</button>
                         </div>
                     </div>
