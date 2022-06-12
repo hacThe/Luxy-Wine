@@ -80,6 +80,7 @@ function logout() {
   return (dispatch) => {
     usersServices.logout();
     cookiesUtil.remove('_JWT__');
+    cookiesUtil.remove('_USR__');
     dispatch(success());
   };
   function success() {
@@ -189,19 +190,22 @@ function update(values) {
     dispatch(request());
 
     usersServices.update(values).then(
-      (data) => dispatch(success(data["data"])),
+      () => {
+        dispatch(success())
+        dispatch(userActions.getCurrent())
+      },
       (error) => dispatch(failure(error.toString()))
     );
   };
 
   function request() {
-    return { type: userConstants.GET_ONE_REQUEST };
+    return { type: userConstants.UPDATE_REQUEST };
   }
-  function success(product) {
-    return { type: userConstants.GET_ONE_SUCCESS, product };
+  function success() {
+    return { type: userConstants.UPDATE_SUCCESS };
   }
   function failure(error) {
-    return { type: userConstants.GET_ONE_FAILURE, error };
+    return { type: userConstants.UPDATE_FAILURE, error };
   }
 }
 
@@ -399,6 +403,9 @@ function getProductsInCart() {
                 dispatch(failure(error));
               }
             )
+          }
+          else {
+            dispatch(success([]));
           }
         },
         (error) => {

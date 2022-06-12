@@ -18,7 +18,7 @@ function ShipmentDetail(props) {
         <Container className="shipment-detail-wrapper">
             <Row>
                 <Col xs={12} md={7} className="shipment-detail">
-                    <h1>Thông tin giao hàng</h1>
+                    <h1>Địa chỉ giao hàng</h1>
                     <div className="shipment-detail-form">
                         <div className="form-item">
                             <label>Họ và tên</label>
@@ -93,10 +93,13 @@ function ShipmentDetail(props) {
                         {props.address.addressError && props.touched.phone && (
                             <p className="input-error-validation"> {props.address.addressError} </p>
                         )}
-
+                        <div className="form-item">
+                            <label>Địa chỉ cụ thể</label>
+                            <Field name="description" type="text" />
+                        </div>
                         <div className="form-item">
                             <label>Ghi chú</label>
-                            <Field name="note" type='text' as='textarea'/>
+                            <Field name="note" type='text' as='textarea' />
                         </div>
                     </div>
                 </Col>
@@ -111,7 +114,7 @@ function ShipmentDetail(props) {
                             <label>Thanh toán qua momo</label>
                         </div>
                         <div className="payment-method-item" >
-                            <input type='radio' />
+                            <input type='radio' checked={props.payMethod === 2} onChange={() => props.setPayMethod(2)} />
                             <label>ATM card/ Internet Banking</label>
                         </div>
                         <div className="transfer-info">

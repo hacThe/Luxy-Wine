@@ -140,10 +140,10 @@ const TheHeader = () => {
                 >
                   <NavLink to={`/trang-chu`} role='button' className='nav-link' >Trang chủ</NavLink>
                   <NavLink to={`/san-pham`} role='button' className='nav-link' >Rượu</NavLink>
-                  <NavLink to={`/san-pham-dac-biet`} role='button' className='nav-link' >Combo khuyến mãi</NavLink>
+                  <NavLink to={`/san-pham-dac-biet`} role='button' className='nav-link' >Combo</NavLink>
                   <NavLink to={`/phu-kien`} role='button' className='nav-link' >Phụ kiện</NavLink>
+                  <NavLink to={`/404`} role='button' className='nav-link' >Khuyến mãi</NavLink>
                   <NavLink to={`/404`} role='button' className='nav-link' >Tin tức</NavLink>
-                  <NavLink to={`/404`} role='button' className='nav-link' >Liên hệ</NavLink>
 
                 </Nav>
                 <div className='form-wrapper'>

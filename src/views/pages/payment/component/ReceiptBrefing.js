@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../../actions";
 import { CartItem } from "../../cart/component/CartItem"
@@ -76,7 +75,7 @@ function ReceiptBrefing(props) {
                     <div className="button-group">
                         <div className="input-voucher">
                             <input type={'text'} placeholder='Mã giảm giá' />
-                            <button className="btn-buy" >Áp dụng</button>
+                            <button className="btn-buy" type="button">Áp dụng</button>
                         </div>
                         <button className="order-btn" type="submit" onClick={() => props.setTotalPrice(totalPrice + transportFee - promotionalPrice)}>Đặt hàng</button>
                     </div>
