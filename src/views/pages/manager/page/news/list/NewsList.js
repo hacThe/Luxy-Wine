@@ -90,7 +90,7 @@ function NewsList(props) {
   return (
     <div className="manager-container">
       <span onClick={addNewsOnClick} className="lw-btn">
-        Thêm sản phẩm
+        Thêm tin mới
       </span>
       <div className="list-manager-wapper">
         <div className="title">Quản lý tin tức</div>

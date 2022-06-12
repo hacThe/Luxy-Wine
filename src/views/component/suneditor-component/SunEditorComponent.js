@@ -13,7 +13,7 @@ const SuneditorComponent = ({
     try {
       let images = [];
       for (const file of files) {
-        firebaseStorageServices.uploadFileToFirebase(
+        await firebaseStorageServices.uploadFileToFirebase(
           file,
           "news",
           undefined,
@@ -33,6 +33,7 @@ const SuneditorComponent = ({
       const response = {
         result: images,
       };
+      console.log({ response });
 
       uploadHandler(response);
     } catch (err) {
