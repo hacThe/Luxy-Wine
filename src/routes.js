@@ -8,13 +8,20 @@ const SpecialProducts = React.lazy(() =>
 const Accessories = React.lazy(() =>
   import("./views/pages/accessories/Accessories")
 );
-const Product = React.lazy(() => import("./views/pages/product/Product"));
-const Cart = React.lazy(() => import("./views/pages/cart/Cart"));
+const Product = React.lazy(() =>
+  import("./views/pages/product/Product")
+);
+const Cart = React.lazy(() =>
+  import("./views/pages/cart/Cart")
+);
+const Payment = React.lazy(() =>
+  import("./views/pages/payment/Payment")
+);
+
 
 const Dashboard = React.lazy(() =>
   import("./views/pages/manager/page/dashboard/Dashboard")
 );
-
 const ProductList = React.lazy(() =>
   import("./views/pages/manager/page/product/list/ProductList")
 );
@@ -109,6 +116,7 @@ const commonRoute = [
     element: <Product />,
   },
   { path: "/gio-hang", name: "Giỏ hàng", element: <Cart /> },
+  { path: "/thanh-toan", name: "Thanh toán", element: <Payment /> },
 ];
 
 const protectedRoute = [];

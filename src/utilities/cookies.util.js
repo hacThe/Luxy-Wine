@@ -3,10 +3,13 @@ export const cookiesUtil = {
   set,
   get,
   remove,
-  setCurrentUser,
   getCurrentUser,
   setAccessToken,
   getAccessToken,
+  setCurrentUser,
+  setProductCart,
+  getProductCart,
+  removeProductCart,
 };
 
 const cookies = new Cookies();
@@ -46,4 +49,22 @@ function setAccessToken(value) {
 
 function getAccessToken() {
   return cookies.get("_JWT__");
+}
+
+function setProductCart(value) {
+  const current = new Date();
+  const nextYear = new Date();
+
+  nextYear.setFullYear(current.getFullYear() + 1);
+
+  cookies.set("_LUXY_WINE_PRODUCT_CART__", value, {
+    path: "/",
+    expires: nextYear,
+  });
+}
+function getProductCart() {
+  return cookies.get("_LUXY_WINE_PRODUCT_CART__");
+}
+function removeProductCart() {
+  return remove("_LUXY_WINE_PRODUCT_CART__");
 }

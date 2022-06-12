@@ -17,6 +17,9 @@
     margin: auto;
     width: 80%;
   }
+  a {
+    text-decoration: none !important;
+  }
 
   .list-of-login-method-modal {
     padding: 4rem;
@@ -54,20 +57,23 @@
           line-height: 2rem;
         }
       }
-    }
-    .outline-btn {
-      background: #ffffff;
-      border: 1px solid #989898;
-      border-radius: 0.5rem;
-      box-sizing: border-box;
-      color: #000;
-      font-size: 1.5rem;
-      font-weight: 400;
+      .email-login-btn {
+        background: #ffffff;
+        border: 1px solid #989898;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        color: #000;
+        font-size: 1.4rem;
+        font-weight: 400;
+        padding: 1rem;
+        line-height: 2rem;
+      }
     }
     .google-facebook {
       display: flex;
       justify-content: space-between;
       padding: 0rem !important;
+
       .google-login {
         border: solid 1px #989898;
         color: #e24747;
@@ -87,6 +93,7 @@
       font-size: 1.4rem;
       margin-bottom: 0rem;
     }
+
     strong {
       color: #000000;
     }

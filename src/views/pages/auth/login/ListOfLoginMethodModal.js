@@ -33,7 +33,7 @@ function ListOfLoginMethodModal(props) {
         >
           <button
             onClick={props.GoToLoginWithUsernameAndPasswordScreen}
-            className="outline-btn"
+            className="email-login-btn"
           >
             Đăng nhập với email/ password
           </button>
