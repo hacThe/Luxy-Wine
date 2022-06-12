@@ -1,26 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { newsActions } from "../../../../../../actions/news.actions";
+import { bannerActions } from "../../../../../../actions/banner.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
+const bannerName = ["Trang chủ", "Rượu", "Combo", "Phụ kiện", "Khuyến mãi"];
+
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
-  { field: "title", headerName: "Tên bài viết", width: 300 },
-  { field: "description", headerName: "Mô tả", width: 150, flex: 1 },
+  {
+    field: "type",
+    headerName: "Trang chứa banner",
+    width: 300,
+    valueFormatter: (params) => bannerName[params.value],
+  },
 
-  { field: "createdAt", headerName: "Ngày tạo", width: 150 },
+  {
+    field: "amount",
+    headerName: "Số slide",
+    width: 150,
+    flex: 1,
+    renderCell: (params) => {
+      const { slides } = params.row;
+      return (
+        <p
+          style={{
+            fontFamily: "Montserrat",
+            fontSize: "1.4rem",
+          }}
+        >
+          {slides.length}
+        </p>
+      );
+    },
+  },
+  { field: "updatedAt", headerName: "Ngày chỉnh sửa", width: 150, flex: 1 },
 ];
-function NewsList(props) {
+function BannerList(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(newsActions.getAll());
+    dispatch(bannerActions.getAll());
   }, []);
   const rawData = useSelector((state) => {
     console.log({ state });
-    return state.newsReducer.newsList || [];
+    return state.bannerReducer?.banners || [];
   });
   console.log({ rawData });
 
@@ -37,23 +62,17 @@ function NewsList(props) {
   };
 
   const editCourseHandleOnClick = (e) => {
-    navigate(`/quan-ly/tin-tuc/${e.id}`);
+    navigate(`/quan-ly/banner/edit/${e.id}`);
   };
 
-  const addNewsOnClick = () => {
-    navigate("/quan-ly/tin-tuc/new");
-  };
   return (
     <div className="manager-container">
-      <span onClick={addNewsOnClick} className="lw-btn">
-        Thêm sản phẩm
-      </span>
       <div className="list-manager-wapper">
-        <div className="title">Quản lý tin tức</div>
+        <div className="title">Quản lý banner</div>
         <div className="data-table-container">
           <div className="table-header">
             <div className="heading">
-              <div className="header">Danh sách tin tức</div>
+              <div className="header">Danh sách banner</div>
               <LeadingIconButton
                 icon={<AiOutlineExport size={24} />}
                 content={"Xuất Excel"}
@@ -80,4 +99,4 @@ function NewsList(props) {
   );
 }
 
-export default NewsList;
+export default BannerList;

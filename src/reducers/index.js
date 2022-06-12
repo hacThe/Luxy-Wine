@@ -7,6 +7,7 @@ import { productReducer } from "./product.reducer";
 import { newsReducer } from "./news.reducer";
 import { voucherReducer } from "./voucher.reducer";
 import { receiptReducer } from "./receipt.reducer";
+import { bannerReducer } from "./banner.reducer";
 
 const rootReducer = combineReducers({
   appReducer, // appReducer
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   newsReducer,
   voucherReducer,
   receiptReducer,
+  bannerReducer,
 });
 
 export default rootReducer;

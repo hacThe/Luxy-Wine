@@ -1,29 +1,45 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { userActions } from "../../actions/user.actions";
-import { appActions } from '../../actions';
-import { Nav, Navbar, Container, Form, FormControl, Button, Row } from 'react-bootstrap';
-import { MdPhoneInTalk, MdOutlineReceiptLong, MdLogout, MdLogin } from 'react-icons/md';
-import { GoSearch } from 'react-icons/go';
-import { FaUserCircle } from 'react-icons/fa';
-import { BsCartCheck } from 'react-icons/bs'
+import { appActions, bannerActions } from "../../actions";
+import {
+  Nav,
+  Navbar,
+  Container,
+  Form,
+  FormControl,
+  Button,
+  Row,
+} from "react-bootstrap";
+import {
+  MdPhoneInTalk,
+  MdOutlineReceiptLong,
+  MdLogout,
+  MdLogin,
+} from "react-icons/md";
+import { GoSearch } from "react-icons/go";
+import { FaUserCircle } from "react-icons/fa";
+import { BsCartCheck } from "react-icons/bs";
 
-import './TheHeader.scss';
-
+import "./TheHeader.scss";
 
 const TheHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const param = useParams();
 
-  const isLoggedIn = useSelector(state => state.userReducer.isLoggedIn);
-  const currentUser = useSelector(state => state.userReducer.logedUser) || {};
+  const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
+  const currentUser = useSelector((state) => state.userReducer.logedUser) || {};
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(userActions.getCurrent());
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    dispatch(bannerActions.getAll());
+  }, []);
 
   function HandleLogOutOnClick() {
     console.log("Click", appActions);
@@ -33,13 +49,13 @@ const TheHeader = () => {
       )
     );
   }
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(true);
   const position = useRef();
   position.current = window.pageYOffset;
 
   useEffect(() => {
     const handleScroll = () => {
-      let moving = window.pageYOffset
+      let moving = window.pageYOffset;
       if (moving < 100 && visible) return;
 
       if (position.current > moving + 20) {
@@ -50,39 +66,37 @@ const TheHeader = () => {
         setVisible(false);
         position.current = moving;
       }
-
     };
 
     window.addEventListener("scroll", handleScroll);
-    return (() => {
+    return () => {
       window.removeEventListener("scroll", handleScroll);
-    })
-  })
+    };
+  });
 
   useEffect(() => {
     setVisible(true);
 
     //--Đóng navbar khi chuyển trang--//
-    var navbar = document.getElementById('navbarScroll');
-    var btn = document.getElementById('navbarScroll-control-btn');
-    if (navbar.classList.contains('show')) {
+    var navbar = document.getElementById("navbarScroll");
+    var btn = document.getElementById("navbarScroll-control-btn");
+    if (navbar.classList.contains("show")) {
       btn.click();
     }
-  }, [param])
+  }, [param]);
   const cls = visible ? "header-visible" : "header-hidden";
 
   return (
-    <div className={'header-wrapper ' + cls} tabIndex={100}>
-      <Container className='header'>
-        <div className='nav-1'>
-          <div className='nav-1a'>
+    <div className={"header-wrapper " + cls} tabIndex={100}>
+      <Container className="header">
+        <div className="nav-1">
+          <div className="nav-1a">
             <p>
               <MdPhoneInTalk /> 0334.696.473
             </p>
-
           </div>
 
-          <div className='nav-1b'>
+          <div className="nav-1b">
             <Nav as="ul">
               <Nav.Item as="li">
                 <NavLink to={`/404`}>
@@ -90,29 +104,37 @@ const TheHeader = () => {
                   Tra cứu đơn hàng
                 </NavLink>
               </Nav.Item>
-              {
-                isLoggedIn ?
-                  <>
-                    <Nav.Item as="li">
-                      <NavLink to={`/404`}>
-                        <FaUserCircle />
-                        {currentUser?.email}
-                      </NavLink>
-                    </Nav.Item>
-                    <Nav.Item as="li">
-                      <Nav.Link onClick={() => { HandleLogOutOnClick() }}>
-                        <MdLogout />
-                        Đăng xuất
-                      </Nav.Link>
-                    </Nav.Item>
-                  </> :
+              {isLoggedIn ? (
+                <>
                   <Nav.Item as="li">
-                    <Nav.Link onClick={() => { navigate('/dang-nhap') }}>
-                      <MdLogin />
-                      Đăng Nhập
+                    <NavLink to={`/404`}>
+                      <FaUserCircle />
+                      {currentUser?.email}
+                    </NavLink>
+                  </Nav.Item>
+                  <Nav.Item as="li">
+                    <Nav.Link
+                      onClick={() => {
+                        HandleLogOutOnClick();
+                      }}
+                    >
+                      <MdLogout />
+                      Đăng xuất
                     </Nav.Link>
                   </Nav.Item>
-              }
+                </>
+              ) : (
+                <Nav.Item as="li">
+                  <Nav.Link
+                    onClick={() => {
+                      navigate("/dang-nhap");
+                    }}
+                  >
+                    <MdLogin />
+                    Đăng Nhập
+                  </Nav.Link>
+                </Nav.Item>
+              )}
               <Nav.Item as="li">
                 <NavLink to={`/gio-hang`}>
                   <BsCartCheck />
@@ -123,38 +145,56 @@ const TheHeader = () => {
           </div>
         </div>
 
-        <Row className='nav-2 mx-0'>
-          <Container className='nav-2-navigate-group'>
-            <Navbar bg="light" expand="xxl" className='nav-2-navbar-expand'>
-              <Navbar.Brand href="/" className='nav-2-navbar-brand mx-0'>
-                <h1>
-                  Luxy Wine
-                </h1>
+        <Row className="nav-2 mx-0">
+          <Container className="nav-2-navigate-group">
+            <Navbar bg="light" expand="xxl" className="nav-2-navbar-expand">
+              <Navbar.Brand href="/" className="nav-2-navbar-brand mx-0">
+                <h1>Luxy Wine</h1>
               </Navbar.Brand>
-              <Navbar.Toggle id='navbarScroll-control-btn' aria-controls="navbarScroll" className='ms-4' style={{ height: "4rem", width: "4rem" }} />
+              <Navbar.Toggle
+                id="navbarScroll-control-btn"
+                aria-controls="navbarScroll"
+                className="ms-4"
+                style={{ height: "4rem", width: "4rem" }}
+              />
               <Navbar.Collapse id="navbarScroll" className={"jj"}>
                 <Nav
                   className="me-auto my-2 my-lg-0"
-                  style={{ maxHeight: '100px' }}
+                  style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
-                  <NavLink to={`/trang-chu`} role='button' className='nav-link' >Trang chủ</NavLink>
-                  <NavLink to={`/san-pham`} role='button' className='nav-link' >Rượu</NavLink>
-                  <NavLink to={`/san-pham-dac-biet`} role='button' className='nav-link' >Combo khuyến mãi</NavLink>
-                  <NavLink to={`/phu-kien`} role='button' className='nav-link' >Phụ kiện</NavLink>
-                  <NavLink to={`/404`} role='button' className='nav-link' >Tin tức</NavLink>
-                  <NavLink to={`/404`} role='button' className='nav-link' >Liên hệ</NavLink>
-
+                  <NavLink to={`/trang-chu`} role="button" className="nav-link">
+                    Trang chủ
+                  </NavLink>
+                  <NavLink to={`/san-pham`} role="button" className="nav-link">
+                    Rượu
+                  </NavLink>
+                  <NavLink
+                    to={`/san-pham-dac-biet`}
+                    role="button"
+                    className="nav-link"
+                  >
+                    Combo khuyến mãi
+                  </NavLink>
+                  <NavLink to={`/phu-kien`} role="button" className="nav-link">
+                    Phụ kiện
+                  </NavLink>
+                  <NavLink to={`/404`} role="button" className="nav-link">
+                    Tin tức
+                  </NavLink>
+                  <NavLink to={`/404`} role="button" className="nav-link">
+                    Liên hệ
+                  </NavLink>
                 </Nav>
-                <div className='form-wrapper'>
+                <div className="form-wrapper">
                   <Form className="form-search d-flex">
                     <FormControl
                       type="search"
                       placeholder="Tìm kiếm..."
                       aria-label="Search"
-                      className='ms-3'
+                      className="ms-3"
                     />
-                    <Button className='btn-search'>
+                    <Button className="btn-search">
                       <GoSearch />
                     </Button>
                   </Form>
@@ -165,8 +205,7 @@ const TheHeader = () => {
         </Row>
       </Container>
     </div>
+  );
+};
 
-  )
-}
-
-export default React.memo(TheHeader)
+export default React.memo(TheHeader);

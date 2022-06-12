@@ -1,46 +1,51 @@
-import React, { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
-import { productActions } from '../../../actions/product.actions'
-import { Banner } from '../../component/BannerProduct'
-import { SpecialProductList } from './component/SpecialProductList'
-import { SuggestProduct } from '../../component/SuggestProduct'
-import { GrPrevious, GrNext } from 'react-icons/gr'
-import './SpecialProducts.scss'
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { productActions } from "../../../actions/product.actions";
+import { Banner } from "../../component/BannerProduct";
+import { SpecialProductList } from "./component/SpecialProductList";
+import { SuggestProduct } from "../../component/SuggestProduct";
+import { GrPrevious, GrNext } from "react-icons/gr";
+import "./SpecialProducts.scss";
+import { bannerActions } from "../../../actions";
+import SliderComponent from "../../component/SliderComponent/SliderComponent";
 
 const filters = [
   {
     name: "Tất cả",
-    value: 1
+    value: 1,
   },
   {
     name: "Hộp quà",
-    value: 2
+    value: 2,
   },
   {
     name: "Combo",
-    value: 3
+    value: 3,
   },
   {
     name: "Khuyến mãi",
-    value: 4
+    value: 4,
   },
   {
     name: "Sản phẩm mới",
-    value: 5
-  }
-]
+    value: 5,
+  },
+];
 const SpecialProducts = () => {
-
   const dispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState(1);
-  const list = useSelector(state => state.productReducer.products) || []
-  const isLoading = useSelector(state => state.productReducer.isLoading);
+  const list = useSelector((state) => state.productReducer.products) || [];
+  const isLoading = useSelector((state) => state.productReducer.isLoading);
   var products = [];
+  const banners = useSelector((state) => state.bannerReducer.banners) || [];
 
   useEffect(() => {
     dispatch(productActions.getListSpecialProduct());
-  }, [])
+    if (banners.length === 0) {
+      dispatch(bannerActions.getAll());
+    }
+  }, []);
 
   if (!isLoading) {
     switch (currentTab) {
@@ -48,29 +53,29 @@ const SpecialProducts = () => {
         products = [...list];
         break;
       case 2:
-        list.forEach(element => {
-          if (element.productType === 'gift') products.push(element);
+        list.forEach((element) => {
+          if (element.productType === "gift") products.push(element);
         });
         console.log("filter: ", products);
-        break;                      
+        break;
       case 3:
-        list.forEach(element => {
-          if (element.productType === 'combo') products.push(element);
+        list.forEach((element) => {
+          if (element.productType === "combo") products.push(element);
         });
         console.log("filter: ", products);
-        break; 
+        break;
       case 4:
-        list.forEach(element => {
+        list.forEach((element) => {
           if (element.price < element.originPrice) products.push(element);
         });
         console.log("filter: ", products);
-        break; 
+        break;
       case 5:
-        list.forEach(element => {
+        list.forEach((element) => {
           if (element.isNewProduct) products.push(element);
         });
         console.log("filter: ", products);
-        break; 
+        break;
       default:
         break;
     }
@@ -78,13 +83,21 @@ const SpecialProducts = () => {
 
   return (
     <Container className="special-products-wrapper">
-      <Banner url='https://res.cloudinary.com/tanthanh0805/image/upload/v1645178807/LuxyWine/Banner_fxehr3.png' />
-      <div className='special-product-head'>
+      {banners.length > 0 && banners[2].slides.length > 0 ? (
+        <SliderComponent slides={banners[2].slides} />
+      ) : (
+        <Banner url="https://res.cloudinary.com/tanthanh0805/image/upload/v1645178807/LuxyWine/Banner_fxehr3.png" />
+      )}
+      <div className="special-product-head">
         <h1>Các sản phẩm đặc biệt đến từ LuxyWine</h1>
-        <Container className='filter-special-product'>
+        <Container className="filter-special-product">
           <GrPrevious style={{ color: "black" }} />
           {filters.map((value, index) => (
-            <button key={index} className={currentTab === index + 1 ? 'btn-active' : 'btn'} onClick={() => setCurrentTab(index + 1)}>
+            <button
+              key={index}
+              className={currentTab === index + 1 ? "btn-active" : "btn"}
+              onClick={() => setCurrentTab(index + 1)}
+            >
               {value.name}
             </button>
           ))}
@@ -92,12 +105,12 @@ const SpecialProducts = () => {
         </Container>
       </div>
 
-      <SpecialProductList products={products} currentTab = {currentTab}/>
-      <div className='suggest-product'>
+      <SpecialProductList products={products} currentTab={currentTab} />
+      <div className="suggest-product">
         <SuggestProduct />
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default SpecialProducts
+export default SpecialProducts;
