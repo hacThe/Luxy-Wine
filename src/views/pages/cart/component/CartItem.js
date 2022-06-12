@@ -51,13 +51,13 @@ function CartItem(props) {
       </Col>
       <Col xs={12} md={6} className="right-grid">
         <div className="inp-quantity">
-          <button onClick={() => handleChangeQuantity(quantity - 1)}>-</button>
+          <button type="button" onClick={() => handleChangeQuantity(quantity - 1)}>-</button>
           <input
             type={"number"}
             value={quantity}
             onChange={(e) => handleChangeQuantity(e.target.value)}
           />
-          <button onClick={() => handleChangeQuantity(quantity + 1)}>+</button>
+          <button type="button" onClick={() => handleChangeQuantity(quantity + 1)}>+</button>
         </div>
 
         <div className="product-price">
@@ -70,7 +70,7 @@ function CartItem(props) {
         </div>
 
         <div className="btn-delete">
-          <button onClick={() => {
+          <button type="button" onClick={() => {
             dispatch(
               appActions.openConfirmDialog("Xác nhận xóa sản phẩm: " + props.product.name, () =>
                 props.handleDeleteCart(props.product._id)

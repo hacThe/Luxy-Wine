@@ -174,16 +174,16 @@ const TheHeader = () => {
                     role="button"
                     className="nav-link"
                   >
-                    Combo khuyến mãi
+                    Combo
                   </NavLink>
                   <NavLink to={`/phu-kien`} role="button" className="nav-link">
                     Phụ kiện
                   </NavLink>
                   <NavLink to={`/404`} role="button" className="nav-link">
-                    Tin tức
+                    Khuyến mãi
                   </NavLink>
                   <NavLink to={`/404`} role="button" className="nav-link">
-                    Liên hệ
+                    Tin tức
                   </NavLink>
                 </Nav>
                 <div className="form-wrapper">
