@@ -5,6 +5,7 @@ import { newsActions } from "../../../../../../actions/news.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
+import { dateUltils } from "../../../../../../utilities/date.ultil";
 const columnDocs = [
   //avtUrl
   // {field: , headerName: , width: }
@@ -54,8 +55,22 @@ const columnDocs = [
       );
     },
   },
-  { field: "createdAt", headerName: "Ngày tạo", flex: 1 },
-  { field: "updatedAt", headerName: "Ngày cập nhật", flex: 1 },
+  {
+    field: "createdAt",
+    headerName: "Ngày tạo",
+    flex: 1,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
+  {
+    field: "updatedAt",
+    headerName: "Ngày cập nhật",
+    flex: 1,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
 ];
 function NewsList(props) {
   const dispatch = useDispatch();

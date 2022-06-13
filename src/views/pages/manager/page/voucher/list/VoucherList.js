@@ -5,6 +5,7 @@ import { voucherActions } from "../../../../../../actions/voucher.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
+import { dateUltils } from "../../../../../../utilities/date.ultil";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
@@ -75,10 +76,31 @@ const columnDocs = [
       return params.value ? "Công khai" : "Mã nội bộ";
     },
   },
-  { field: "exp", headerName: "Hạn sử dụng", width: 150 },
+  {
+    field: "exp",
+    headerName: "Hạn sử dụng",
+    width: 150,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
 
-  { field: "createdAt", headerName: "Ngày tạo", width: 150 },
-  { field: "updatedAt", headerName: "Ngày sửa đổi", width: 150 },
+  {
+    field: "createdAt",
+    headerName: "Ngày tạo",
+    width: 150,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
+  {
+    field: "updatedAt",
+    headerName: "Ngày sửa đổi",
+    width: 150,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
 ];
 
 function VoucherList(props) {

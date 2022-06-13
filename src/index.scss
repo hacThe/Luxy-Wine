@@ -124,6 +124,7 @@ textarea {
 
 .lw-btn,
 button {
+  text-align: center;
   outline: none;
   border: none;
   font-size: 1.4rem;
@@ -192,5 +193,40 @@ input[type="checkbox"] {
   &:hover {
     cursor: pointer;
     background-color: var(--hover-background-color);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10rem;
+  border: 1px solid #fff;
+}
+
+::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+.lw-outline-btn {
+  border: 1px solid #747474;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: block;
+  line-height: 40px;
+  padding: 0 20px;
+  border-radius: 1px;
+  color: #000;
+  transition: all 0.5s;
+  &:hover {
+    cursor: pointer;
+    background-color: #000;
+    color: white;
   }
 }

@@ -20,6 +20,9 @@ export default {
   // PRODUCT
   URL_VOUCHER: URL_SYSTEM_V1 + "/voucher",
 
-  // PRODUCT
+  // Banner
   URL_BANNER: URL_SYSTEM_V1 + "/banner",
+
+  // Dashboard
+  URL_DASHBOARD: URL_SYSTEM_V1 + "/dashboard",
 };

@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { receiptActions } from "../../../../../../actions/receipt.actions";
 import { useNavigate } from "react-router-dom";
 function SingleReceiptForm() {
+  const [payMethod, setPayMethod] = useState(1);
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [receiverInfo, setReceiverInfo] = useState({ name: undefined });
@@ -58,8 +59,8 @@ function SingleReceiptForm() {
           cart,
           totalPrice,
           profit,
-          status: 2,
-          paymethod: 2,
+          status: payMethod === 1 ? 1 : 2,
+          paymethod: payMethod,
         },
         () => {
           navigate("/quan-ly/hoa-don");
@@ -275,6 +276,60 @@ function SingleReceiptForm() {
               autoHeight={true}
               // filter={filter}
             />
+            <div className="input-field">
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  marginRight: "12px",
+                  fontWeight: "400",
+                }}
+              >
+                <input
+                  onSelect={() => setPayMethod(1)}
+                  value={1}
+                  type="radio"
+                  name="payMethod"
+                  checked="checked"
+                />
+                Thanh toán khi nhận hàng
+              </label>
+              <div className="mystery-box"></div>
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  marginRight: "12px",
+                  fontWeight: "400",
+                }}
+              >
+                <input
+                  onSelect={() => setPayMethod(2)}
+                  value={2}
+                  type="radio"
+                  name="payMethod"
+                />
+                Momo
+              </label>
+
+              <div className="mystery-box"></div>
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  marginRight: "12px",
+                  fontWeight: "400",
+                }}
+              >
+                <input
+                  onSelect={() => setPayMethod(3)}
+                  value={3}
+                  type="radio"
+                  name="payMethod"
+                />
+                Thanh toán qua ngân hàng
+              </label>
+            </div>
 
             <div style={{ float: "right" }} className="">
               <button

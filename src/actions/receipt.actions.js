@@ -8,6 +8,7 @@ export const receiptActions = {
   getOne,
   deleteOne,
   deleteMany,
+  getCheckoutRequest,
 };
 
 function getAll(params) {
@@ -15,6 +16,27 @@ function getAll(params) {
     dispatch(request());
 
     receiptServices.getAll(params).then(
+      (data) => dispatch(success(data["data"])),
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+
+  function request() {
+    return { type: receiptConstants.GET_ALL_REQUEST };
+  }
+  function success(receipts) {
+    return { type: receiptConstants.GET_ALL_SUCCESS, receipts };
+  }
+  function failure(error) {
+    return { type: receiptConstants.GET_ALL_FAILURE, error };
+  }
+}
+
+function getCheckoutRequest() {
+  return (dispatch) => {
+    dispatch(request());
+
+    receiptServices.getAll().then(
       (data) => dispatch(success(data["data"])),
       (error) => dispatch(failure(error.toString()))
     );

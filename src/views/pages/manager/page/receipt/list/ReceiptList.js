@@ -6,6 +6,8 @@ import { receiptActions } from "../../../../../../actions/receipt.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
+import { dateUltils } from "../../../../../../utilities/date.ultil";
+import CheckoutRequestModal from "./CheckoutRequest";
 
 function ReceiptList(props) {
   const dispatch = useDispatch();
@@ -132,7 +134,14 @@ function ReceiptList(props) {
       },
     },
 
-    { field: "createdAt", headerName: "Ngày tạo", width: 150 },
+    {
+      field: "createdAt",
+      headerName: "Ngày tạo",
+      width: 150,
+      valueFormatter: (params) => {
+        return dateUltils.fortmatToVietNameDay(params.value);
+      },
+    },
   ];
 
   const rowDocs = rawData.map((item, index) => {
@@ -162,8 +171,35 @@ function ReceiptList(props) {
   const addReceiptOnClick = () => {
     navigate("/quan-ly/hoa-don/new");
   };
+
+  const requestCheckoutList = rowDocs.filter((item) => {
+    return item.payMethod && item.payMethod != 1;
+  });
+
+  const [requestModal, setRequestModal] = useState(false);
   return (
     <div className="manager-container">
+      {requestCheckoutList.length > 0 && (
+        <span
+          onClick={() => setRequestModal(true)}
+          style={{
+            right: "166px",
+            backgroundColor: "#C00030",
+          }}
+          className="lw-btn"
+        >
+          Xác nhận thanh toán {`(${requestCheckoutList.length})`}
+        </span>
+      )}
+
+      {requestModal && (
+        <CheckoutRequestModal
+          requests={requestCheckoutList}
+          open={requestModal}
+          handleClose={() => setRequestModal(false)}
+        />
+      )}
+
       <span onClick={addReceiptOnClick} className="lw-btn">
         Tạo đơn hàng
       </span>

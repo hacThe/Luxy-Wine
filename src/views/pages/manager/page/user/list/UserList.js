@@ -5,9 +5,11 @@ import { userActions } from "../../../../../../actions/user.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
+import { dateUltils } from "../../../../../../utilities/date.ultil";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
+  { field: "id", headerName: "ID", width: 300 },
   { field: "name", headerName: "Tên người dùng", width: 300 },
   { field: "email", headerName: "Email", width: 150, flex: 1 },
   { field: "phone", headerName: "Số điện thoại", width: 150 },
@@ -28,7 +30,14 @@ const columnDocs = [
       return value == "user" ? "Người dùng" : "Quản trị viên";
     },
   },
-  { field: "createdAt", headerName: "Ngày tham gia", width: 150 },
+  {
+    field: "createdAt",
+    headerName: "Ngày tham gia",
+    width: 150,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
 ];
 function UserList(props) {
   const dispatch = useDispatch();

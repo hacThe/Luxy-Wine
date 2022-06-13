@@ -8,6 +8,7 @@ import { newsReducer } from "./news.reducer";
 import { voucherReducer } from "./voucher.reducer";
 import { receiptReducer } from "./receipt.reducer";
 import { bannerReducer } from "./banner.reducer";
+import { dashboardReducer } from "./dashboard.reducer";
 
 const rootReducer = combineReducers({
   appReducer, // appReducer
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   voucherReducer,
   receiptReducer,
   bannerReducer,
+  dashboardReducer,
 });
 
 export default rootReducer;

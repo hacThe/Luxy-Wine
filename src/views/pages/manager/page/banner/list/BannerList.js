@@ -5,6 +5,7 @@ import { bannerActions } from "../../../../../../actions/banner.actions";
 import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
+import { dateUltils } from "../../../../../../utilities/date.ultil";
 const bannerName = ["Trang chủ", "Rượu", "Combo", "Phụ kiện", "Khuyến mãi"];
 
 const columnDocs = [
@@ -36,7 +37,15 @@ const columnDocs = [
       );
     },
   },
-  { field: "updatedAt", headerName: "Ngày chỉnh sửa", width: 150, flex: 1 },
+  {
+    field: "updatedAt",
+    headerName: "Ngày chỉnh sửa",
+    width: 150,
+    flex: 1,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
 ];
 function BannerList(props) {
   const dispatch = useDispatch();

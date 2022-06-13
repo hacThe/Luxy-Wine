@@ -7,6 +7,7 @@ import { AiOutlineExport } from "react-icons/ai";
 import DataTableComponent from "../../../component/DataTableComponent";
 import { numberUtils } from "../../../../../../utilities";
 import "./ProductList.scss";
+import { dateUltils } from "../../../../../../utilities/date.ultil";
 const columnDocs = [
   // {field: , headerName: , width: }
   { field: "stt", headerName: "STT", width: 50 },
@@ -44,8 +45,22 @@ const columnDocs = [
   },
   { field: "quantity", headerName: "Số lượng", width: 150 },
   { field: "producer", headerName: "Nhà sản xuất", width: 150 },
-  { field: "experation", headerName: "Hạn sử dụng", width: 150 },
-  { field: "createdAt", headerName: "Ngày nhập", width: 150 },
+  {
+    field: "experation",
+    headerName: "Hạn sử dụng",
+    width: 150,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
+  {
+    field: "createdAt",
+    headerName: "Ngày nhập",
+    width: 150,
+    valueFormatter: (params) => {
+      return dateUltils.fortmatToVietNameDay(params.value);
+    },
+  },
 ];
 function ProductList(props) {
   const dispatch = useDispatch();
