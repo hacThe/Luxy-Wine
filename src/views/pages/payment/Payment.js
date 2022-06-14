@@ -45,8 +45,17 @@ function Payment() {
         navigate('/gio-hang');
     }
 
+    const getTotalImportPrice = (products) => {
+        var importPrice = 0;
+        console.log("products: ", products);
+        products.forEach(element => {
+            importPrice += element.product.importPrice * element.quantity;
+        });
+        return importPrice;
+    }
+
     const handleSubmit = (values) => {
-        if ((!province.code || !district.code || !ward.code ) && !isLoggedIn) {
+        if ((!province.code || !district.code || !ward.code) && !isLoggedIn) {
             setAddressError("Invalid transfer address");
             return;
         }
@@ -54,10 +63,13 @@ function Payment() {
             alert('Giỏ hàng không có sản phẩm')
             return;
         }
-        if(isLoggedIn && userInfo?.address.length < 1){
+        if (isLoggedIn && userInfo?.address.length < 1) {
             alert('Vui lòng thêm địa chỉ giao hàng')
             return;
         }
+        const totalImport = getTotalImportPrice(products);
+        console.log('import: ', totalImport);
+
         const receipt = isLoggedIn ?
             {
                 creater: userInfo._id, // ID người tạo, nullable
@@ -73,6 +85,7 @@ function Payment() {
                 voucher: null, // Object id của voucher.
                 cart: products,
                 totalPrice: totalPrice,
+                profit: totalPrice - totalImport,
                 status: 1, //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
                 payMethod: payMethod,
             }
@@ -89,7 +102,8 @@ function Payment() {
                 }, // Tên và địa chỉ người nhận hàng.
                 voucher: null, // Object id của voucher.
                 cart: products,
-                totalPrice: totalPrice,
+                totalPrice: totalPrice - totalImport,
+                profit: totalPrice,
                 status: 1, //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
                 payMethod: payMethod,
             }

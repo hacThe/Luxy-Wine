@@ -1,7 +1,7 @@
 import { userConstants } from "../constaint";
 import { cookiesUtil } from "../utilities";
 
-let currentUser = cookiesUtil.getCurrentUser();
+const currentUser = cookiesUtil.getCurrentUser();
 const initialState = currentUser
   ? {
       loading: false,
@@ -9,6 +9,7 @@ const initialState = currentUser
       logedUser: currentUser,
       user: undefined,
       productsInCart: [],
+      userReceipts: []
     }
   : { loading: false, isLoggedIn: false, productsInCart: [] };
 // logedUser lưu thông tin user đang đăng nhập, user lưu thông tin user đc get one về
@@ -196,7 +197,25 @@ export function userReducer(state = initialState, action) {
         isLoading: false,
         error: action.error,
       };
-
+      case userConstants.GET_RECEIPTS_REQUEST:
+        return {
+          ...state,
+          isLoading: true,
+          error: false,
+        };
+      case userConstants.GET_RECEIPTS_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          userReceipts: action.receipts,
+          error: false,
+        };
+      case userConstants.GET_RECEIPTS_FAILURE:
+        return {
+          ...state,
+          isLoading: false,
+          error: action.error,
+        };
     default:
       return state;
   }

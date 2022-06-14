@@ -15,7 +15,8 @@ export const userActions = {
   deleteMany,
   addToCart,
   editCart,
-  getProductsInCart
+  getProductsInCart, 
+  getUserReceipt,
 };
 
 /// này là hàm login
@@ -26,7 +27,8 @@ function login(email, password, callback) {
       (user) => {
         console.log("login successfully", user);
         cookiesUtil.setAccessToken(user.token);
-        cookiesUtil.setCurrentUser(user.user);
+        cookiesUtil.setCurrentUser({ ...user.user, address: [] });
+
         dispatch(success(user.user));
         if (callback) {
           callback();
@@ -185,7 +187,7 @@ function getAll() {
   }
 }
 
-function update(values) {
+function update(values, callback) {
   return (dispatch) => {
     dispatch(request());
 
@@ -193,6 +195,9 @@ function update(values) {
       () => {
         dispatch(success())
         dispatch(userActions.getCurrent())
+        if (callback) {
+          callback();
+        }
       },
       (error) => dispatch(failure(error.toString()))
     );
@@ -423,5 +428,29 @@ function getProductsInCart() {
   }
   function failure(error) {
     return { type: userConstants.GET_PRODUCTS_IN_CART_FAILURE, error };
+  }
+}
+
+function getUserReceipt() {
+  return (dispatch) => {
+    dispatch(request());
+    usersServices.getUserReceipt().then(
+      (data)=>{
+        dispatch(success(data['data']))
+      },
+      (error)=>{
+        dispatch(failure(error));
+      }
+    )
+  }
+
+  function request() {
+    return { type: userConstants.GET_RECEIPTS_REQUEST };
+  }
+  function success(receipts) {
+    return { type: userConstants.GET_RECEIPTS_SUCCESS, receipts };
+  }
+  function failure(error) {
+    return { type: userConstants.GET_RECEIPTS_FAILURE, error };
   }
 }

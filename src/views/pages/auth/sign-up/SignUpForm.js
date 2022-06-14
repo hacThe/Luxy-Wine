@@ -9,14 +9,14 @@ function SignUpForm(props) {
     initialValues: {
       password: "",
       repassword: "",
-      fullname: "",
+      name: "",
       email: "",
       phone: "",
       birthday: "",
       gender: "nam"
     },
     validationSchema: Yup.object({
-      fullname: Yup.string().required("Vui lòng nhập họ và tên"),
+      name: Yup.string().required("Vui lòng nhập họ và tên"),
       password: Yup.string()
         .required("Vui lòng nhập mật khẩu")
         .matches(
@@ -58,16 +58,16 @@ function SignUpForm(props) {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="fullname">Họ và tên</label>
+          <label htmlFor="name">Họ và tên</label>
           <input
             type="text"
-            id="fullname"
-            name="fullname"
-            value={formik.values.fullname}
+            id="name"
+            name="name"
+            value={formik.values.name}
             onChange={formik.handleChange}
           />
-          {formik.errors.fullname && formik.touched.fullname && (
-            <p className="input-error-validation"> {formik.errors.fullname} </p>
+          {formik.errors.name && formik.touched.name && (
+            <p className="input-error-validation"> {formik.errors.name} </p>
           )}
         </div>
 
