@@ -8,16 +8,9 @@ const SpecialProducts = React.lazy(() =>
 const Accessories = React.lazy(() =>
   import("./views/pages/accessories/Accessories")
 );
-const Product = React.lazy(() =>
-  import("./views/pages/product/Product")
-);
-const Cart = React.lazy(() =>
-  import("./views/pages/cart/Cart")
-);
-const Payment = React.lazy(() =>
-  import("./views/pages/payment/Payment")
-);
-
+const Product = React.lazy(() => import("./views/pages/product/Product"));
+const Cart = React.lazy(() => import("./views/pages/cart/Cart"));
+const Payment = React.lazy(() => import("./views/pages/payment/Payment"));
 
 const Dashboard = React.lazy(() =>
   import("./views/pages/manager/page/dashboard/Dashboard")
@@ -94,6 +87,8 @@ const EditBanner = React.lazy(() =>
   import("./views/pages/manager/page/banner/edit/EditBanner")
 );
 
+const Search = React.lazy(() => import("./views/pages/search/Search"));
+
 const publicRoute = [
   // {path: '/trang-chu', name: 'Trang chủ', element: <Homepage/>},
   // {path: '/san-pham', name: 'Sản phẩm', element: <Products/>},
@@ -117,6 +112,7 @@ const commonRoute = [
   },
   { path: "/gio-hang", name: "Giỏ hàng", element: <Cart /> },
   { path: "/thanh-toan", name: "Thanh toán", element: <Payment /> },
+  { path: "/tim-kiem", name: "Thanh toán", element: <Search /> },
 ];
 
 const protectedRoute = [];

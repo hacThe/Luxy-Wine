@@ -66,10 +66,10 @@ function HoverContent(props) {
   const handleAddToCart = (id) => {
     const cartItem = {
       product: id,
-      quantity: 1
-    }
+      quantity: 1,
+    };
     dispatch(userActions.addToCart(cartItem));
-  }
+  };
 
   return (
     <>

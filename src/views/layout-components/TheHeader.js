@@ -28,7 +28,7 @@ const TheHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const param = useParams();
-
+  const [searchKey, setSearchKey] = useState("");
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const currentUser = useSelector((state) => state.userReducer.logedUser) || {};
   useEffect(() => {
@@ -41,6 +41,11 @@ const TheHeader = () => {
     dispatch(bannerActions.getAll());
   }, []);
 
+  function handleSearch(e) {
+    e.preventDefault();
+    console.log(searchKey);
+    navigate(`/tim-kiem?key=${searchKey}`);
+  }
   function HandleLogOutOnClick() {
     console.log("Click", appActions);
     dispatch(
@@ -187,14 +192,22 @@ const TheHeader = () => {
                   </NavLink>
                 </Nav>
                 <div className="form-wrapper">
-                  <Form className="form-search d-flex">
+                  <Form
+                    onSubmit={(e) => {
+                      handleSearch(e);
+                    }}
+                    className="form-search d-flex"
+                  >
                     <FormControl
+                      name="search"
+                      value={searchKey}
+                      onChange={(e) => setSearchKey(e.target.value)}
                       type="search"
                       placeholder="Tìm kiếm..."
                       aria-label="Search"
                       className="ms-3"
                     />
-                    <Button className="btn-search">
+                    <Button type="submit" className="btn-search">
                       <GoSearch />
                     </Button>
                   </Form>

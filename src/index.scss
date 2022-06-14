@@ -135,6 +135,7 @@ button {
   border-radius: 1px;
   background-color: var(--primary-color);
   color: white;
+  border: 1px solid var(--primary-color);
   transition: all 0.2s;
   &:hover {
     cursor: pointer;

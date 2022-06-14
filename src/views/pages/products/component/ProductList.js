@@ -67,7 +67,7 @@ function ProductList(props) {
       <Container className="product-list-header-wrapper">
         <div className="product-list-header">
           <div className="product-sort">
-            <label>Sấp xếp theo: </label>
+            <label>Sắp xếp theo: </label>
             <select
               onChange={(e) => {
                 setSortProduct(e.target.value);

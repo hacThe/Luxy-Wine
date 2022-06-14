@@ -1,16 +1,16 @@
-.product-list-wrapper {
-  min-width: 104rem;
-
-  .product-list-header-wrapper {
-    display: flex;
-    justify-content: center;
-    max-width: 140rem;
-    align-items: center;
-    padding: 0rem 2.8rem;
+.search-wrapper {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-top: 11rem;
+  .search-title {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 12px;
   }
 
   .product-list-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
@@ -23,13 +23,14 @@
         font-weight: 600;
         font-size: 16px;
         line-height: 20px;
+        margin: 0;
         margin-right: 2rem;
         color: #000000;
       }
 
       select {
         width: 15rem;
-        height: 3rem;
+        height: 4rem;
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
@@ -62,15 +63,23 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 140rem;
-    min-width: 104rem;
-    padding: 1.8rem;
+    padding: 0;
+    max-width: 100%;
+    margin-left: -8px;
+    margin-right: -8px;
+
+    .py-3 {
+    }
 
     .product-list-footer {
       display: flex;
       justify-content: center;
       width: 100%;
       padding-top: 1.5rem;
+    }
+
+    .product-card.discount-product {
+      padding: 0 8px;
     }
   }
 }
