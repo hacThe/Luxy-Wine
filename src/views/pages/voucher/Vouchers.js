@@ -1,15 +1,16 @@
-
 import { Banner } from '../../component/BannerProduct'
 import { Container } from 'react-bootstrap'
-import { BlogList } from './component/BlogList'
-import { SuggestProduct } from './../../component/SuggestProduct'
-import './Blogs.scss'
+import { SuggestProduct } from '../../component/SuggestProduct'
+import { VoucherList } from './component/VoucherList'
+import { OnSaleProducts } from './component/OnSaleProduct'
+import './Vouchers.scss'
 
 function Blogs(){
     return(
-        <Container className='blogs-wrapper'>
+        <Container className='vouchers-wrapper'>
             <Banner url='https://perdeberg.co.za/wp-content/uploads/2020/09/Perdeberg_landing-new-size-11-scaled.jpg'/>
-            <BlogList />
+            <VoucherList />
+            <OnSaleProducts />
             <SuggestProduct />
         </Container>
     )

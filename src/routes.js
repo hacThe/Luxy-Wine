@@ -30,6 +30,11 @@ const Blog = React.lazy(()=>
   import ("./views/pages/blog/Blog")
 )
 
+const Voucher = React.lazy(()=>
+  import ("./views/pages/voucher/Vouchers")
+)
+
+
 
 const Dashboard = React.lazy(() =>
   import("./views/pages/manager/page/dashboard/Dashboard")
@@ -131,6 +136,8 @@ const commonRoute = [
   { path: "/thanh-toan", name: "Thanh toán", element: <Payment /> },
   { path: "/tin-tuc", name: "Tin tức", element: <Blogs /> },
   { path: "/tin-tuc/:id", name: "Tin tức", element: <Blog /> },
+  { path: "/khuyen-mai", name: "Khuyến mãi", element: <Voucher /> },
+
 ];
 
 const protectedRoute = [
