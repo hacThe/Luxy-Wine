@@ -104,7 +104,7 @@ const TheHeader = () => {
           <div className="nav-1b">
             <Nav as="ul">
               <Nav.Item as="li">
-                <NavLink to={`/404`}>
+                <NavLink to={`/tra-cuu-don-hang`}>
                   <MdOutlineReceiptLong />
                   Tra cứu đơn hàng
                 </NavLink>

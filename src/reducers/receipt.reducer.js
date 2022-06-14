@@ -46,6 +46,7 @@ export function receiptReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+        receipt: {},
         error: action.error,
       };
 
@@ -68,7 +69,7 @@ export function receiptReducer(state = initialState, action) {
         isLoading: false,
         error: action.error,
       };
-      case receiptConstants.CREATE_ONE_REQUEST:
+    case receiptConstants.CREATE_ONE_REQUEST:
       return {
         ...state,
         isLoading: true,

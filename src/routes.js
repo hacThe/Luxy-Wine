@@ -88,6 +88,9 @@ const EditBanner = React.lazy(() =>
 );
 
 const Search = React.lazy(() => import("./views/pages/search/Search"));
+const OrderLookup = React.lazy(() =>
+  import("./views/pages/orderLookup/OrderLookup")
+);
 
 const publicRoute = [
   // {path: '/trang-chu', name: 'Trang chủ', element: <Homepage/>},
@@ -113,6 +116,7 @@ const commonRoute = [
   { path: "/gio-hang", name: "Giỏ hàng", element: <Cart /> },
   { path: "/thanh-toan", name: "Thanh toán", element: <Payment /> },
   { path: "/tim-kiem", name: "Thanh toán", element: <Search /> },
+  { path: "/tra-cuu-don-hang", name: "Thanh toán", element: <OrderLookup /> },
 ];
 
 const protectedRoute = [];
