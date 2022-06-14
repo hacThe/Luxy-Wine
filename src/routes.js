@@ -20,6 +20,9 @@ const Payment = React.lazy(() =>
 const Profile = React.lazy(()=>
   import ("./views/pages/profile/Profile")
 )
+const Receipt = React.lazy(()=>
+  import ("./views/pages/receipt/Receipt")
+)
 
 
 const Dashboard = React.lazy(() =>
@@ -123,7 +126,8 @@ const commonRoute = [
 ];
 
 const protectedRoute = [
-  {path: "/thong-tin-tai-khoan", name: "Thông tin tài khoản", element: <Profile />}
+  {path: "/thong-tin-tai-khoan", name: "Thông tin tài khoản", element: <Profile />},
+  {path: "/chi-tiet-hoa-don/:id", name: "Chi tiết hóa đơn", element: <Receipt />},
 ];
 
 const managerRoute = [

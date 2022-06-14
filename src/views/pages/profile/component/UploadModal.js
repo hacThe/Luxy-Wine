@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Button, Modal, Box, Typography, Avatar } from "@mui/material";
+import { Button, Modal, Box, Avatar } from "@mui/material";
 import { MdOutlinePhotoCamera } from "react-icons/md";
 import { GrClose } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../../actions";
 import './UploadModal.scss'
-//import { storage } from "./../../../../firebase";
-//import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { firebaseStorageServices } from '../../../../services/firebaseStorage.services';
 

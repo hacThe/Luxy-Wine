@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
 import './TransactionTable.scss';
 
@@ -53,19 +54,20 @@ const datagridSx = {
 
 
 const TransactionTable = ({ rowDocs, columnDocs, filter }) => {
-
+    const navigate = useNavigate();
     const onCellClick = (params, event) => {
         console.log("id selected: ", params.id);
+        navigate('/chi-tiet-hoa-don/' + params.id);
     }
 
     const getShowingData = (filter) => {
-        if (filter == "") return rowDocs;
+        if (filter === "") return rowDocs;
         var res = [];
-        rowDocs.map((rowDoc) => {
+        rowDocs.forEach((rowDoc) => {
             var vals = Object.values(rowDoc);
             var isFind = false;
             vals.forEach(val => {
-                if (val.toString().indexOf(filter) != -1) {
+                if (val.toString().indexOf(filter) !== -1) {
                     isFind = true;
                 }
             });

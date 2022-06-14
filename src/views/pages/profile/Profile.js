@@ -12,7 +12,6 @@ import { userActions } from '../../../actions';
 
 function Profile() {
     const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.userReducer.logedUser) || {}
     const userReceipts = useSelector(state => state.userReducer.userReceipts) || {}
     const dataBread = [
         {
@@ -50,38 +49,22 @@ function Profile() {
                     receipt_status_2: params.value === "Đã xác nhận",
                     receipt_status_3: params.value === "Đang giao",
                     receipt_status_4: params.value === "Đã nhận hàng",
-                    receipt_status_5: params.value === "Boom hàng",
+                    receipt_status_5: params.value === "Không nhận hàng",
                 });
             }
         },
         { field: "ngaytao", headerName: "Ngày tạo", width: 150 },
     ];
 
-
+    const receiptStatus = ["Đã hủy", "Chờ xác nhận", "Đã xác nhận", "Đang giao", "Đã nhận hàng", "Không nhận hàng"];
     const rowDocs = [];
-    userReceipts?.map((value, _index) => {
+    userReceipts?.forEach((value, _index) => {
         const time = new Date(value.createdAt);
         var sosp = 0;
-        value.cart.map((val, idx) => {
+        value.cart.forEach((val, idx) => {
             sosp += val.quantity;
         });
         //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
-        var trangthai = '';
-        switch (value.status) {
-            case 0: trangthai = "Đã hủy";
-                break;
-            case 1: trangthai = "Chờ xác nhận";
-                break;
-            case 2: trangthai = "Đã xác nhận";
-                break;
-            case 3: trangthai = "Đang giao";
-                break;
-            case 4: trangthai = "Đã nhận hàng";
-                break;
-            case 5: trangthai = "Boom hàng";
-                break;
-            default: break;
-        }
 
         rowDocs.push({
             id: value._id,
@@ -89,7 +72,7 @@ function Profile() {
             receiptcode: value.shippingCode,
             sosp: sosp,
             totalprice: formatter.format(value.totalPrice),
-            trangthai: trangthai,
+            trangthai: receiptStatus[value.status],
             ngaytao:
                 time.getDate() +
                 "-" +
