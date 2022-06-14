@@ -1,7 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { SuggestProduct } from '../../component/SuggestProduct';
 import { Breadcrumb } from '../../component/Breadcrumb'
-import { ContactForm } from "../../component/ContactForm";
 import { CartItem } from "./component/CartItem";
 import './Cart.scss'
 import { useEffect, useRef, useState } from "react";
@@ -87,7 +86,6 @@ function Cast() {
                     </div>
                 </Col>
             </Row>
-            <ContactForm />
             <SuggestProduct />
         </Container>
     )

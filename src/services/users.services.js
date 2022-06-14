@@ -17,6 +17,7 @@ export const usersServices = {
   addToCart,
   editCart,
   getProductsInCart,
+  getUserReceipt,
 };
 
 function login(email, password) {
@@ -91,5 +92,11 @@ function editCart(value) {
 function getProductsInCart(cart) {
   return handleResponse(
     ajaxHelper.post(config.URL_PRODUCT + '/getProductsInCart', { cart }, options())
+  );
+}
+
+function getUserReceipt(params = {}) {
+  return handleResponse(
+    ajaxHelper.get(config.URL_RECEIPT + '/getUserReceipt', {}, options())
   );
 }

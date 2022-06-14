@@ -11,6 +11,8 @@ const Accessories = React.lazy(() =>
 const Product = React.lazy(() => import("./views/pages/product/Product"));
 const Cart = React.lazy(() => import("./views/pages/cart/Cart"));
 const Payment = React.lazy(() => import("./views/pages/payment/Payment"));
+const Profile = React.lazy(() => import("./views/pages/profile/Profile"));
+const Receipt = React.lazy(() => import("./views/pages/receipt/Receipt"));
 
 const Dashboard = React.lazy(() =>
   import("./views/pages/manager/page/dashboard/Dashboard")
@@ -119,7 +121,18 @@ const commonRoute = [
   { path: "/tra-cuu-don-hang", name: "Thanh toán", element: <OrderLookup /> },
 ];
 
-const protectedRoute = [];
+const protectedRoute = [
+  {
+    path: "/thong-tin-tai-khoan",
+    name: "Thông tin tài khoản",
+    element: <Profile />,
+  },
+  {
+    path: "/chi-tiet-hoa-don/:id",
+    name: "Chi tiết hóa đơn",
+    element: <Receipt />,
+  },
+];
 
 const managerRoute = [
   { path: "/quan-ly/dashboard", name: "Dashboard", element: <Dashboard /> },

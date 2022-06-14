@@ -176,7 +176,7 @@ const OrderLookup = () => {
             {`"${searchParams.get("q")}"`}
           </h1>
         ) : (
-          <div className="receipt-detail-wrapper">
+          <div className="order-detail-wrapper">
             <h1 className="search-title">
               Tìm thấy đơn hàng với mã hóa đơn {`"${receipt._id}"`}
             </h1>

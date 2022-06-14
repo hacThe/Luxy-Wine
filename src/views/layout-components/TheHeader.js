@@ -112,7 +112,7 @@ const TheHeader = () => {
               {isLoggedIn ? (
                 <>
                   <Nav.Item as="li">
-                    <NavLink to={`/404`}>
+                    <NavLink to={`/thong-tin-tai-khoan`}>
                       <FaUserCircle />
                       {currentUser?.email}
                     </NavLink>
