@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { GrView } from 'react-icons/gr'
 import './BlogCard.scss'
 
 function BlogCard(props) {
@@ -20,11 +21,14 @@ function BlogCard(props) {
                         <p>{time}</p>
                     </div>
                     <div>
-                        <p>{props.news.views}</p>
+                        <p>
+                            <GrView />
+                            {props.news.views}
+                        </p>
                     </div>
                 </div>
             </div>
-            <div className='hover-card' onClick={()=>navigate('/tin-tuc/' + props.news._id)}></div>
+            <div className='hover-card' onClick={() => navigate('/tin-tuc/' + props.news._id)}></div>
         </div>
     )
 }

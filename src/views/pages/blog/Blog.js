@@ -28,7 +28,7 @@ function Blog() {
         <Container className='blog-wrapper'>
             <Banner url='https://perdeberg.co.za/wp-content/uploads/2020/09/Perdeberg_landing-new-size-11-scaled.jpg' />
             <Row>
-                <Col xs={12} md={8}>
+                <Col xs={12} lg={8}>
                     <div className='blog-header'>
                         <p className='create-time'>{createTime}</p>
                         <p className='blog-title'>{news?.title}</p>
@@ -44,7 +44,7 @@ function Blog() {
                     </div>
                 </Col>
 
-                <Col xs={12} md={4}>
+                <Col xs={12} lg={4}>
                     <div className='suggest-news'>
                         <p className='suggest-title'>Bài viết đề xuất</p>
                         {
