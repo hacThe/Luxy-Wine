@@ -23,6 +23,12 @@ const Profile = React.lazy(()=>
 const Receipt = React.lazy(()=>
   import ("./views/pages/receipt/Receipt")
 )
+const Blogs = React.lazy(()=>
+  import ("./views/pages/blog/Blogs")
+)
+const Blog = React.lazy(()=>
+  import ("./views/pages/blog/Blog")
+)
 
 
 const Dashboard = React.lazy(() =>
@@ -123,6 +129,8 @@ const commonRoute = [
   },
   { path: "/gio-hang", name: "Giỏ hàng", element: <Cart /> },
   { path: "/thanh-toan", name: "Thanh toán", element: <Payment /> },
+  { path: "/tin-tuc", name: "Tin tức", element: <Blogs /> },
+  { path: "/tin-tuc/:id", name: "Tin tức", element: <Blog /> },
 ];
 
 const protectedRoute = [
