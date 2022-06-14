@@ -67,11 +67,7 @@ const Home = () => {
         <button
           onClick={() => {
             console.log("Click", appActions);
-            dispatch(
-              appActions.openConfirmDialog("Click me oke", () =>
-                navigate("/quan-ly/san-pham/")
-              )
-            );
+            dispatch(appActions.showSuccessToast("hehehehhe"));
           }}
         >
           Click me

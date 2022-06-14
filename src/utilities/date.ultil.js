@@ -3,7 +3,7 @@ export const dateUltils = {
 };
 
 function fortmatToVietNameDay(raw) {
-  console.log({ raw });
+  // console.log({ raw });
   if (!raw) return "";
   return dateFormat(raw, "dd/MM/yyyy");
 }

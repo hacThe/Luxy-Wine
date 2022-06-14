@@ -105,7 +105,7 @@ function ReceiptList(props) {
       headerName: "Số sản phẩm",
       width: 125,
       valueFormatter: (params) => {
-        return `${params.value.length}`;
+        return `${params.value?.length}`;
       },
     },
 
@@ -120,7 +120,7 @@ function ReceiptList(props) {
         return (
           <p
             style={{
-              color: "white",
+              color: "black",
               borderRadius: "5px",
               fontWeight: "bold",
               lineHeight: "40px",
@@ -129,7 +129,7 @@ function ReceiptList(props) {
               fontSize: "1.4rem",
               fontFamily: "Montserrat",
             }}
-          >{`${status + 1}. ${statusList[status].title}`}</p>
+          >{`${statusList[status].title}`}</p>
         );
       },
     },
@@ -173,13 +173,13 @@ function ReceiptList(props) {
   };
 
   const requestCheckoutList = rowDocs.filter((item) => {
-    return item.payMethod && item.payMethod != 1;
+    return item.status === 1 && item.payMethod && item.payMethod != 1;
   });
 
   const [requestModal, setRequestModal] = useState(false);
   return (
     <div className="manager-container">
-      {requestCheckoutList.length > 0 && (
+      {requestCheckoutList?.length > 0 && (
         <span
           onClick={() => setRequestModal(true)}
           style={{
@@ -188,13 +188,13 @@ function ReceiptList(props) {
           }}
           className="lw-btn"
         >
-          Xác nhận thanh toán {`(${requestCheckoutList.length})`}
+          Xác nhận thanh toán {`(${requestCheckoutList?.length})`}
         </span>
       )}
 
       {requestModal && (
         <CheckoutRequestModal
-          requests={requestCheckoutList}
+          requestsRaw={requestCheckoutList}
           open={requestModal}
           handleClose={() => setRequestModal(false)}
         />

@@ -322,12 +322,12 @@ function ReceiptDetail(props) {
         </div>
         <p className="infomation-content">
           <strong>Đơn vị vận chuyển: </strong>
-          {`${receipt.shippingUnit}`}
+          {`${receipt.shippingUnit ? receipt.shippingUnit : "Chưa cập nhật"}`}
         </p>
 
         <p className="infomation-content">
           <strong>Mã vận đơn: </strong>
-          {`${receipt.shippingCode}`}
+          {`${receipt.shippingCode ? receipt.shippingCode : "Chưa cập nhật"}`}
         </p>
       </div>
     </div>

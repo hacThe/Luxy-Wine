@@ -8,7 +8,45 @@ import LeadingIconButton from "../../../component/LeadingIconButton";
 import { AiOutlineExport } from "react-icons/ai";
 import { useState } from "react";
 
-function CheckoutRequestModal({ requests, open, handleClose }) {
+const statusList = [
+  { color: "#ff8b60", title: "Đã hủy" },
+  { color: "#ffb246", title: "Chờ xác nhận" },
+  { color: "#ffd84c", title: "Đã xác nhận" },
+  { color: "#a9d78c", title: "Đang giao hàng" },
+  { color: "#6bc8a3", title: "Đã nhận hàng" },
+  { color: "#f00", title: "Không nhận hàng" },
+];
+
+function CheckoutRequestModal({ requestsRaw, open, handleClose }) {
+  const handleDelete = (receipt) => {
+    delete receipt.id;
+    dispatch(
+      receiptActions.update({ ...receipt, status: 0 }, () => {
+        alert("Đã hủy");
+        dispatch(receiptActions.getAll());
+        setRequests(requests.filter((item) => item.id != receipt.id));
+        if (requests.length === 1) {
+          handleClose();
+        }
+      })
+    );
+  };
+  const [requests, setRequests] = useState(requestsRaw);
+
+  const handleConfirm = (receipt) => {
+    delete receipt.id;
+    dispatch(
+      receiptActions.update({ ...receipt, status: 2 }, () => {
+        alert("Đã xác nhận");
+        dispatch(receiptActions.getAll());
+        setRequests(requests.filter((item) => item.id != receipt.id));
+        if (requests.length === 1) {
+          handleClose();
+        }
+      })
+    );
+  };
+
   console.log({ requests, open, handleClose });
   const style = {
     position: "absolute",
@@ -83,6 +121,63 @@ function CheckoutRequestModal({ requests, open, handleClose }) {
       valueFormatter: (params) => {
         return dateUltils.fortmatToVietNameDay(params.value);
       },
+    },
+
+    {
+      field: "status",
+      headerName: "Trạng thái",
+      width: 200,
+      renderCell: (params) => {
+        const { status } = params.row;
+
+        //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã giao, 5: hoàn thành, 6: Giao không thành công
+        return (
+          <p
+            style={{
+              color: "black",
+              borderRadius: "5px",
+              fontWeight: "bold",
+              lineHeight: "40px",
+              padding: "0px 12px",
+              backgroundColor: `${statusList[status].color}`,
+              fontSize: "1.4rem",
+              fontFamily: "Montserrat",
+            }}
+          >{`${statusList[status].title}`}</p>
+        );
+      },
+    },
+
+    {
+      field: "action",
+      headerName: "Tùy chọn",
+      minWidth: 180,
+      renderCell: (params) => (
+        <div
+          style={{ width: "100%", paddingRight: "12px" }}
+          className="justify-content-between"
+        >
+          <span
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(params.row);
+            }}
+            style={{ marginRight: "12px" }}
+            className="lw-outline-btn danger"
+          >
+            Xóa
+          </span>
+          <span
+            onClick={(e) => {
+              e.stopPropagation();
+              handleConfirm(params.row);
+            }}
+            className="lw-btn"
+          >
+            Xác nhận
+          </span>
+        </div>
+      ),
     },
   ];
 

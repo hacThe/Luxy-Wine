@@ -10,6 +10,7 @@ import { receiptActions } from "../../../../../../actions/receipt.actions";
 import { useNavigate } from "react-router-dom";
 function SingleReceiptForm() {
   const [payMethod, setPayMethod] = useState(1);
+  console.log({ payMethod });
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [receiverInfo, setReceiverInfo] = useState({ name: undefined });
@@ -47,10 +48,10 @@ function SingleReceiptForm() {
     const totalPrice = cart.reduce((accumulate, crr) => {
       return accumulate + crr.product.price * crr.quantity;
     }, 0);
-    const originalPrice = cart.reduce((accumulate, crr) => {
+    const importPrice = cart.reduce((accumulate, crr) => {
       return accumulate + crr.product.importPrice * crr.quantity;
     }, 0);
-    const profit = totalPrice - originalPrice;
+    const profit = totalPrice - importPrice;
     console.log({ receiverInfo, cart, totalPrice, profit });
     dispatch(
       receiptActions.create(
@@ -59,8 +60,8 @@ function SingleReceiptForm() {
           cart,
           totalPrice,
           profit,
-          status: payMethod === 1 ? 1 : 2,
-          paymethod: payMethod,
+          status: 1,
+          payMethod: payMethod,
         },
         () => {
           navigate("/quan-ly/hoa-don");
@@ -286,11 +287,10 @@ function SingleReceiptForm() {
                 }}
               >
                 <input
-                  onSelect={() => setPayMethod(1)}
-                  value={1}
+                  onChange={() => setPayMethod(1)}
+                  value={payMethod === 2}
                   type="radio"
                   name="payMethod"
-                  checked="checked"
                 />
                 Thanh toán khi nhận hàng
               </label>
@@ -304,8 +304,8 @@ function SingleReceiptForm() {
                 }}
               >
                 <input
-                  onSelect={() => setPayMethod(2)}
-                  value={2}
+                  onChange={() => setPayMethod(2)}
+                  value={payMethod === 2}
                   type="radio"
                   name="payMethod"
                 />
@@ -322,8 +322,8 @@ function SingleReceiptForm() {
                 }}
               >
                 <input
-                  onSelect={() => setPayMethod(3)}
-                  value={3}
+                  value={payMethod === 2}
+                  onChange={() => setPayMethod(3)}
                   type="radio"
                   name="payMethod"
                 />

@@ -9,7 +9,7 @@ import { voucherReducer } from "./voucher.reducer";
 import { receiptReducer } from "./receipt.reducer";
 import { bannerReducer } from "./banner.reducer";
 import { dashboardReducer } from "./dashboard.reducer";
-
+import { toast } from "./toast.reducer";
 const rootReducer = combineReducers({
   appReducer, // appReducer
   userReducer,
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   receiptReducer,
   bannerReducer,
   dashboardReducer,
+  toast,
 });
 
 export default rootReducer;
