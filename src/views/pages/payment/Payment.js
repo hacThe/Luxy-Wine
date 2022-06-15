@@ -39,12 +39,13 @@ function Payment() {
     addressError: addressError,
     setAddressError: setAddressError,
   };
-  const afterPayment = () => {
+  const afterPayment = (receipt) => {
     alert("Đặt hàng thành công!!");
     if (!isLoggedIn) {
       cookiesUtil.removeProductCart();
     }
-    navigate("/gio-hang");
+    console.log("response: ", receipt);
+    navigate("/chi-tiet-hoa-don/" + receipt._id); 
   };
 
   const getTotalImportPrice = (products) => {
@@ -74,43 +75,43 @@ function Payment() {
 
     const receipt = isLoggedIn
       ? {
-          creater: userInfo._id, // ID người tạo, nullable
-          receiver: {
-            name: userInfo.address[currentAddress].name,
-            phone: userInfo.address[currentAddress].phone, // required
-            province: userInfo.address[currentAddress].province,
-            district: userInfo.address[currentAddress].district,
-            ward: userInfo.address[currentAddress].ward,
-            description: userInfo.address[currentAddress].description,
-            note: values.note,
-          }, // Tên và địa chỉ người nhận hàng.
-          voucher: values.voucher, // Object id của voucher.
-          cart: products,
-          totalPrice: totalPrice,
-          profit: totalPrice - totalImport,
-          status: 1, //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
-          payMethod: payMethod,
-        }
+        creater: userInfo._id, // ID người tạo, nullable
+        receiver: {
+          name: userInfo.address[currentAddress].name,
+          phone: userInfo.address[currentAddress].phone, // required
+          province: userInfo.address[currentAddress].province,
+          district: userInfo.address[currentAddress].district,
+          ward: userInfo.address[currentAddress].ward,
+          description: userInfo.address[currentAddress].description,
+          note: values.note,
+        }, // Tên và địa chỉ người nhận hàng.
+        voucher: values.voucher, // Object id của voucher.
+        cart: products,
+        totalPrice: totalPrice,
+        profit: totalPrice - totalImport,
+        status: 1, //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
+        payMethod: payMethod,
+      }
       : {
-          creater: null, // ID người tạo, nullable
-          receiver: {
-            name: values.fullname,
-            phone: values.phone, // required
-            province: province,
-            district: district,
-            ward: ward,
-            description: values.description,
-            note: values.note,
-          }, // Tên và địa chỉ người nhận hàng.
-          voucher: values.voucher, // Object id của voucher.
-          cart: products,
-          totalPrice: totalPrice - totalImport,
-          profit: totalPrice,
-          status: 1, //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
-          payMethod: payMethod,
-        };
+        creater: null, // ID người tạo, nullable
+        receiver: {
+          name: values.fullname,
+          phone: values.phone, // required
+          province: province,
+          district: district,
+          ward: ward,
+          description: values.description,
+          note: values.note,
+        }, // Tên và địa chỉ người nhận hàng.
+        voucher: values.voucher, // Object id của voucher.
+        cart: products,
+        totalPrice: totalPrice - totalImport,
+        profit: totalPrice,
+        status: 1, //0: bị hủy, 1: chờ xác nhận, 2: đã xác nhận, 3: đang giao. 4: đã nhận hàng, 6: boom hàng
+        payMethod: payMethod,
+      };
     console.log("receipt: ", receipt);
-    dispatch(receiptActions.create(receipt, afterPayment()));
+    dispatch(receiptActions.create(receipt, (response) => afterPayment(response)));
   };
 
   const paymentSchema = Yup.object().shape({
@@ -133,14 +134,14 @@ function Payment() {
         initialValues={
           isLoggedIn
             ? {
-                note: "",
-              }
+              note: "",
+            }
             : {
-                fullname: "",
-                phone: "",
-                description: "",
-                note: "",
-              }
+              fullname: "",
+              phone: "",
+              description: "",
+              note: "",
+            }
         }
         validationSchema={!isLoggedIn && paymentSchema}
         onSubmit={(values) => {
