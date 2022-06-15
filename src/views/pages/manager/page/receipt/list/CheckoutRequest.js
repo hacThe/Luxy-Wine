@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Modal } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { receiptActions } from "../../../../../../actions";
+import { appActions, receiptActions } from "../../../../../../actions";
 import DataTableComponent from "../../../component/DataTableComponent";
 import { dateUltils } from "../../../../../../utilities/date.ultil";
 import LeadingIconButton from "../../../component/LeadingIconButton";
@@ -22,7 +22,7 @@ function CheckoutRequestModal({ requestsRaw, open, handleClose }) {
     delete receipt.id;
     dispatch(
       receiptActions.update({ ...receipt, status: 0 }, () => {
-        alert("Đã hủy");
+        dispatch(appActions.showSuccessToast("Hủy thành công"));
         dispatch(receiptActions.getAll());
         setRequests(requests.filter((item) => item.id != receipt.id));
         if (requests.length === 1) {
@@ -37,7 +37,7 @@ function CheckoutRequestModal({ requestsRaw, open, handleClose }) {
     delete receipt.id;
     dispatch(
       receiptActions.update({ ...receipt, status: 2 }, () => {
-        alert("Đã xác nhận");
+        dispatch(appActions.showSuccessToast("Xác nhận thành công"));
         dispatch(receiptActions.getAll());
         setRequests(requests.filter((item) => item.id != receipt.id));
         if (requests.length === 1) {

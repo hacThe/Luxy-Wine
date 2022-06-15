@@ -1,3 +1,4 @@
+import { appActions } from ".";
 import { userConstants } from "../constaint";
 import { usersServices } from "../services";
 import { cookiesUtil } from "../utilities";
@@ -35,7 +36,7 @@ function login(email, password, callback) {
         }
       },
       (error) => {
-        alert(error);
+        dispatch(appActions.showFailToast(error));
         dispatch(failure(error.toString()));
       }
     );

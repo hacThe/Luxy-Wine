@@ -113,7 +113,7 @@ function ReceiptDetail(props) {
     if (receiptStatus != receipt.status) {
       dispatch(
         receiptActions.update({ ...receipt, status: receiptStatus }, () => {
-          alert("Sửa thành công");
+          dispatch(appActions.showSuccessToast("Sửa thành công"));
         })
       );
     }
@@ -315,7 +315,7 @@ function ReceiptDetail(props) {
           </span>
           <span style={{ fontWeight: "bold" }} className="money-formatter">
             {(
-              cartItems.reduce((accumulate, crr) => {
+              cartItems?.reduce((accumulate, crr) => {
                 return crr.total + accumulate;
               }, 0) +
                 50000 -
