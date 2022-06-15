@@ -188,10 +188,10 @@ const TheHeader = () => {
                   <NavLink to={`/phu-kien`} role="button" className="nav-link">
                     Phụ kiện
                   </NavLink>
-                  <NavLink to={`/404`} role="button" className="nav-link">
+                  <NavLink to={`/khuyen-mai`} role="button" className="nav-link">
                     Khuyến mãi
                   </NavLink>
-                  <NavLink to={`/404`} role="button" className="nav-link">
+                  <NavLink to={`/tin-tuc`} role="button" className="nav-link">
                     Tin tức
                   </NavLink>
                 </Nav>

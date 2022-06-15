@@ -112,7 +112,7 @@ function Receipt(props) {
     useEffect(() => {
         dispatch(receiptActions.getOne(id));
         dispatch(productActions.getAll());
-    }, []);
+    }, [id]);
 
     console.log(receipt);
     return (

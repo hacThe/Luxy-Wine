@@ -29,7 +29,7 @@ function Product() {
 
     useEffect(() => {
         dispatch(productActions.getOne(productID));
-    }, [])
+    }, [productID])
 
     return (
         isLoading ? <h1 style={{marginTop: "12rem"}}>Loading.......</h1>:

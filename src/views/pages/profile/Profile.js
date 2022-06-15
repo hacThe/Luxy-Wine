@@ -12,7 +12,7 @@ import { userActions } from '../../../actions';
 
 function Profile() {
     const dispatch = useDispatch();
-    const userReceipts = useSelector(state => state.userReducer.userReceipts) || {}
+    const userReceipts = useSelector(state => state.userReducer.userReceipts) || []
     const dataBread = [
         {
             name: 'Trang cá nhân',

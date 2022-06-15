@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { productActions } from "../../../../actions/product.actions";
-import { Container } from "react-bootstrap";
 import { ProductComponent } from "../../../component/product-component/ProductComponent";
 import { PaginationCustom } from "../../../component/PaginationCustom";
-import "./AccessoryList.scss";
+import { Container } from "react-bootstrap";
+import "./OnSaleProduct.scss";
 
-function AccessoryList(props) {
+function OnSaleProducts(props) {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productReducer.products) || [];
+  const list = useSelector((state) => state.productReducer.products) || [];
   const isLoading = useSelector((state) => state.productReducer.isLoading);
   const [currentPage, setCurrentPage] = useState(1);
   const elementPerPage = 10;
   const [sortProduct, setSortProduct] = useState("name");
   useEffect(() => {
-    dispatch(productActions.getListAccessary());
+    dispatch(productActions.getListSpecialProduct());
   }, []);
+  var products = [];
+
+  list.forEach((element) => {
+    if (element.price < element.originPrice) products.push(element);
+  });
 
   switch (sortProduct) {
     case "name":
@@ -59,10 +64,11 @@ function AccessoryList(props) {
     <h1 style={{ marginTop: "12rem" }}>Loading............</h1>
   ) : (
     <Container className="product-list-wrapper">
+      <h1 className="title-on-sale">Sản phẩm đang khuyến mãi</h1>
       <Container className="product-list-header-wrapper">
         <div className="product-list-header">
           <div className="product-sort">
-            <label>Sắp xếp theo: </label>
+            <label>Sấp xếp theo: </label>
             <select
               onChange={(e) => {
                 setSortProduct(e.target.value);
@@ -106,4 +112,4 @@ function AccessoryList(props) {
   );
 }
 
-export { AccessoryList };
+export { OnSaleProducts };
