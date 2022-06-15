@@ -153,7 +153,8 @@
 
       .card {
         text-align: start;
-        background-color: #494949;
+        border-radius: 1px;
+        background-color: #242424;
         color: #ffffff;
         margin: 10px 0px !important;
         max-width: 100rem;
@@ -194,6 +195,7 @@
             font-weight: 400;
             font-size: 18px;
             line-height: 22px;
+            color: #b6b6b6;
           }
         }
       }

@@ -8,7 +8,7 @@ import "./SpecialProductList.scss";
 function SpecialProductList(props) {
   const products = props.products;
   const [currentPage, setCurrentPage] = useState(1);
-  const elementPerPage = 8;
+  const elementPerPage = 10;
   const [sortProduct, setSortProduct] = useState("name");
   const isLoading = useSelector((state) => state.productReducer.isLoading);
 

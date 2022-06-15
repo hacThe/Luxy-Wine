@@ -61,7 +61,9 @@ function OnSaleProducts(props) {
   );
 
   return isLoading ? (
-    <h1 style={{ marginTop: "12rem" }}>Loading............</h1>
+    <h1 style={{ fontSize: "1.8rem", marginTop: "12rem" }}>
+      Loading............
+    </h1>
   ) : (
     <Container className="product-list-wrapper">
       <h1 className="title-on-sale">Sản phẩm đang khuyến mãi</h1>

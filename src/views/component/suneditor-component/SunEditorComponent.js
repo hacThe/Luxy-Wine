@@ -81,7 +81,7 @@ const SuneditorComponent = ({
         }}
         setContents={initialContent}
         onChange={contentOnChange}
-        onImageUploadBefore={onImageUploadBefore}
+        // onImageUploadBefore={onImageUploadBefore}
       />
     </div>
   );
