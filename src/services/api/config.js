@@ -1,6 +1,7 @@
 // thay đổi api way ở đây nek
-const URL_SYSTEM_V1 = "http://localhost:5000/api";
-//http://localhost:5000/api/auth/login
+// const URL_SYSTEM_V1 = "http://localhost:5000/api";
+const URL_SYSTEM_V1 = "https://luxy-wine-be.herokuapp.com/api";
+//https://luxy-wine-be.herokuapp.com/
 export default {
   URL_LOGIN: URL_SYSTEM_V1 + "/auth/login",
   URL_REGISTER: URL_SYSTEM_V1 + "/auth/register",
