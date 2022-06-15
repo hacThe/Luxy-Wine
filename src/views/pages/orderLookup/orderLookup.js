@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Banner } from "../../component/BannerProduct";
 import { SuggestProduct } from "../../component/SuggestProduct";
-import "./orderLookup.scss";
+import "./OrderLookup.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   bannerActions,

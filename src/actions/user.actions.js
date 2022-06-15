@@ -341,7 +341,7 @@ function editCart(value) {
             ];
             cookiesUtil.setProductCart(JSON.stringify(newCart));
             dispatch(userActions.getProductsInCart());
-            alert("edit cart successfully, quantity: " + value.quantity);
+           // alert("edit cart successfully, quantity: " + value.quantity);
           } else {
             const newCart = [
               ...cart.slice(0, productExist),
@@ -359,7 +359,7 @@ function editCart(value) {
         (data) => {
           dispatch(success(data.user));
           dispatch(userActions.getProductsInCart());
-          alert("edit user cart succesfully: quantity " + value.quantity);
+          //alert("edit user cart succesfully: quantity " + value.quantity);
         },
         (error) => {
           dispatch(failure(error.toString()));

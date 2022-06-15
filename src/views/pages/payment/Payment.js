@@ -44,7 +44,8 @@ function Payment() {
     if (!isLoggedIn) {
       cookiesUtil.removeProductCart();
     }
-    navigate("/gio-hang");
+    console.log("response: ", receipt);
+    navigate("/chi-tiet-hoa-don/" + receipt._id);
   };
 
   const getTotalImportPrice = (products) => {
@@ -110,7 +111,9 @@ function Payment() {
           payMethod: payMethod,
         };
     console.log("receipt: ", receipt);
-    dispatch(receiptActions.create(receipt, afterPayment()));
+    dispatch(
+      receiptActions.create(receipt, (response) => afterPayment(response))
+    );
   };
 
   const paymentSchema = Yup.object().shape({
