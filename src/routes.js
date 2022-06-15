@@ -95,7 +95,7 @@ const EditBanner = React.lazy(() =>
 
 const Search = React.lazy(() => import("./views/pages/search/Search"));
 const OrderLookup = React.lazy(() =>
-  import("./views/pages/orderLookup/OrderLookup")
+  import("./views/pages/orderLookup/orderLookup")
 );
 
 const publicRoute = [
