@@ -63,7 +63,7 @@ function UserList(props) {
   };
 
   const editCourseHandleOnClick = (e) => {
-    navigate(`/quan-ly/nguoi-dung/${e.id}`);
+    navigate(`/quan-ly/nguoi-dung/edit/${e.id}`);
   };
 
   const addUserOnClick = () => {

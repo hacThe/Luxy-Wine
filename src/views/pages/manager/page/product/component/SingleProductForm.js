@@ -517,7 +517,7 @@ function SingleLessonForm({ product, onSubmit }) {
                   </Grid>
                   <div className="input-field">
                     <label htmlFor="vintage">Năm sản xuất</label>
-                    <Field name="vintage" type="number" max="100" min="0" />
+                    <Field name="vintage" type="number" min="0" />
                     {errors.vintage && touched.vintage && (
                       <div>{errors.vintage}</div>
                     )}
@@ -542,7 +542,9 @@ function SingleLessonForm({ product, onSubmit }) {
                   </div>
                 </div>
               )}
-              <button style={{ display: "inline-block" }}>Lưu</button>
+              <button className="lw-btn" style={{ display: "inline-block" }}>
+                Lưu
+              </button>
               <button
                 style={{
                   display: "inline-block",
@@ -550,6 +552,7 @@ function SingleLessonForm({ product, onSubmit }) {
                   backgroundColor: "#a00",
                 }}
                 type="button"
+                className="lw-btn"
               >
                 Hủy
               </button>

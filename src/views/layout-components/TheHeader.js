@@ -50,7 +50,11 @@ const TheHeader = () => {
     console.log("Click", appActions);
     dispatch(
       appActions.openConfirmDialog("Bạn có muốn đăng xuất ?", () =>
-        dispatch(userActions.logout())
+        dispatch(
+          userActions.logout(() => {
+            navigate("/dang-nhap");
+          })
+        )
       )
     );
   }

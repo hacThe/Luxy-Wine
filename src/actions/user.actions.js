@@ -15,7 +15,7 @@ export const userActions = {
   deleteMany,
   addToCart,
   editCart,
-  getProductsInCart, 
+  getProductsInCart,
   getUserReceipt,
 };
 
@@ -78,12 +78,15 @@ function create(values, callback) {
   }
 }
 
-function logout() {
+function logout(callback) {
   return (dispatch) => {
     usersServices.logout();
-    cookiesUtil.remove('_JWT__');
-    cookiesUtil.remove('_USR__');
+    cookiesUtil.remove("_JWT__");
+    cookiesUtil.remove("_USR__");
     dispatch(success());
+    if (callback instanceof Function) {
+      callback();
+    }
   };
   function success() {
     return { type: userConstants.LOGOUT };
@@ -136,14 +139,13 @@ function getOne(id) {
   function request() {
     return { type: userConstants.GET_ONE_REQUEST };
   }
-  function success(product) {
-    return { type: userConstants.GET_ONE_SUCCESS, product };
+  function success(user) {
+    return { type: userConstants.GET_ONE_SUCCESS, user };
   }
   function failure(error) {
     return { type: userConstants.GET_ONE_FAILURE, error };
   }
 }
-
 
 function getCurrent() {
   return (dispatch) => {
@@ -193,8 +195,8 @@ function update(values, callback) {
 
     usersServices.update(values).then(
       () => {
-        dispatch(success())
-        dispatch(userActions.getCurrent())
+        dispatch(success());
+        dispatch(userActions.getCurrent());
         if (callback) {
           callback();
         }
@@ -270,39 +272,39 @@ function addToCart(value) {
           }
         });
         if (productExist > -1) {
-          const newCart = [...cart.slice(0, productExist), { product: value.product, quantity: value.quantity + cart[productExist].quantity }, ...cart.slice(productExist + 1)];
+          const newCart = [
+            ...cart.slice(0, productExist),
+            {
+              product: value.product,
+              quantity: value.quantity + cart[productExist].quantity,
+            },
+            ...cart.slice(productExist + 1),
+          ];
           cookiesUtil.setProductCart(JSON.stringify(newCart));
           alert("add to cart successfully, product exist!!!");
-        }
-        else {
+        } else {
           const newCart = [...cart];
-          newCart.push(value)
+          newCart.push(value);
           cookiesUtil.setProductCart(JSON.stringify(newCart));
           alert("add to cart successfully");
         }
-      }
-      else {
+      } else {
         cookiesUtil.setProductCart(JSON.stringify([value]));
         alert("first time, add to cart successfully");
       }
-
-    }
-    else {
-
+    } else {
       dispatch(request());
       usersServices.addToCart(value).then(
         () => {
           dispatch(success());
-          alert('add to user cart successfully');
-        }
-        ,
+          alert("add to user cart successfully");
+        },
         (error) => {
           dispatch(failure(error.toString()));
           alert(error);
         }
       );
     }
-
   };
 
   function request() {
@@ -331,21 +333,26 @@ function editCart(value) {
         });
         if (productExist > -1) {
           if (value.quantity > 0) {
-            const newCart = [...cart.slice(0, productExist), value, ...cart.slice(productExist + 1)];
+            const newCart = [
+              ...cart.slice(0, productExist),
+              value,
+              ...cart.slice(productExist + 1),
+            ];
             cookiesUtil.setProductCart(JSON.stringify(newCart));
             dispatch(userActions.getProductsInCart());
             alert("edit cart successfully, quantity: " + value.quantity);
-          }
-          else {
-            const newCart = [...cart.slice(0, productExist), ...cart.slice(productExist + 1)];
+          } else {
+            const newCart = [
+              ...cart.slice(0, productExist),
+              ...cart.slice(productExist + 1),
+            ];
             cookiesUtil.setProductCart(JSON.stringify(newCart));
             dispatch(userActions.getProductsInCart());
             alert("remove item from cart successfully");
           }
         }
       }
-    }
-    else {
+    } else {
       dispatch(request);
       usersServices.editCart(value).then(
         (data) => {
@@ -357,9 +364,9 @@ function editCart(value) {
           dispatch(failure(error.toString()));
           alert("edit cart error: " + error);
         }
-      )
+      );
     }
-  }
+  };
 
   function request() {
     return { type: userConstants.EDIT_CART_REQUEST };
@@ -373,52 +380,51 @@ function editCart(value) {
 }
 
 function getProductsInCart() {
-
   return (dispatch) => {
     dispatch(request());
 
     if (!cookiesUtil.getAccessToken()) {
-      if (cookiesUtil.getProductCart() && cookiesUtil.getProductCart().length > 0) {
+      if (
+        cookiesUtil.getProductCart() &&
+        cookiesUtil.getProductCart().length > 0
+      ) {
         const cart = cookiesUtil.getProductCart();
         usersServices.getProductsInCart(cart).then(
           (data) => {
-            dispatch(success(data['data']));
+            dispatch(success(data["data"]));
             console.log("response data get prduct incart: ", data);
           },
           (error) => {
             dispatch(failure(error));
           }
-        )
-      }
-      else {
+        );
+      } else {
         dispatch(success([]));
       }
-    }
-    else {
+    } else {
       usersServices.getCurrent().then(
         (data) => {
           if (data["data"][0].cart && data["data"][0].cart.length > 0) {
-            const cart = data['data'][0].cart;
+            const cart = data["data"][0].cart;
             usersServices.getProductsInCart(cart).then(
               (data) => {
-                dispatch(success(data['data']));
+                dispatch(success(data["data"]));
                 console.log("response data get prduct incart: ", data);
               },
               (error) => {
                 dispatch(failure(error));
               }
-            )
-          }
-          else {
+            );
+          } else {
             dispatch(success([]));
           }
         },
         (error) => {
           dispatch(failure(error));
         }
-      )
+      );
     }
-  }
+  };
 
   function request() {
     return { type: userConstants.GET_PRODUCTS_IN_CART_REQUEST };
@@ -435,14 +441,14 @@ function getUserReceipt() {
   return (dispatch) => {
     dispatch(request());
     usersServices.getUserReceipt().then(
-      (data)=>{
-        dispatch(success(data['data']))
+      (data) => {
+        dispatch(success(data["data"]));
       },
-      (error)=>{
+      (error) => {
         dispatch(failure(error));
       }
-    )
-  }
+    );
+  };
 
   function request() {
     return { type: userConstants.GET_RECEIPTS_REQUEST };

@@ -13,7 +13,7 @@ function ProductList(props) {
   const products = props.products;
   const [sortProduct, setSortProduct] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
-  const elementPerPage = 2;
+  const elementPerPage = 8;
   const isLoading = useSelector((state) => state.productReducer.isLoading);
 
   if (sortProduct !== "0") {

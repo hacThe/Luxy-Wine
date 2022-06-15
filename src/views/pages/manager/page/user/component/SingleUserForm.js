@@ -183,23 +183,26 @@ function SingleUserForm({ user, onSubmit }) {
                         <div>{errors.email}</div>
                       )}
                     </div>
+                    {!user && (
+                      <div className="">
+                        <div className="input-field">
+                          <label htmlFor="password">Mật khẩu</label>
+                          <Field name="password" type="password" />
+                          {errors.password && touched.password && (
+                            <div>{errors.password}</div>
+                          )}
+                        </div>
 
-                    <div className="input-field">
-                      <label htmlFor="password">Mật khẩu</label>
-                      <Field name="password" type="password" />
-                      {errors.password && touched.password && (
-                        <div>{errors.password}</div>
-                      )}
-                    </div>
-
-                    <div className="input-field">
-                      <label htmlFor="password">Xác nhận mật khẩu</label>
-                      <Field name="confirmPassword" type="password" />
-                      {errors.confirmPassword && touched.confirmPassword && (
-                        <div>{errors.confirmPassword}</div>
-                      )}
-                    </div>
-
+                        <div className="input-field">
+                          <label htmlFor="password">Xác nhận mật khẩu</label>
+                          <Field name="confirmPassword" type="password" />
+                          {errors.confirmPassword &&
+                            touched.confirmPassword && (
+                              <div>{errors.confirmPassword}</div>
+                            )}
+                        </div>
+                      </div>
+                    )}
                     <div className="input-field">
                       <label htmlFor="role">Vai trò</label>
                       <Field as="select" name="role">

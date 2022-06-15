@@ -156,8 +156,8 @@ const ProductComponent = (props) => {
             )}
             <NewPrice newPrice={props.product.price} />
           </Card.Body>
-          {props.product.isNew ? <NewTag /> : <></>}
-          {props.product.isSpecial ? <SpecialTag /> : <></>}
+          {props.product.isNewProduct ? <NewTag /> : <></>}
+          {props.product.isSpecialProduct ? <SpecialTag /> : <></>}
           <HoverContent id={props.product._id} />
         </Card>
       </div>

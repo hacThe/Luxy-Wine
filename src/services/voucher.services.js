@@ -9,6 +9,7 @@ export const voucherServices = {
   update,
   deleteOne,
   deleteMany,
+  check,
 };
 
 function getAll(params = {}) {
@@ -26,6 +27,16 @@ function getOne(id) {
 function create(voucher) {
   return handleResponse(
     ajaxHelper.post(config.URL_VOUCHER + `/new`, voucher, options())
+  );
+}
+
+function check(code, { totalPrice, productCount }) {
+  return handleResponse(
+    ajaxHelper.post(
+      config.URL_VOUCHER + `/check/${code}`,
+      { totalPrice, productCount },
+      options()
+    )
   );
 }
 
