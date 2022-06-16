@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# Study Extra
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![tag](https://img.shields.io/badge/-course-4db39d)](https://github.com/hacThe/LuxyWine-FE)
+[![tag](https://img.shields.io/badge/-study-4db39d)](https://github.com/hacThe/LuxyWine-FE)
+[![os](https://img.shields.io/badge/-teacher-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
+[![framework](https://img.shields.io/badge/-student-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
+[![framework](https://img.shields.io/badge/-english-%2302569B)](https://github.com/hacThe/LuxyWine-FE)
 
-## Available Scripts
+[![school](https://img.shields.io/badge/school-UIT-3f6cb6)](https://www.uit.edu.vn/)
+[![subject](https://img.shields.io/badge/subject-WEB-3f6cb6)](https://www.uit.edu.vn/)
+[![contributors](https://img.shields.io/badge/contributors-4-1d9583)](#team)
 
-In the project directory, you can run:
+<br>
 
+<p align="center">
+ <img src="./resources/money_man.svg" height = "200"></a>
+</p>
+
+<p align="center">
+<i>Đây là một đồ án môn học.</i>
+</p>
+
+
+**Luxy Wine** là website thương mại điện tử dịch vụ dành cho việc buôn bán các sản phẩm rượu. Phục vụ cho việc quản lý của chủ sở hữu và truyền bá đến người dùng
+
+---
+
+## **📝 Mục lục**
+- [Tài nguyên](#tài-nguyên)
+- [Cài đặt](#cài-đặt)
+	- [Front end](#cài-đặt-front-end)
+	- [Back end](#cài-đặt-back-end)
+	- [Database](#cài-đặt-data-base)
+- [Giao diện](#giao-diện)
+- [Thư viện và Công nghệ](#thư-viện-và-công-nghệ)
+- [Thành viên đóng góp](#thành-viên-đóng-góp)
+- [Giấy phép](#giấy-phép)
+
+## **Tài nguyên**
+### **Sử dụng các source-code sau:**
+*	 Front-end: https://github.com/hacThe/LuxyWine-FE
+*  Back-end: https://github.com/hacthe/LuxyWine-BE
+*	 Database: MongoDB Cluster.
+### **Cài đặt:**
+### **Cài đặt Front End:**
+Để cài đặt dependencies
+### `npm install`
+Để khởi chạy dự án
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
+Để build và deploy
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Cài đặt Back End:**
+Để cài đặt dependencies
+### `npm install`
+Để khởi chạy dự án
+### `npm start`
+Để build và deploy
+### `npm run build`
+Thêm file .env với nội dung như sau:
+<br/>
+<br/>
+`JWT_SECRET=your-secrect-key`
+<br/>
+`DB_USER_NAME=your-db-usrname`
+<br/>
+`DB_PASSWORD=your-passwrd`
+<br/>
+`PORT=5000`
+<br/>
+`FE_URL=http://localhost:5050`
+<br/>
+`HOST=smtp.gmail.com`
+<br/>
+`SERVICE=gmail`
+<br/>
+`EMAIL_PORT=587`
+<br/>
+`SECURE=true`
+<br/>
+`USER=youremail@gmail.com`
+<br/>
+`PASS=yourpassword`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br/>
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Cài đặt Database:**
+Tìm kiếm MongoDB Cluster mà vọc vạch
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## **Giao diện**
+ [Xem tại đây](https://drive.google.com/drive/folders/1VKPjIB64zMntJYf-vcIN_6uc-NjWCbCw?fbclid=IwAR05B6SyynNd_JZ5l8OUfS5bDoOYTamEhfsEykz2cwgx7wlQwH1F3N89G-Q)
+Bản deploy: https://luxy-wine-izj8dxxmv-hacthe.vercel.app/phu-kien
+## **Thư viện và Công nghệ**
+*	[ReactJS](https://flutter.dev/](https://reactjs.org/docs/getting-started.html).
+*	[NodeJS](https://firebase.google.com/](https://nodejs.org/en/docs/).
+*	[NPM](https://pub.dev/](https://www.npmjs.com/).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## **Thành viên đóng góp**
+- Dương Hiển Thế *(hacThe)*: 19522252@gm.uit.edu.vn
+- Nguyễn Tấn Thành *(TanThanh-CityBoi)*: 19522239@gm.uit.edu.vn
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br/>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br/>
 
-### Code Splitting
+## **Giấy phép**
+    MIT License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    Copyright (c) 2021 Lemidatt
 
-### Analyzing the Bundle Size
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
 
-### Making a Progressive Web App
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
