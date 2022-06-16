@@ -1,5 +1,6 @@
-# Luxy Wine
 
+
+# Luxy Wine
 [![tag](https://img.shields.io/badge/-course-4db39d)](https://github.com/hacThe/LuxyWine-FE)
 [![tag](https://img.shields.io/badge/-study-4db39d)](https://github.com/hacThe/LuxyWine-FE)
 [![os](https://img.shields.io/badge/-ecomerce-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
@@ -14,7 +15,8 @@
 
 
 **Luxy Wine** là website thương mại điện tử dịch vụ dành cho việc buôn bán các sản phẩm rượu. Phục vụ cho việc quản lý của chủ sở hữu và truyền bá đến người dùng
-
+<br>
+[Vào xem LuxyWine](https://luxy-wine-izj8dxxmv-hacthe.vercel.app/trang-chu)
 ---
 
 ## **📝 Mục lục**
@@ -116,4 +118,3 @@ Tìm kiếm MongoDB Cluster mà vọc vạch
     copies or substantial portions of the Software.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
