@@ -146,8 +146,11 @@ function SingleNewsForm({ news, onSubmit }) {
                 />
               </div>
 
-              <button style={{ display: "inline-block" }}>Lưu</button>
+              <button className="lw-btn" style={{ display: "inline-block" }}>
+                Lưu
+              </button>
               <button
+                className="lw-btn"
                 style={{
                   display: "inline-block",
                   marginLeft: "12px",

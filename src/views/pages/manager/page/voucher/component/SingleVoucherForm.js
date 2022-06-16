@@ -296,10 +296,15 @@ function SingleVoucherForm({ voucher, onSubmit }) {
                 />
               </div>
 
-              <button type="submit" style={{ display: "inline-block" }}>
+              <button
+                className="lw-btn"
+                type="submit"
+                style={{ display: "inline-block" }}
+              >
                 Lưu
               </button>
               <button
+                className="lw-btn"
                 style={{
                   display: "inline-block",
                   marginLeft: "12px",

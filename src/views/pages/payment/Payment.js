@@ -44,8 +44,7 @@ function Payment() {
     if (!isLoggedIn) {
       cookiesUtil.removeProductCart();
     }
-    console.log("response: ", receipt);
-    navigate("/chi-tiet-hoa-don/" + receipt._id);
+    navigate("/gio-hang");
   };
 
   const getTotalImportPrice = (products) => {
@@ -68,6 +67,7 @@ function Payment() {
     }
     if (isLoggedIn && userInfo?.address.length < 1) {
       dispatch(appActions.showSuccessToast("Vui lòng thêm địa chỉ giao hàng"));
+
       return;
     }
     const totalImport = getTotalImportPrice(products);
@@ -111,9 +111,7 @@ function Payment() {
           payMethod: payMethod,
         };
     console.log("receipt: ", receipt);
-    dispatch(
-      receiptActions.create(receipt, (response) => afterPayment(response))
-    );
+    dispatch(receiptActions.create(receipt, afterPayment()));
   };
 
   const paymentSchema = Yup.object().shape({
