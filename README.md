@@ -2,23 +2,15 @@
 
 [![tag](https://img.shields.io/badge/-course-4db39d)](https://github.com/hacThe/LuxyWine-FE)
 [![tag](https://img.shields.io/badge/-study-4db39d)](https://github.com/hacThe/LuxyWine-FE)
-[![os](https://img.shields.io/badge/-teacher-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
-[![framework](https://img.shields.io/badge/-student-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
-[![framework](https://img.shields.io/badge/-english-%2302569B)](https://github.com/hacThe/LuxyWine-FE)
+[![os](https://img.shields.io/badge/-ecomerce-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
+[![framework](https://img.shields.io/badge/-wine-%230175C2)](https://github.com/hacThe/LuxyWine-FE)
+[![framework](https://img.shields.io/badge/-luxywine-%2302569B)](https://github.com/hacThe/LuxyWine-FE)
 
 [![school](https://img.shields.io/badge/school-UIT-3f6cb6)](https://www.uit.edu.vn/)
 [![subject](https://img.shields.io/badge/subject-WEB-3f6cb6)](https://www.uit.edu.vn/)
 [![contributors](https://img.shields.io/badge/contributors-4-1d9583)](#team)
 
 <br>
-
-<p align="center">
- <img src="./resources/money_man.svg" height = "200"></a>
-</p>
-
-<p align="center">
-<i>Đây là một đồ án môn học.</i>
-</p>
 
 
 **Luxy Wine** là website thương mại điện tử dịch vụ dành cho việc buôn bán các sản phẩm rượu. Phục vụ cho việc quản lý của chủ sở hữu và truyền bá đến người dùng
@@ -91,8 +83,8 @@ Tìm kiếm MongoDB Cluster mà vọc vạch
 
 
 ## **Giao diện**
- [Xem tại đây](https://drive.google.com/drive/folders/1VKPjIB64zMntJYf-vcIN_6uc-NjWCbCw?fbclid=IwAR05B6SyynNd_JZ5l8OUfS5bDoOYTamEhfsEykz2cwgx7wlQwH1F3N89G-Q)
-Bản deploy: https://luxy-wine-izj8dxxmv-hacthe.vercel.app/phu-kien
+
+[Bản deploy](https://luxy-wine-izj8dxxmv-hacthe.vercel.app/phu-kien)
 ## **Thư viện và Công nghệ**
 *	[ReactJS](https://flutter.dev/](https://reactjs.org/docs/getting-started.html).
 *	[NodeJS](https://firebase.google.com/](https://nodejs.org/en/docs/).
