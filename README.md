@@ -1,4 +1,4 @@
-# Study Extra
+# Luxy Wine
 
 [![tag](https://img.shields.io/badge/-course-4db39d)](https://github.com/hacThe/LuxyWine-FE)
 [![tag](https://img.shields.io/badge/-study-4db39d)](https://github.com/hacThe/LuxyWine-FE)
