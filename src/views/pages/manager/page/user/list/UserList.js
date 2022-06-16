@@ -75,7 +75,7 @@ function UserList(props) {
         Thêm user
       </span>
       <div className="list-manager-wapper">
-        <div className="title">Quản lý khuyến mãi</div>
+        <div className="title">Quản lý người dùng</div>
         <div className="data-table-container">
           <div className="table-header">
             <div className="heading">

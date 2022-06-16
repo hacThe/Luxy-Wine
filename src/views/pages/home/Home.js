@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../actions/user.actions";
 import { Carousel, Container, Button, Card, Row, Col } from "react-bootstrap";
@@ -9,6 +9,7 @@ import { appActions } from "../../../actions";
 import "./Home.scss";
 import { useNavigate } from "react-router-dom";
 import SliderComponent from "../../component/SliderComponent/SliderComponent";
+import { productServices } from "../../../services";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,13 @@ const Home = () => {
     isNew: true,
     hasSold: 50, //số sp đã bán
   };
+
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    productServices.getList().then((data) => {
+      setProducts(data.data.sort((a, b) => a.price > b.price));
+    });
+  }, []);
   const navigate = useNavigate();
   const banners = useSelector((state) => state.bannerReducer.banners) || [];
   return (
@@ -64,14 +72,14 @@ const Home = () => {
         <AboutUs />
         <CustomerReview />
         <Map />
-        <button
+        {/* <button
           onClick={() => {
             console.log("Click", appActions);
             dispatch(appActions.showSuccessToast("hehehehhe"));
           }}
         >
           Click me
-        </button>
+        </button> */}
       </Container>
     </>
   );
@@ -151,9 +159,9 @@ const Home = () => {
         <h3 style={{ marginBottom: "32px" }}>Sản phẩm nổi bật của Luxy Wine</h3>
         <div className="px-5 py-3" id="container">
           <HorizontalScroll>
-            {Array.from({ length: 12 }).map((_, idx) => (
+            {Array.from({ length: products.length }).map((_, idx) => (
               <div key={idx} className="px-2">
-                <ProductComponent product={product} />
+                <ProductComponent product={products[idx]} />
               </div>
             ))}
           </HorizontalScroll>
@@ -183,6 +191,28 @@ const Home = () => {
   }
 
   function CustomerReview() {
+    const review = [
+      {
+        name: "Nguyễn Thị Thanh Mai",
+        content: `Đây là một hạt giống tiềm năng cho khả năng phát triển
+        ngành hàng rượu ngoại ở Việt Nam, giá cả đi đôi với chất
+        lượng, thái độ phục vụ chuyên nghiệp, phục vụ tận tình, 10
+        điểm dành cho Luxy Wine`,
+        avt: "https://res.cloudinary.com/tanthanh0805/image/upload/v1640322386/moriiStore/N%C3%A0ng_th%C6%A1__13_jk1or9.jpg",
+      },
+      {
+        name: "Trần Trúc Mã",
+        content: `Hết sức tuyệt vời, một trải nghiệm hoàn toàn hài lòng khi đến với cửa hàng này, nhân viên tư vấn nhiệt tình, phân loại sản phẩm suất xắc, sẽ quay lại ửng hộ, mua rượu thì chỉ có nhắc đến Luxy Wine thôi.`,
+        avt: "https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.6435-9/71917241_2233920986901449_808711619935731712_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=174925&_nc_ohc=2X7UYWM31WAAX84efzf&_nc_ht=scontent.fsgn4-1.fna&oh=00_AT9hk3WOc2SBSRfOJlV36w9XwH5uatYGcSDsvvtP4j6olQ&oe=62D13FE3",
+      },
+
+      {
+        name: "Dương Thanh Thành",
+        content: `Tất cả mọi thứ đều tốt, duy chỉ có rượu là tốt một cách quá đáng, hương vị được giữ nguyên bản, phụ kiện chuẩn gu, giá lại hợp lý, hàng bao chất lượng`,
+        avt: "https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/286997316_1695477660829949_5985535757423811061_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=fHmk158Kj1gAX8GDp15&_nc_ht=scontent.fsgn8-2.fna&oh=00_AT-bo3EKhL3CiyynddpXkEI0SXGIn65AlDTb-2RV3crbUg&oe=62ADEFED",
+      },
+    ];
+
     return (
       <div className="customer-review">
         <h3>Đánh giá của khách hàng</h3>
@@ -192,10 +222,7 @@ const Home = () => {
               <Row className="body">
                 <Col xs={12} md={3}>
                   <div className="card-img">
-                    <Card.Img
-                      variant="left"
-                      src="https://res.cloudinary.com/tanthanh0805/image/upload/v1640322386/moriiStore/N%C3%A0ng_th%C6%A1__13_jk1or9.jpg"
-                    />
+                    <Card.Img variant="left" src={review[idx].avt} />
                   </div>
                   <div
                     className="assess d-flex justify-content-center"
@@ -208,11 +235,11 @@ const Home = () => {
                 </Col>
                 <Col xs={12} md={9}>
                   <Card.Body>
-                    <Card.Title className="card-title">Card title</Card.Title>
+                    <Card.Title className="card-title">
+                      {review[idx].name}
+                    </Card.Title>
                     <Card.Text className="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      {review[idx].content}
                     </Card.Text>
                   </Card.Body>
                 </Col>

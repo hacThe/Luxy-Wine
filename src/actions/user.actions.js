@@ -1,3 +1,4 @@
+import { appActions } from ".";
 import { userConstants } from "../constaint";
 import { usersServices } from "../services";
 import { cookiesUtil } from "../utilities";
@@ -35,7 +36,7 @@ function login(email, password, callback) {
         }
       },
       (error) => {
-        alert(error);
+        dispatch(appActions.showFailToast(error));
         dispatch(failure(error.toString()));
       }
     );
@@ -102,7 +103,7 @@ function register(user, callback) {
         // dispatch(success());
         // history.push('/login');
         // dispatch(alertActions.success('Registration successful'));
-        alert("Đăng ký thành công");
+        dispatch(appActions.showSuccessToast("Đăng ký thành công"));
         if (callback instanceof Function) {
           callback();
         }
@@ -110,7 +111,7 @@ function register(user, callback) {
       (error) => {
         // dispatch(failure(error.toString()));
         // dispatch(alertActions.error(error.toString()));
-        alert("Đăng ký thất bại! " + error);
+        dispatch(appActions.showFailToast("Đăng ký thất bại"));
       }
     );
   };
@@ -281,27 +282,31 @@ function addToCart(value) {
             ...cart.slice(productExist + 1),
           ];
           cookiesUtil.setProductCart(JSON.stringify(newCart));
-          alert("add to cart successfully, product exist!!!");
+          dispatch(
+            appActions.showSuccessToast(
+              "Thêm sản phẩm vào giỏ hàng thành công! Sản phẩm đã tồn tại."
+            )
+          );
         } else {
           const newCart = [...cart];
           newCart.push(value);
           cookiesUtil.setProductCart(JSON.stringify(newCart));
-          alert("add to cart successfully");
+          dispatch(appActions.showSuccessToast("Thêm vào giỏ hàng thành công"));
         }
       } else {
         cookiesUtil.setProductCart(JSON.stringify([value]));
-        alert("first time, add to cart successfully");
+        dispatch(appActions.showSuccessToast("Thêm vào giỏ hàng thành công"));
       }
     } else {
       dispatch(request());
       usersServices.addToCart(value).then(
         () => {
           dispatch(success());
-          alert("add to user cart successfully");
+          dispatch(appActions.showSuccessToast("Thêm vào giỏ hàng thành công"));
         },
         (error) => {
           dispatch(failure(error.toString()));
-          alert(error);
+          dispatch(appActions.showFailToast(error.toString()));
         }
       );
     }
@@ -340,7 +345,7 @@ function editCart(value) {
             ];
             cookiesUtil.setProductCart(JSON.stringify(newCart));
             dispatch(userActions.getProductsInCart());
-            alert("edit cart successfully, quantity: " + value.quantity);
+            // alert("edit cart successfully, quantity: " + value.quantity);
           } else {
             const newCart = [
               ...cart.slice(0, productExist),
@@ -348,7 +353,7 @@ function editCart(value) {
             ];
             cookiesUtil.setProductCart(JSON.stringify(newCart));
             dispatch(userActions.getProductsInCart());
-            alert("remove item from cart successfully");
+            dispatch(appActions.showSuccessToast("Xóa thành công"));
           }
         }
       }
@@ -358,11 +363,13 @@ function editCart(value) {
         (data) => {
           dispatch(success(data.user));
           dispatch(userActions.getProductsInCart());
-          alert("edit user cart succesfully: quantity " + value.quantity);
+          //alert("edit user cart succesfully: quantity " + value.quantity);
         },
         (error) => {
           dispatch(failure(error.toString()));
-          alert("edit cart error: " + error);
+          dispatch(
+            appActions.showSuccessToast("Đã xảy ra lỗi:" + error.toString())
+          );
         }
       );
     }

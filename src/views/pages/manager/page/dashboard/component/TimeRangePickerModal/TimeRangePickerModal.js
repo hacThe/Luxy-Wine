@@ -21,7 +21,7 @@ function TimeRangePickerModal({ setTimeRange, open, handleClose }) {
   const [customizeTimeRange, setCustomizeTimeRange] = useState(false);
   const now = new Date();
   const thisMonth = now.getMonth() + 1 + "/" + now.getFullYear();
-  const lastMonth = now.getMonth() + 1 + "/" + now.getFullYear();
+  const lastMonth = now.getMonth() + "/" + now.getFullYear();
   const thisYear = now.getFullYear();
 
   const selectThisYear = () => {
@@ -104,6 +104,7 @@ function TimeRangePickerModal({ setTimeRange, open, handleClose }) {
             }}
           />
           <span
+            onClick={handleClose}
             style={{
               marginTop: "12px",
               backgroundColor: "#A90000",

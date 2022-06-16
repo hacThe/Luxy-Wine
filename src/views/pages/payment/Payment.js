@@ -40,7 +40,7 @@ function Payment() {
     setAddressError: setAddressError,
   };
   const afterPayment = () => {
-    alert("Đặt hàng thành công!!");
+    dispatch(appActions.showSuccessToast("Đặt hàng thành công"));
     if (!isLoggedIn) {
       cookiesUtil.removeProductCart();
     }
@@ -62,11 +62,12 @@ function Payment() {
       return;
     }
     if (products.length < 1) {
-      alert("Giỏ hàng không có sản phẩm");
+      dispatch(appActions.showFailToast("Giỏ hàng không có sản phẩm"));
       return;
     }
     if (isLoggedIn && userInfo?.address.length < 1) {
-      alert("Vui lòng thêm địa chỉ giao hàng");
+      dispatch(appActions.showSuccessToast("Vui lòng thêm địa chỉ giao hàng"));
+
       return;
     }
     const totalImport = getTotalImportPrice(products);

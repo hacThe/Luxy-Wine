@@ -75,7 +75,7 @@ const DataTableComponent = ({
       {selectionModel?.length > 0 && (
         <span className="selected-rows-count">
           Đã chọn {selectionModel.length} hàng.{" "}
-          <strong onClick={() => alert("Xóa hàng")}>Xóa hàng đã chọn</strong>
+          <strong>Xóa hàng đã chọn</strong>
         </span>
       )}
       <DataGrid

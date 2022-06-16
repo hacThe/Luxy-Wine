@@ -81,8 +81,9 @@ function create(values, callback) {
     receiptServices.create(values).then(
       (data) => {
         dispatch(success(data["data"]));
+        console.log("responese receeipt: ", data.data)
         if (callback instanceof Function) {
-          callback(data["data"]);
+          callback(data.data);
         }
       },
       (error) => dispatch(failure(error.toString()))
